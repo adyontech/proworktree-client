@@ -4,7 +4,7 @@ import { LoginRoutingModule } from './login.routes';
 
 import { LoginComponent } from './login.component';
 import { LoginService } from "./service/login.service"
-import { UserStateService } from './../../shared/userDetails/user-state.service';
+// import { UserStateService } from './../../sharedService/userDetails/user-state.service';
 
 @NgModule({
     imports: [

@@ -21,6 +21,8 @@ import { MapsComponent } from './maps/maps.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { UpgradeComponent } from './upgrade/upgrade.component';
 
+import { UserStateService } from "./sharedService/userDetails/user-state.service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +47,7 @@ import { UpgradeComponent } from './upgrade/upgrade.component';
     AppRoutingModule,
     LbdModule
   ],
-  providers: [],
+  providers: [UserStateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

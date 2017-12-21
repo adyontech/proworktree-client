@@ -10,27 +10,27 @@ import { companyListComponent } from './components/companyList/companyList.compo
 import { gheaderComponent } from './components/header/gheader.component';
 
 import { GatewayService } from "./service/gateway.service";
-import { CalendarModule } from 'primeng/primeng';
+// import { CalendarModule } from 'primeng/primeng';
 // import { MaterialModule } from '@angular/material';
-import { InputTextModule } from 'primeng/primeng';
-import { CheckboxModule } from 'primeng/primeng';
-import { RadioButtonModule } from 'primeng/primeng';
-import { DropdownModule } from 'primeng/primeng';
-import { ButtonModule } from 'primeng/primeng';
-import { SplitButtonModule } from 'primeng/primeng';
-import { TabViewModule } from 'primeng/primeng';
+// import { InputTextModule } from 'primeng/primeng';
+// import { CheckboxModule } from 'primeng/primeng';
+// import { RadioButtonModule } from 'primeng/primeng';
+// import { DropdownModule } from 'primeng/primeng';
+// import { ButtonModule } from 'primeng/primeng';
+// import { SplitButtonModule } from 'primeng/primeng';
+// import { TabViewModule } from 'primeng/primeng';
 @NgModule({
     imports: [
         FormsModule,
         CommonModule,
         ReactiveFormsModule,
         GatewayRoutingModule,
-        CalendarModule,
-        InputTextModule,
-        CheckboxModule,
-        RadioButtonModule,
-        DropdownModule,
-        ButtonModule,
+        // CalendarModule,
+        // InputTextModule,
+        // CheckboxModule,
+        // RadioButtonModule,
+        // DropdownModule,
+        // ButtonModule,
     ],
     declarations: [
         GatewayComponent,
