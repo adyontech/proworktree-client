@@ -1,0 +1,422 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-width: 768px;
+}
+
+.container-fluid {
+    margin: 0;
+    padding: 0;
+}
+
+.top {
+    height: auto;
+    text-align: left;
+    line-height: 5;
+    position: absolute;
+    vertical-align: middle;
+    padding: 15px 0 0 3% !important;
+}
+
+.logo {
+    position: absolute;
+    padding: 0;
+    height: auto;
+    width: auto;
+}
+
+.logo img {
+    height: 35px;
+    width: auto;
+}
+
+.header {
+    position: absolute;
+    height: auto;
+    width: auto;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.options {
+    position: absolute;
+    height: 100%;
+    width: auto;
+    padding-left: 4% !important;
+}
+
+.left-buttons .list-group-item {
+    display: inline-block;
+    margin-top: 10px;
+    margin-right: 25px;
+    color: #1ccd1c;
+    font-weight: bolder;
+    border: 1px solid #1ccd1c;
+    border-radius: 8px !important;
+    padding: 9px 20px 9px 20px;
+    box-shadow: 0 0 1px #6e6e6e;
+}
+
+.left-buttons .list-group-item span {
+    color: #FA441F;
+}
+
+.left-buttons .list-group-item:hover,
+.left-buttons .list-group-item:focus {
+    color: #fff;
+    background-color: #1ccd1c;
+}
+
+.left-buttons .list-group-item:active {
+    background-color: #2d9b22;
+    box-shadow: none;
+}
+
+.right-buttons {
+    text-align: right;
+}
+
+.right-buttons button {
+    margin-top: 10px;
+    font-weight: bolder;
+    border-radius: 8px !important;
+    padding: 9px 20px 9px 20px;
+    box-shadow: 0 0 0.5px #6e6e6e;
+    color: #6e6e6e;
+}
+
+main {
+    width: 100%;
+    height: auto;
+}
+
+.form-div {
+    margin-top: 10%;
+    margin-bottom: 25%;
+    padding: 0;
+}
+
+.form-group {
+    margin-bottom: 20px !important;
+}
+
+label>span {
+    font-size: 14pt;
+    color: red;
+}
+
+.input-group {
+    width: 40%;
+    display: inline;
+}
+
+option {
+    font-size: 11pt;
+}
+
+.company-logo-div {
+    width: 120px;
+    height: auto;
+}
+
+.company-logo-div img {
+    width: 100%;
+    height: auto;
+}
+
+.info-text {
+    height: auto;
+    width: auto;
+    margin-left: 10px;
+}
+
+.info-text ul li:nth-child(1) {
+    list-style-type: none;
+    font-size: 12pt;
+    font-weight: bolder;
+}
+
+.info-text ul li:nth-child(2) {
+    margin-top: 10px;
+}
+
+#upload-text {
+    text-decoration: underline;
+    font-weight: bolder;
+    color: blue;
+    margin-left: -15px;
+    font-family: Tahoma, sans-serif !important;
+}
+
+#submit {
+    margin-top: 10px;
+    border: none;
+    outline: none;
+    background-color: #9ECB3D !important;
+    width: 50%;
+}
+
+.dateinput {
+    margin-top: 5px;
+}
+
+#submit:hover,
+#submit:focus {
+    background-color: #94c340 !important;
+}
+
+#submit:active {
+    background-color: #85b440 !important;
+}
+
+.details {
+    margin-top: 5%;
+    margin-left: 8%;
+}
+
+#mycompany {
+    font-size: 22pt;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #aeaeae;
+    font-family: "Myriad Pro", sans-serif;
+    font-weight: 200;
+}
+
+#mycompany-name {
+    padding-top: 10px;
+    font-size: 16pt;
+    font-family: "Myriad Pro", sans-serif;
+    font-weight: 200;
+}
+
+#mycompany-addr {
+    font-size: 12pt;
+    font-family: "Myriad Pro", sans-serif;
+    font-weight: 200;
+}
+
+$color_1: #1ccd1c;
+$color_2: #FA441F;
+$color_3: #fff;
+$color_4: #6e6e6e;
+$color_5: red;
+$color_6: blue;
+$font_family_1: Tahoma,
+sans-serif;
+$font_family_2: "Myriad Pro",
+sans-serif;
+$background_color_1: #1ccd1c;
+$background_color_2: #2d9b22;
+$background_color_3: #9ECB3D;
+$background_color_4: #94c340;
+$background_color_5: #85b440;
+html {
+    margin: 0;
+    padding: 0;
+    min-width: 768px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-width: 768px;
+}
+
+.container-fluid {
+    margin: 0;
+    padding: 0;
+}
+
+.top {
+    height: auto;
+    text-align: left;
+    line-height: 5;
+    position: absolute;
+    vertical-align: middle;
+    padding: 15px 0 0 3% !important;
+}
+
+.logo {
+    position: absolute;
+    padding: 0;
+    height: auto;
+    width: auto;
+    img {
+        height: 35px;
+        width: auto;
+    }
+}
+
+.header {
+    position: absolute;
+    height: auto;
+    width: auto;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.options {
+    position: absolute;
+    height: 100%;
+    width: auto;
+    padding-left: 4% !important;
+}
+
+.left-buttons {
+    .list-group-item {
+        display: inline-block;
+        margin-top: 10px;
+        margin-right: 25px;
+        color: $color_1;
+        font-weight: bolder;
+        border: 1px solid #1ccd1c;
+        border-radius: 8px !important;
+        padding: 9px 20px 9px 20px;
+        box-shadow: 0 0 1px #6e6e6e;
+        span {
+            color: $color_2;
+        }
+        &:hover {
+            color: $color_3;
+            background-color: $background_color_1;
+        }
+        &:focus {
+            color: $color_3;
+            background-color: $background_color_1;
+        }
+        &:active {
+            background-color: $background_color_2;
+            box-shadow: none;
+        }
+    }
+}
+
+.right-buttons {
+    text-align: right;
+    button {
+        margin-top: 10px;
+        font-weight: bolder;
+        border-radius: 8px !important;
+        padding: 9px 20px 9px 20px;
+        box-shadow: 0 0 0.5px #6e6e6e;
+        color: $color_4;
+    }
+}
+
+main {
+    width: 100%;
+    height: auto;
+}
+
+.form-div {
+    margin-top: 10%;
+    margin-bottom: 25%;
+    padding: 0;
+}
+
+.form-group {
+    margin-bottom: 20px !important;
+}
+
+label {
+    >span {
+        font-size: 14pt;
+        color: $color_5;
+    }
+}
+
+.input-group {
+    width: 40%;
+    display: inline;
+}
+
+option {
+    font-size: 11pt;
+}
+
+.company-logo-div {
+    width: 120px;
+    height: auto;
+    img {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+.info-text {
+    height: auto;
+    width: auto;
+    margin-left: 10px;
+    ul {
+        li {
+            &:nth-child(1) {
+                list-style-type: none;
+                font-size: 12pt;
+                font-weight: bolder;
+            }
+            &:nth-child(2) {
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
+#upload-text {
+    text-decoration: underline;
+    font-weight: bolder;
+    color: $color_6;
+    margin-left: -15px;
+    font-family: $font_family_1 !important;
+}
+
+#submit {
+    margin-top: 10px;
+    border: none;
+    outline: none;
+    background-color: $background_color_3 !important;
+    width: 50%;
+    &:hover {
+        background-color: $background_color_4 !important;
+    }
+    &:focus {
+        background-color: $background_color_4 !important;
+    }
+    &:active {
+        background-color: $background_color_5 !important;
+    }
+}
+
+.dateinput {
+    margin-top: 5px;
+}
+
+.details {
+    margin-top: 5%;
+    margin-left: 8%;
+}
+
+#mycompany {
+    font-size: 22pt;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #aeaeae;
+    font-family: $font_family_2;
+    font-weight: 200;
+}
+
+#mycompany-name {
+    padding-top: 10px;
+    font-size: 16pt;
+    font-family: $font_family_2;
+    font-weight: 200;
+}
+
+#mycompany-addr {
+    font-size: 12pt;
+    font-family: $font_family_2;
+    font-weight: 200;
+}
+.offer{
+    height: 20%;
+    width: 20%
+}
