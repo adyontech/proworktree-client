@@ -1,215 +1,162 @@
-<gnavbar></gnavbar>
-<div class="col-sm-offset-1 col-sm-11" style="margin-top: 170px">
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title text-center">Gateway of companies</h4>
+                    </div>
+                    <div class="content">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>Name of company</label>
+                                        <input type="text" class="form-control" name="company_name" placeholder="Company Name" formControlName="companyName">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Company Pan</label>
+                                        <input type="text" class="form-control" placeholder="Username" formControlName="pan">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" class="form-control" placeholder="Email">
+                                    </div>
+                                </div>
+                            </div>
 
-    <div class="form-div">
 
-        <form id="form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)" novalidate>
-            <div class="col-sm-10 col-xs-6 col-lg-6">
-                <div class="form-group">
-                    <label for="company_name">Name of the company:
-                        <span>*</span>
-                    </label>
-                    <br>
-                    <div class="example-full-width">
-                        <input type="text" class="form-control" id="company_name" name="company_name" placeholder="" formControlName="companyName">
-                    </div>
-                    <div *ngIf="!form.controls.companyName.valid  && form.controls['companyName'].dirty">
-                        <p class="warn">Please enter a valid Name.</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="pan">Company PAN:
-                        <span>*</span>
-                    </label>
-                    <br>
-                    <div class="example-full-width">
-                        <input matInput type="text" class="form-control" id="pan" name="pan" placeholder="" formControlName="pan">
-                    </div>
-                    <div *ngIf="!form.controls.pan.valid  && form.controls['pan'].dirty">
-                        <p class="warn">Please enter a valid Pan number. eg :- XXXXX0000X</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="address">Company address:</label>
-                    <br>
-                    <textarea class="form-control" id="address" name="address" placeholder="" formControlName="address"></textarea>
-                </div>
-                <div *ngIf="!form.controls.address.valid  && form.controls['address'].dirty">
-                    <p class="warn">Please enter a valid address.</p>
-                </div>
-                <div class="form-group">
-                    <label for="gstin">Company GSTIN:
-                        <span>*</span>
-                    </label>
-                    <br>
-                    <div class="example-full-width">
-                        <input type="text" class="form-control" id="gstin" name="gstin" placeholder="" formControlName="gstin">
-                    </div>
-                    <div *ngIf="!form.controls.gstin.valid  && form.controls['gstin'].dirty">
-                        <p class="warn">Please enter a valid Gstin number.eg :- 00XXXXX0000X0Z0 </p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone number:
-                        <span>*</span>
-                    </label>
-                    <br>
-                    <div class="example-full-width">
-                        <input type="text" class="form-control" id="phone" name="phone" placeholder="" formControlName="phoneNo">
-                    </div>
-                    <div *ngIf="!form.controls.phoneNo.valid  && form.controls['phoneNo'].dirty">
-                        <p class="warn">Please enter a valid phone number.</p>
-                    </div>
-                </div>
-                <!-- <div class="form-group">
-                    <label for="hsn">HSN code:
-                        <span>*</span>
-                    </label>
-                    <br>
-                    <div class="example-full-width">
-                        <input type="text" class="form-control" id="hsn" name="hsn" formControlName="hsnCode">
-                    </div>
-                </div>
-                <div *ngIf="!form.controls.hsnCode.valid  && form.controls['hsnCode'].dirty">
-                    <p class="warn">Please enter a valid Hsn code.</p>
-                </div>
-                <div class="form-group">
-                    <label for="gst">GST rate applicable:</label>
-                    <select class="form-control" id="gst" name="gst" formControlName="gstRate">
-                        <option value="0">No GST applicable (0%)</option>
-                        <option value="5">5%</option>
-                        <option value="12">12%</option>
-                        <option value="18" selected>18%</option>
-                        <option value="28">28%</option>
-                    </select>
-                </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                    </div>
+                                </div>
+                            </div>
 
-                <div *ngIf="!form.controls.gstRate.valid  && form.controls['gstRate'].dirty">
-                    <p class="warn">Please select one of the above</p>
-                </div> -->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Company Gstin</label>
+                                        <input type="text" class="form-control" placeholder="City" value="Mike">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>city</label>
+                                        <input type="text" class="form-control" placeholder="Country" value="Andrew">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>State</label>
+                                        <input type="number" class="form-control" placeholder="ZIP Code">
+                                    </div>
+                                </div>
+                            </div>
 
-                <div class="form-group">
-                    <label for="language">Preferred language</label>
-                    <br>
-                    <select class="form-control" id="language" name="language" formControlName="language">
-                        <option value="english" selected>English</option>
-                        <option value="hindi">Hindi</option>
-                        <!-- <option value="hindi">Gujarati</option>
-                        <option value="hindi">Marathi</option>
-                        <option value="hindi">Telugu</option>
-                        <option value="hindi">Tamil</option>
-                        <option value="hindi">Urdu</option> -->
-                    </select>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Phone Number</label>
+                                        <input type="text" class="form-control" placeholder="City" value="Mike">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="business">Nature of business:</label>
+                                        <br>
+                                        <select class="form-control" id="business" name="business" formControlName="natureOfBuisness">
+                                            <option value="freight" selected>Freight</option>
+                                            <option value="option2">Option2</option>
+                                            <option value="option3">Option3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="currency">Currency:</label>
+                                        <br>
+                                        <select class="form-control" id="currency" name="currency" formControlName="currency">
+                                            <option value="inr" selected>₹ - INR</option>
+                                            <option value="usd">$ - USD</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="language">Preferred language</label>
+                                        <br>
+                                        <select class="form-control" id="language" name="language" formControlName="language">
+                                            <option value="english" selected>English</option>
+                                            <option value="hindi">Hindi</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
                 </div>
-
-                <div *ngIf="!form.controls.language.valid  && form.controls['language'].irty">
-                    <p class="warn">Please select one of the above</p>
-                </div>
-
             </div>
-            <div class="col-sm-10 col-xs-6 col-lg-6">
-                <div class="form-group">
-                    <label for="email">Email address:
-                        <span>*</span>
-                    </label>
-                    <br>
-                    <div class="example-full-width">
-                        <input type="email" class="form-control" id="email" name="email" formControlName="email" [class.invalid]="form.controls.email && form.controls.email.dirty">
+            <div class="col-md-4">
+                <div class="card card-user">
+                    <div class="image">
+                        <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..." />
                     </div>
-                </div>
-                <div *ngIf="!form.controls.email.valid  && form.controls['email'].dirty">
-                    <p class="warn">Please Enter a valid email.</p>
-                </div>
-                <div class="form-group">
-                    <label for="company-logo">Company logo:</label>
-                    <br>
-                    <span class='label label-default' id="upload-file-info"></span>
-                    <div class="form-inline">
-                        <div class="input-group company-logo-div">
-                            <img *ngIf="!image_view" id="company-logo" height="50px;width:50px" src="../../../../../assets/images/signup/company-logo.PNG">
-                            <img *ngIf="image_view" id="company-logo" height="50px;width:50px" src={{imageFile}}>
+                    <div class="content">
+                        <div class="author">
+                            <a href="#">
+                                <img class="avatar border-gray" src="assets/img/faces/face-3.jpg" alt="..." />
+
+                                <h4 class="title">Mike Andrew
+                                    <br />
+                                    <small>michael24</small>
+                                </h4>
+                            </a>
                         </div>
-                        <div class="input-group info-text">
-                            <ul>
-                                <li>
-                                    <input type="file" class="file" accept="image/x-png,image/jpg" formControlName="logo" (change)="handleFileUpload($event)">
-                                    <br>
-                                </li>
-                                <li>Should be .jpg or .png of at least 200x200px.</li>
-                                <li>Maximum file size 200kb.</li>
-                            </ul>
-                        </div>
+                        <p class="description text-center"> "Lamborghini Mercy
+                            <br> Your chick she so thirsty
+                            <br> I'm in that two seat Lambo"
+                        </p>
+                    </div>
+                    <hr>
+                    <div class="text-center">
+                        <button href="#" class="btn btn-simple">
+                            <i class="fa fa-facebook-square"></i>
+                        </button>
+                        <button href="#" class="btn btn-simple">
+                            <i class="fa fa-twitter"></i>
+                        </button>
+                        <button href="#" class="btn btn-simple">
+                            <i class="fa fa-google-plus-square"></i>
+                        </button>
                     </div>
                 </div>
-                <div *ngIf="image_px">
-                    <p class="warn">Ensure image to be minimum of 200x200px & 200kb.</p>
-                </div>
-                <br>
-                <div *ngIf="image_size">
-                    <p class="warn">Please Enter a valid image, the size id not Valid.</p>
-                </div>
-                <div class="form-group">
-                    <label for="business">Nature of business:</label>
-                    <br>
-                    <select class="form-control" id="business" name="business" formControlName="natureOfBuisness">
-                        <option value="freight" selected>Freight</option>
-                        <option value="option2">Option2</option>
-                        <option value="option3">Option3</option>
-                    </select>
-                </div>
-                <div *ngIf="!form.controls.natureOfBuisness.valid  && form.controls['natureOfBuisness'].dirty">
-                    <p class="warn">Please select one of the above</p>
-                </div>
-                <div class="form-group">
-                    <label for="currency">Currency:</label>
-                    <br>
-                    <select class="form-control" id="currency" name="currency" formControlName="currency">
-                        <option value="inr" selected>₹ - INR</option>
-                        <option value="usd">$ - USD</option>
-                    </select>
-                </div>
-                <div *ngIf="!form.controls.currency.valid  && form.controls['currency'].dirty">
-                    <p class="warn">Please select one of the above</p>
-                </div>
-                <div class="form-group">
-                    <label for="date">Financial Year
-                        <span>*</span>
-                    </label>
-                    <br>
-                    <br>
-
-                    <!-- <p-calendar name="date1" [showIcon]="true" placeholder=" DD-MM-YYYY" formControlName="startDate"></p-calendar>
-                    <span style="margin:0 35px 10px 0"></span>
-                    <br>
-
-                    <div *ngIf="!form.controls.startDate.valid  && form.controls['startDate'].dirty">
-                        <p class="warn">Please select start date.</p>
-                    </div>
-                    <h4 style="margin: 25px 0 0 90px"> To </h4>
-                    <br>
-                    <p-calendar name="date2" [showIcon]="true" placeholder=" DD-MM-YYYY" formControlName="endDate"></p-calendar> -->
-                    <span style="margin-left:35px"></span>
-                </div>
-                <div *ngIf="!form.controls.endDate.valid  && form.controls['endDate'].dirty">
-                    <p class="warn">Please select End date.</p>
-                </div>
-                <!-- <div class="form-group">
-                    <label for="package">Nature of package:</label>
-                    <br>
-                    <select class="form-control" id="package" name="package" formControlName="NatureOfPackage">
-                        <option value="package1" selected>Package 1</option>
-                        <option value="package2">Package 2</option>
-                        <option value="package3">Package 3</option>
-                    </select>
-                </div>
-                <div *ngIf="!form.controls.NatureOfPackage.valid  && form.controls['NatureOfPackage'].dirty">
-                    <p class="warn">Please select one of the above</p>
-                </div> -->
             </div>
-            <div class="col-lg-offset-3 col-lg-5">
-                <button id="submit" type="submit"  class="btn btn-lg btn-last">GET STARTED</button>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
-<!-- [disabled]='!form.valid' -->

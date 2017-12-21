@@ -28,6 +28,7 @@ export class GatewayFormComponent implements OnInit {
   imageValidator: LogoValidator;
   image_size: boolean = false;
   image_px: boolean = false;
+  username:string;
 
   constructor(public _gatewayService: GatewayService, public fb: FormBuilder, private router: Router) {
     this.imageValidator = new LogoValidator();
@@ -128,6 +129,8 @@ export class GatewayFormComponent implements OnInit {
       this.image_size = true;
     }
   }
-
+  myEvent(event){
+    console.log(this.username)
+  }
 
 }
