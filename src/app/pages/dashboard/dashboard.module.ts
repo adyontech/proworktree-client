@@ -8,17 +8,20 @@ import { DashboardComponent } from './dashboard.component';
 import { ContributorsComponent } from "./components/contributors/contributors.component";
 import { RemoveCompanyComponent } from "./components/removeCompany/removeCompany.component";
 import { DashboardService } from "./service/dashboard.service";
+
+import { SidebarComponent } from "./components/sidebar/sidebar.component";
 @NgModule({
     imports: [
         FormsModule,
         CommonModule,
         ReactiveFormsModule,
-        DashboardRoutingModule
+        DashboardRoutingModule,
     ],
     declarations: [
         DashboardComponent,
         ContributorsComponent,
         RemoveCompanyComponent,
+        SidebarComponent
 
     ],
     providers: [
