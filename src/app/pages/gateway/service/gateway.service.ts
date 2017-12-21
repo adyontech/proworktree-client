@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from "@angular/http";
-import { UserStateService } from "./../../../shared/userDetails/user-state.service";
+import { UserStateService } from './../../../sharedService/userDetails/user-state.service';
+
 import 'rxjs/add/operator/map';
 import 'rxjs/'
 @Injectable()

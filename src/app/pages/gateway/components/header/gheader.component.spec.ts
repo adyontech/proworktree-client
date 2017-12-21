@@ -5,8 +5,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { GatewayService } from "./../../service/gateway.service";
 import { gheaderComponent } from './gheader.component';
 import { ConfirmDialogModule, ConfirmationService } from 'primeng/primeng';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule } from '@angular/material';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { MatInputModule } from '@angular/material';
 import { CalendarModule } from 'primeng/primeng';
 import { DropdownModule } from 'primeng/primeng';
 
@@ -30,9 +30,9 @@ describe('AppComponent', () => {
                 FormsModule,
                 ReactiveFormsModule,
                 CommonModule,
-                BrowserAnimationsModule,
+                // BrowserAnimationsModule,
                 ConfirmDialogModule,
-                MatInputModule,
+                // MatInputModule,
                 CalendarModule,
                 DropdownModule
             ]

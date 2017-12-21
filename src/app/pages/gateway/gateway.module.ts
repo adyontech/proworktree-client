@@ -12,7 +12,6 @@ import { gheaderComponent } from './components/header/gheader.component';
 import { GatewayService } from "./service/gateway.service";
 import { CalendarModule } from 'primeng/primeng';
 // import { MaterialModule } from '@angular/material';
-import { MatInputModule } from '@angular/material';
 import { InputTextModule } from 'primeng/primeng';
 import { CheckboxModule } from 'primeng/primeng';
 import { RadioButtonModule } from 'primeng/primeng';
@@ -27,7 +26,6 @@ import { TabViewModule } from 'primeng/primeng';
         ReactiveFormsModule,
         GatewayRoutingModule,
         CalendarModule,
-        MatInputModule,
         InputTextModule,
         CheckboxModule,
         RadioButtonModule,

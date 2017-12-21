@@ -4,7 +4,7 @@ import { GatewayComponent } from './gateway.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GatewayRoutingModule } from './gateway.routes';
 import { ConfirmDialogModule, ConfirmationService } from 'primeng/primeng';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { GatewayFormComponent } from './components/gatewayForm/gatewayForm.component';
 
@@ -20,7 +20,7 @@ describe('GatewayComponent', () => {
         ReactiveFormsModule,
         CommonModule,
         GatewayRoutingModule,
-        BrowserAnimationsModule,
+        // BrowserAnimationsModule,
         ConfirmDialogModule
       ],
       providers: [ConfirmationService]
