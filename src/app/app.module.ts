@@ -23,6 +23,9 @@ import { UpgradeComponent } from './upgrade/upgrade.component';
 
 import { UserStateService } from "./sharedService/userDetails/user-state.service";
 
+import { LoginModule } from "./pages/login/login.module";
+import { ActivationModule } from "./pages/activation/activation.module";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +36,7 @@ import { UserStateService } from "./sharedService/userDetails/user-state.service
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
-    UpgradeComponent
+    UpgradeComponent,
 
   ],
   imports: [
@@ -45,7 +48,9 @@ import { UserStateService } from "./sharedService/userDetails/user-state.service
     SidebarModule,
     RouterModule,
     AppRoutingModule,
-    LbdModule
+    LbdModule,
+    LoginModule,
+    ActivationModule
   ],
   providers: [UserStateService],
   bootstrap: [AppComponent]

@@ -12,6 +12,10 @@ import { MapsComponent } from './maps/maps.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { UpgradeComponent } from './upgrade/upgrade.component';
 
+import { LoginComponent } from './pages/login/login.component';
+import { LoggedInGuard } from './sharedService/authGuard/guard';
+import { ActivationComponent } from './pages/activation/activation.component'
+;
 const routes: Routes = [
   { path: 'dashboard', component: HomeComponent },
   { path: 'user', component: UserComponent },
@@ -21,12 +25,29 @@ const routes: Routes = [
   { path: 'maps', component: MapsComponent },
   { path: 'notifications', component: NotificationsComponent },
   { path: 'upgrade', component: UpgradeComponent },
+
+
+
+
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'signup',
+    loadChildren: 'app/pages/signup/signup.module#SignupModule'
+  },
+  {
+    path: 'activation/:token',
+    component: ActivationComponent,
+
+  },
   {
     path: 'gateway',
     loadChildren: 'app/pages/gateway/gateway.module#GatewayModule',
     // canActivate: [LoggedInGuard] 
   },
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+  { path: '', redirectTo: 'gateway', pathMatch: 'full' }
 ];
 
 @NgModule({
