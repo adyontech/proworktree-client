@@ -13,7 +13,8 @@ import { PanValidator } from "../gatewayForm/validators/pan";
 import { PhoneValidator } from "../gatewayForm/validators/phone";
 import { LogoValidator } from "../gatewayForm/validators/logo";
 
-
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
 @Component({
   selector: 'gatewayForm',
@@ -23,15 +24,18 @@ import { LogoValidator } from "../gatewayForm/validators/logo";
 
 export class GatewayFormComponent implements OnInit {
   form: FormGroup;
+  companyName: string = 'ProWorkTree';
+  email: string
   imageFile: string;
   image_view: boolean = false;
   imageValidator: LogoValidator;
   image_size: boolean = false;
   image_px: boolean = false;
-  username:string;
+  username: string;
 
   constructor(public _gatewayService: GatewayService, public fb: FormBuilder, private router: Router) {
     this.imageValidator = new LogoValidator();
+    //called first time before the ngOnInit()
   }
 
   ngOnInit() {
@@ -102,9 +106,9 @@ export class GatewayFormComponent implements OnInit {
 
     this._gatewayService.createNewCompany(user)
       .subscribe(
-        (data)=>{
-          // console.log('hello gateway service')
-        }
+      (data) => {
+        // console.log('hello gateway service')
+      }
       )
 
   }
@@ -129,8 +133,16 @@ export class GatewayFormComponent implements OnInit {
       this.image_size = true;
     }
   }
-  myEvent(event){
-    console.log(this.username)
+
+  downloadPdf() {
+    pdfMake.vfs = pdfFonts.pdfMake.vfs;
+    var dd = { 
+      content: [
+        'This is an sample PDF printed with pdfMake',
+        { text: 'Company Name :' + this.companyName , fontSize: 15 },
+        { text: 'Company Name :' + this.companyName, fontSize: 15 },
+      ]};
+    pdfMake.createPdf(dd).open()();
   }
 
 }

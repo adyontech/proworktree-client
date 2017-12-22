@@ -1,18 +1,18 @@
-<div class="main-content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="header">
-                        <h4 class="title text-center">Gateway of companies</h4>
-                    </div>
-                    <div class="content">
-                        <form>
+<form id="form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)" novalidate>
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title text-center">Gateway of companies</h4>
+                        </div>
+                        <div class="content">
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label>Name of company</label>
-                                        <input type="text" class="form-control" name="company_name" placeholder="Company Name" formControlName="companyName">
+                                        <input type="text" class="form-control" [(ngModel)]="companyName" name="company_name" placeholder="Company Name" formControlName="companyName">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -24,7 +24,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" placeholder="Email">
+                                        <input type="email" class="form-control" [(ngModel)]="email" placeholder="Email" formControlName="email">
                                     </div>
                                 </div>
                             </div>
@@ -103,60 +103,122 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Last Name</label>
-                                        <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
+                                        <label>Starting Date</label>
+                                        <!-- <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker> -->
 
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Last Name</label>
+                                        <label>End date</label>
                                         <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
                                     </div>
                                 </div>
+
                             </div>
 
-                            <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-4">
+                                    <div class="input-group info-text">
+                                        <ul>
+                                            <li>Should be .jpg or .png of at least 200x200px.</li>
+                                            <li>Maximum file size 200kb.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="company-logo">Company logo:</label>
+                                        <br>
+                                        <span class='label label-default' id="upload-file-info"></span>
+                                        <div class="form-inline">
+                                            <!-- <div class="input-group company-logo-div">
+                                                <img *ngIf="!image_view" id="company-logo" height="50px;width:50px" src="../../../../../assets/images/signup/company-logo.PNG">
+                                                <img *ngIf="image_view" id="company-logo" height="50px;width:50px" src={{imageFile}}>
+                                            </div> -->
+                                            <div class="input-group info-text">
+                                                <ul style="margin-left: -50px;">
+                                                    <li>
+                                                        <input type="file" class="file" accept="image/x-png,image/jpg" formControlName="logo" (change)="handleFileUpload($event)">
+                                                        <br>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="company-logo">Signature pic:</label>
+                                        <br>
+                                        <span class='label label-default' id="upload-file-info"></span>
+                                        <div class="form-inline">
+                                            <!-- <div class="input-group company-logo-div">
+                                                <img *ngIf="!image_view" id="company-logo" height="50px;width:50px" src="../../../../../assets/images/signup/company-logo.PNG">
+                                                <img *ngIf="image_view" id="company-logo" height="50px;width:50px" src={{imageFile}}>
+                                            </div> -->
+                                            <div class="input-group info-text">
+                                                <ul style="margin-left: -50px;">
+                                                    <li>
+                                                        <input type="file" class="file" accept="image/x-png,image/jpg" formControlName="logo" (change)="handleFileUpload($event)">
+                                                        <br>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+
+                            </div>
+
+                            <button type="submit" class="btn btn-info btn-fill pull-right">Getting started</button>
                             <div class="clearfix"></div>
-                        </form>
+
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-user">
-                    <div class="image">
-                        <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..." />
-                    </div>
-                    <div class="content">
-                        <div class="author">
-                            <a href="#">
-                                <img class="avatar border-gray" src="assets/img/faces/face-3.jpg" alt="..." />
-
-                                <h4 class="title">Mike Andrew
-                                    <br />
-                                    <small>michael24</small>
-                                </h4>
-                            </a>
+                <div class="col-md-4">
+                    <div class="card card-user">
+                        <div class="image">
+                            <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..." />
                         </div>
-                        <p class="description text-center"> "Lamborghini Mercy
-                            <br> Your chick she so thirsty
-                            <br> I'm in that two seat Lambo"
-                        </p>
-                    </div>
-                    <hr>
-                    <div class="text-center">
-                        <button href="#" class="btn btn-simple">
-                            <i class="fa fa-facebook-square"></i>
-                        </button>
-                        <button href="#" class="btn btn-simple">
-                            <i class="fa fa-twitter"></i>
-                        </button>
-                        <button href="#" class="btn btn-simple">
-                            <i class="fa fa-google-plus-square"></i>
-                        </button>
+                        <div class="content">
+                            <div class="author">
+                                <a href="#">
+                                    <div>
+                                        <!-- <img class="avatar border-gray" src="assets/img/faces/face-3.jpg" alt="..." /> -->
+                                        <img class="avatar border-gray" *ngIf="!image_view" id="company-logo" height="50px;width:50px" src="../../../../../assets/images/signup/company-logo.PNG">
+                                        <img class="avatar border-gray" *ngIf="image_view" id="company-logo" height="50px;width:50px" src={{imageFile}}>
+                                    </div>
+                                    <h4 class="title">{{companyName}}
+                                        <br />
+                                        <small>michael24</small>
+                                    </h4>
+                                </a>
+                            </div>
+                            <p class="description text-center"> "Lamborghini Mercy
+                                <br> {{email}}
+                                <br> I'm in that two seat Lambo"
+                            </p>
+                        </div>
+                        <hr>
+                        <div class="text-center">
+                            <button href="#" class="btn btn-simple" (click)="downloadPdf()">
+                                <i class="fa fa-download"></i>
+                            </button>
+                            <button href="#" class="btn btn-simple">
+                                <i class="fa fa-twitter"></i>
+                            </button>
+                            <button href="#" class="btn btn-simple">
+                                <i class="fa fa-google-plus-square"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</form>
