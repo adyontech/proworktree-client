@@ -142,7 +142,7 @@ export class GatewayFormComponent implements OnInit {
         { text: 'Company Name :' + this.companyName , fontSize: 15 },
         { text: 'Company Name :' + this.companyName, fontSize: 15 },
       ]};
-    pdfMake.createPdf(dd).open()();
+    pdfMake.createPdf(dd).open();
   }
 
 }
