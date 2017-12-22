@@ -19,12 +19,15 @@ import { GatewayService } from "./service/gateway.service";
 // import { ButtonModule } from 'primeng/primeng';
 // import { SplitButtonModule } from 'primeng/primeng';
 // import { TabViewModule } from 'primeng/primeng';
+
+import { DatePickerModule } from "angular-io-datepicker/src/datepicker/index";
 @NgModule({
     imports: [
         FormsModule,
         CommonModule,
         ReactiveFormsModule,
         GatewayRoutingModule,
+        DatePickerModule,
         // CalendarModule,
         // InputTextModule,
         // CheckboxModule,
