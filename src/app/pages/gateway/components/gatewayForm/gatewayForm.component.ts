@@ -24,14 +24,15 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
 export class GatewayFormComponent implements OnInit {
   form: FormGroup;
+
   companyName: string = 'ProWorkTree';
-  email: string
+  email: string;
+
   imageFile: string;
   image_view: boolean = false;
   imageValidator: LogoValidator;
   image_size: boolean = false;
   image_px: boolean = false;
-  username: string;
 
   constructor(public _gatewayService: GatewayService, public fb: FormBuilder, private router: Router) {
     this.imageValidator = new LogoValidator();
