@@ -1,7 +1,7 @@
 /*!
 
  =========================================================
- * Light Bootstrap Dashboard Free Angular2 - v1.3.0.2
+ * ProWorkTree Dashboard Free Angular2 - v1.3.0.2
  =========================================================
 
  * Product Page: https://www.creative-tim.com/product/light-bootstrap-dashboard-angular2

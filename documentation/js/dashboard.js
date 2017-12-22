@@ -16,7 +16,7 @@ ds ={
 
             $.notify({
                 icon: "pe-7s-gift",
-                message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
+                message: "Welcome to <b>ProWorkTree Dashboard</b> ."
             },{
                 type: type[color],
                 timer: 1000,
