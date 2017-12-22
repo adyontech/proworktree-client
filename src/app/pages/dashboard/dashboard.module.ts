@@ -8,7 +8,7 @@ import { DashboardComponent } from './dashboard.component';
 import { ContributorsComponent } from "./components/contributors/contributors.component";
 import { RemoveCompanyComponent } from "./components/removeCompany/removeCompany.component";
 
-import { SidebarComponent } from "./components/sidebar/sidebar.component";
+import { SidebarComponent } from "./../shared/sidebar/sidebar.component";
 
 
 import { DashboardService } from "./service/dashboard.service";

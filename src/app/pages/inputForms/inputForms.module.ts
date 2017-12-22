@@ -16,6 +16,9 @@ import { ReceiptComponent } from "./components/receipt/receipt.component";
 import { SalesComponent } from "./components/sales/sales.component";
 import { SalesReturnComponent } from "./components/salesReturn/salesReturn.component";
 import { ServiceCreationComponent } from "./components/serviceCreation/serviceCreation.component";
+import { SidebarComponent } from "./../shared/sidebar/sidebar.component";
+
+
 
 import { InputFormService } from "./service/inputForms.service";
 import { ContraService } from "./components/contra/service/contra.service";
@@ -29,6 +32,8 @@ import { ReceiptService } from "./components/receipt/service/receipt.service";
 import { SalesService } from "./components/sales/service/sales.service";
 import { SalesReturnService } from "./components/salesReturn/service/salesReturn.service";
 import { ServiceCreationService } from "./components/serviceCreation/service/serviceCreation.service";
+
+
 
 @NgModule({
     imports: [
@@ -49,7 +54,8 @@ import { ServiceCreationService } from "./components/serviceCreation/service/ser
         ReceiptComponent,
         SalesComponent,
         SalesReturnComponent,
-        ServiceCreationComponent
+        ServiceCreationComponent,
+        SidebarComponent
     ],
     providers: [
         InputFormService,
