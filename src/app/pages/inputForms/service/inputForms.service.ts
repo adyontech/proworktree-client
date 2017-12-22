@@ -3,7 +3,7 @@ import { Http, Response } from "@angular/http";
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
-import { UserStateService } from "./../../../shared/userDetails/user-state.service";
+import { UserStateService } from "./../../../../sharedService/userDetails/user-state.service";
 
 import 'rxjs/add/operator/map';
 import 'rxjs/'

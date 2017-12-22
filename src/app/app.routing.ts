@@ -52,6 +52,11 @@ const routes: Routes = [
     loadChildren: './pages/dashboard/dashboard.module#DashboardModule',
     // canActivate: [LoggedInGuard] 
   },
+  {
+    path: 'forms/:id',
+    loadChildren: './pages/inputForms/inputForms.module#InputFormsModule',
+    // canActivate: [LoggedInGuard] 
+  },
   { path: '', redirectTo: 'gateway', pathMatch: 'full' }
 ];
 
