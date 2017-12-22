@@ -7,9 +7,12 @@ import { DashboardRoutingModule } from './dashboard.routes'
 import { DashboardComponent } from './dashboard.component';
 import { ContributorsComponent } from "./components/contributors/contributors.component";
 import { RemoveCompanyComponent } from "./components/removeCompany/removeCompany.component";
-import { DashboardService } from "./service/dashboard.service";
 
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
+
+
+import { DashboardService } from "./service/dashboard.service";
+
 @NgModule({
     imports: [
         FormsModule,
