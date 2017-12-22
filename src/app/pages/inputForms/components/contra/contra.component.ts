@@ -14,6 +14,8 @@ export class ContraComponent implements OnInit {
     form: FormGroup;
     selectedIndex = 1;
 
+    contraNumber: any;
+
     paramId: string;
 
     constructor(private route: ActivatedRoute, public _contraService: ContraService, public fb: FormBuilder, private router: Router) {
@@ -23,16 +25,12 @@ export class ContraComponent implements OnInit {
 
     ngOnInit() {
         this.form = this.fb.group({
-            companyName: [''],
-
-            // pan: ['', Validators.compose([Validators.maxLength(10),
-            // PanValidator.isValid])],
-
-            address: ['', Validators.compose([Validators.minLength(10)])],
-
-            startDate: ['', Validators.compose([Validators.required])],
-
-            logo: [""],
+            contraNumber: [''],
+            date: [''],
+            currentBalance: [''],
+            narration: [''],
+            particularsData: this.fb.array([]),
+            file: [""],
         });
     }
     onSubmit(user) {

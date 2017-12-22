@@ -4,10 +4,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
+                        <!-- heading here -->
                         <div class="header">
                             <h2 class="title text-center">Contra</h2>
                         </div>
-
+                        <!-- step indicator starts here -->
                         <div class="row">
                             <div class="row">
                                 <div class="col-md-6 col-lg-offset-3">
@@ -34,13 +35,13 @@
                         <div class="content tab-content" style="width: 70%; margin-left: 10%;">
                             <div id="step1" class="tab-pane fade in active">
                                 <div class="row">
-                                    <div class="col-md-5">
+                                    <div class="col-md-5 col-lg-offset-3" >
                                         <div class="form-group">
-                                            <label>Name of company</label>
-                                            <input type="text" class="form-control" [(ngModel)]="companyName" name="company_name" placeholder="Company Name" formControlName="companyName">
+                                            <label>Contra Number</label>
+                                            <input type="text" class="form-control" [(ngModel)]="contraNumber" name="company_name" placeholder="Company Name" formControlName="contraNumber">
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <!-- <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Company Pan</label>
                                             <input type="text" class="form-control" placeholder="Username" formControlName="pan">
@@ -51,15 +52,15 @@
                                             <label for="exampleInputEmail1">Email address</label>
                                             <input type="email" class="form-control" [(ngModel)]="email" placeholder="Email" formControlName="email">
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
 
 
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-5 col-lg-offset-3">
                                         <div class="form-group">
-                                            <label>Address</label>
-                                            <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                            <label>Date</label>
+                                            <date-picker formControlName="date" name="date"></date-picker>
                                         </div>
                                     </div>
                                 </div>
@@ -84,8 +85,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <button type="submit" data-toggle="tab" href="#step2" (click)="setSelected(2)" class="btn btn-info btn-fill pull-left">Next</button>
+                                <div class="row" style="text-align: center; margin-top: 20px">
+                                    <button type="submit" data-toggle="tab" href="#step2" (click)="setSelected(2)" class="btn btn-info btn-fill">Next</button>
+                                    <button type="submit" data-toggle="tab" href="#step2" (click)="setSelected(2)" class="btn btn-info btn-fill">Exit</button>
+
                                 </div>
 
 
