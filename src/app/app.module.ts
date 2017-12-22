@@ -26,6 +26,8 @@ import { UserStateService } from "./sharedService/userDetails/user-state.service
 import { LoginModule } from "./pages/login/login.module";
 import { ActivationModule } from "./pages/activation/activation.module";
 
+import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +52,8 @@ import { ActivationModule } from "./pages/activation/activation.module";
     AppRoutingModule,
     LbdModule,
     LoginModule,
-    ActivationModule
+    ActivationModule,
+    NgxMyDatePickerModule.forRoot() 
   ],
   providers: [UserStateService],
   bootstrap: [AppComponent]

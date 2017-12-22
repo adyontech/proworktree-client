@@ -34,7 +34,7 @@ import { SalesReturnService } from "./components/salesReturn/service/salesReturn
 import { ServiceCreationService } from "./components/serviceCreation/service/serviceCreation.service";
 
 import { DatePickerModule } from "angular-io-datepicker/src/datepicker/index";
-
+import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 
 @NgModule({
     imports: [
@@ -42,7 +42,8 @@ import { DatePickerModule } from "angular-io-datepicker/src/datepicker/index";
         CommonModule,
         ReactiveFormsModule,
         FormsRoutingModule,
-        DatePickerModule
+        DatePickerModule,
+        NgxMyDatePickerModule
     ],
     declarations: [
         InputFormsComponent,

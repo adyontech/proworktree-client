@@ -35,120 +35,106 @@
                         <div class="content tab-content" style="width: 70%; margin-left: 10%;">
                             <div id="step1" class="tab-pane fade in active">
                                 <div class="row">
-                                    <div class="col-md-5 col-lg-offset-3" >
+                                    <div class="col-md-5 col-lg-offset-4">
                                         <div class="form-group">
                                             <label>Contra Number</label>
                                             <input type="text" class="form-control" [(ngModel)]="contraNumber" name="company_name" placeholder="Company Name" formControlName="contraNumber">
                                         </div>
                                     </div>
-                                    <!-- <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Company Pan</label>
-                                            <input type="text" class="form-control" placeholder="Username" formControlName="pan">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Email address</label>
-                                            <input type="email" class="form-control" [(ngModel)]="email" placeholder="Email" formControlName="email">
-                                        </div>
-                                    </div> -->
                                 </div>
 
 
                                 <div class="row">
-                                    <div class="col-md-5 col-lg-offset-3">
-                                        <div class="form-group">
-                                            <label>Date</label>
-                                            <date-picker formControlName="date" name="date"></date-picker>
+                                    <div class="col-md-5 col-lg-offset-4">
+                                        <label>Date</label>
+                                        <div class="input-group">
+                                            <input class="form-control" style="float:none" placeholder="Select a date" ngx-mydatepicker name="myDate" formControlName="myDate"
+                                                [options]="myOptions" #dp="ngx-mydatepicker" />
+
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" (click)="dp.clearDate()">
+                                                    <i class="glyphicon glyphicon-remove"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-default" (click)="dp.toggleCalendar()">
+                                                    <i class="glyphicon glyphicon-calendar"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+
+                                        <div class="btnGroup">
+                                            <!-- <button class="button" type="submit" [disabled]="form.controls.myDate.errors">Submit</button>
+                                            <p class="error" *ngIf="form.controls.myDate.errors">Date is required!</p> -->
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-5 col-lg-offset-4">
                                         <div class="form-group">
-                                            <label>Company Gstin</label>
-                                            <input type="text" class="form-control" placeholder="City" value="Mike">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>city</label>
-                                            <input type="text" class="form-control" placeholder="Country" value="Andrew">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>State</label>
-                                            <input type="number" class="form-control" placeholder="ZIP Code">
+                                            <label>account</label>
+                                            <input type="text" class="form-control" [(ngModel)]="account" name="company_name" placeholder="Company Name" formControlName="account">
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-md-5 col-lg-offset-4">
+                                        <div class="form-group">
+                                            <label>Current balance</label>
+                                            <p>123456</p>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="row" style="text-align: center; margin-top: 20px">
                                     <button type="submit" data-toggle="tab" href="#step2" (click)="setSelected(2)" class="btn btn-info btn-fill">Next</button>
                                     <button type="submit" data-toggle="tab" href="#step2" (click)="setSelected(2)" class="btn btn-info btn-fill">Exit</button>
 
                                 </div>
 
-
                             </div>
                             <div id="step2" class="tab-pane fade">
+
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-5 col-lg-offset-4">
                                         <div class="form-group">
-                                            <label>Phone Number</label>
-                                            <input type="text" class="form-control" placeholder="City" value="Mike">
+                                            <label>Cheque Number</label>
+                                            <input type="text" class="form-control" [(ngModel)]="chequeNumber" name="company_name" placeholder="Company Name" formControlName="chequeNumber">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5 col-lg-offset-4">
                                         <div class="form-group">
-                                            <label for="business">Nature of business:</label>
-                                            <br>
-                                            <select class="form-control" id="business" name="business" formControlName="natureOfBuisness">
-                                                <option value="freight" selected>Freight</option>
-                                                <option value="option2">Option2</option>
-                                                <option value="option3">Option3</option>
-                                            </select>
+                                            <label>drawnBank</label>
+                                            <input type="text" class="form-control" [(ngModel)]="drawnBank" name="company_name" placeholder="Company Name" formControlName="chequeNumber">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="currency">Currency:</label>
-                                            <br>
-                                            <select class="form-control" id="currency" name="currency" formControlName="currency">
-                                                <option value="inr" selected>₹ - INR</option>
-                                                <option value="usd">$ - USD</option>
-                                            </select>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5 col-lg-offset-4">
+                                        <label>Date</label>
+                                        <div class="input-group">
+                                            <input class="form-control" style="float:none" placeholder="Select a date" ngx-mydatepicker name="myDate" formControlName="myDate"
+                                                [options]="myOptions" #dp="ngx-mydatepicker" />
+                                
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" (click)="dp.clearDate()">
+                                                    <i class="glyphicon glyphicon-remove"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-default" (click)="dp.toggleCalendar()">
+                                                    <i class="glyphicon glyphicon-calendar"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                
+                                        <div class="btnGroup">
+                                            <!-- <button class="button" type="submit" [disabled]="form.controls.myDate.errors">Submit</button>
+                                                                            <p class="error" *ngIf="form.controls.myDate.errors">Date is required!</p> -->
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="language">Preferred language</label>
-                                            <br>
-                                            <select class="form-control" id="language" name="language" formControlName="language">
-                                                <option value="english" selected>English</option>
-                                                <option value="hindi">Hindi</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Starting Date</label>
-                                            <!-- <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker> -->
-                                            <date-picker formControlName="date"></date-picker>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>End date</label>
-                                            <date-picker formControlName="date2"></date-picker>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="row">
                                     <button type="submit" data-toggle="tab" href="#step1" (click)="setSelected(1)" class="btn btn-info btn-fill pull-left">back</button>
                                     <button type="submit" data-toggle="tab" href="#step3" (click)="setSelected(3)" class="btn btn-info btn-fill pull-left">Next</button>
@@ -206,7 +192,7 @@
                                                 <div class="input-group info-text">
                                                     <ul style="margin-left: -50px;">
                                                         <li>
-                                                            <input type="file" class="file" accept="image/x-png,image/jpg" formControlName="logo" (change)="handleFileUpload($event)">
+                                                            <!-- <input type="file" class="file" accept="image/x-png,image/jpg" formControlName="logo" (change)="handleFileUpload($event)"> -->
                                                             <br>
                                                         </li>
                                                     </ul>
@@ -216,6 +202,7 @@
                                     </div>
                                 </div>
 
+                                
                                 <button type="submit" data-toggle="tab" href="#step2" (click)="setSelected(2)" class="btn btn-info btn-fill pull-left">Back</button>
 
                                 <button type="submit" class="btn btn-info btn-fill pull-right">Getting started</button>
