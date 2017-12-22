@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="details">
+    <div class="btn-group btn-breadcrumb">
+      <a href="#" class="btn btn-default">
+        <span class="glyphicon glyphicon-home"></span>
+      </a>
+      <a href="#" class="btn btn-default">Sales</a>
+    </div>
+  </div>
+<div class="stepwizard">
+  <div class="stepwizard-row setup-panel">
+    <div class="stepwizard-step">
+      <span href="#step-1" [ngClass]="{'btn-color': selectedIndex == 1}" type="button" class="btn btn-default btn-circle">1</span>
+      <p>Step 1</p>
+    </div>
+    <div class="stepwizard-step">
+      <span href="#step-2" [ngClass]="{'btn-color': selectedIndex == 2}" type="button" class="btn btn-default btn-circle" disabled="disabled">2</span>
+      <p>Step 2</p>
+    </div>
+    <div class="stepwizard-step">
+      <span href="#step-3" [ngClass]="{'btn-color': selectedIndex == 3}" type="button" class="btn btn-default btn-circle" disabled="disabled">3</span>
+      <p>Step 3</p>
+    </div>
+  </div>
+</div>
+
+  
+  <div class="tab-content">
+    <div id="step1" class="tab-pane fade in active">
+
+      <h3>HOME</h3>
+      <p>Loremhome ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua.
+      </p>
+
+      
+      <a data-toggle="tab" href="#step2">
+        <button (click)="setSelected(2)">next</button>
+      </a>
+
+    </div>
+    <div id="step2" class="tab-pane fade">
+
+      <h3>Menu 1</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <a data-toggle="tab" href="#step1">
+        <button (click)="setSelected(1)">back</button>
+      </a>
+      <a data-toggle="tab" href="#step3">
+        <button (click)="setSelected(3)">next</button>
+      </a>
+
+    </div>
+    <div id="step3" class="tab-pane fade">
+
+      <h3>Menu 2</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <a data-toggle="tab" href="#step2">
+        <button (click)="setSelected(2)">back</button>
+      </a>
+
+    </div>
+  </div>
+</div>
