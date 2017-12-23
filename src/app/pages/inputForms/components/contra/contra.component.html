@@ -154,20 +154,25 @@
                                                 <div [formGroupName]="i">
                                                     <div class="block">
                                                         <div class="content ">
-                                                            <div class="col-lg-4">
-                                                                <input type="text" class="form-control" formControlName="particulars">
-                                                                <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
-                                                                    Particulars is required
-                                                                </small>
-                                                            </div>
-                                                            <div class="col-lg-offset-2 col-lg-5 ">
-                                                                <input type="text" required class="form-control" formControlName="amount">
-                                                                <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
-                                                                    Amount is required
-                                                                </small>
-                                                            </div>
-                                                            <div class="col-md-1">
-                                                                <span class="fa fa-times pull-right" *ngIf="form.controls.particularsData.controls.length > 1" (click)="removeParticular(i)"></span>
+                                                            <div class="row">
+                                                                <div class="col-lg-4">
+                                                                    <!-- <input type="text" class="form-control" formControlName="particulars"> -->
+                                                                    <ng-select [allowClear]="true" [items]="items" formControlName="particulars" (data)="refreshValue($event)" (selected)="selected($event)"
+                                                                        (removed)="removed($event)" (typed)="typed($event)" placeholder="No city selected">
+                                                                    </ng-select>
+                                                                    <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
+                                                                        Particulars is required
+                                                                    </small>
+                                                                </div>
+                                                                <div class="col-lg-offset-2 col-lg-5 ">
+                                                                    <input type="text" required class="form-control" formControlName="amount">
+                                                                    <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
+                                                                        Amount is required
+                                                                    </small>
+                                                                </div>
+                                                                <div class="col-md-1">
+                                                                    <span class="fa fa-times pull-right" *ngIf="form.controls.particularsData.controls.length > 1" (click)="removeParticular(i)"></span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -211,7 +216,7 @@
                                     <button type="submit" data-toggle="tab" href="#step1" (click)="setSelected(1)" class="btn btn-info btn-fill ">Back</button>
                                     <button type="submit" data-toggle="tab" href="#step3" (click)="setSelected(3)" class="btn btn-info btn-fill ">Save and exit</button>
                                     <button type="submit" data-toggle="tab" href="#step3" (click)="setSelected(3)" class="btn btn-info btn-fill ">Save and close</button>
-                                
+
                                 </div>
 
 
