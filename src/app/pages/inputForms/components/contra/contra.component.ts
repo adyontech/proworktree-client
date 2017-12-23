@@ -25,9 +25,6 @@ export class ContraComponent implements OnInit {
 
 
 
-    myOptions: INgxMyDpOptions = {
-        dateFormat: 'dd.mm.yyyy',
-    };
 
 
     constructor(private route: ActivatedRoute, public _contraService: ContraService, public fb: FormBuilder, private router: Router) {
@@ -67,7 +64,10 @@ export class ContraComponent implements OnInit {
         control.removeAt(i);
     }
 
-
+    // calender codes 
+    myOptions: INgxMyDpOptions = {
+        dateFormat: 'dd.mm.yyyy',
+    };
     setDate(): void {
         // Set today date using the patchValue function
         let date = new Date();
@@ -86,6 +86,32 @@ export class ContraComponent implements OnInit {
         // Clear the date using the patchValue function
         this.form.patchValue({ myDate: null });
     }
+
+
+    // file upload code here
+    handleFileUpload(event) {
+        var file: File = event.target.files[0];
+        let valid: boolean;
+
+        // valid = this.fileValidator.isValidLogo(file);
+        // if (valid && file.size < 200000) {
+        //     this.fileValidator.checkPixel(file, (value) => {
+        //         if (value) {
+        //             this.file_size = false;
+        //             this.file_view = true;
+        //             this.file = value;
+        //         }
+        //     });
+        // }
+        // else {
+        //     this.file_size = true;
+        // }
+    }
+
+
+
+
+
     onSubmit(user) {
         console.log(user);
     }
@@ -95,11 +121,12 @@ export class ContraComponent implements OnInit {
     }
 
 }
+
 interface Customer {
-    particularsData: Data[];
+    particularsData: Address[];
 }
 
-interface Data {
+interface Address {
     particulars: string;  // required field
     amount: string;
 }
