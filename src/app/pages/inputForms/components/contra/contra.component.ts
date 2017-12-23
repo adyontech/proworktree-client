@@ -4,8 +4,10 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 
 import { ActivatedRoute } from '@angular/router';
 import { ContraService } from "./service/contra.service";
-
 import { INgxMyDpOptions } from 'ngx-mydatepicker';
+
+declare var $: any;
+
 @Component({
     selector: 'app-contra',
     templateUrl: './contra.component.html',
@@ -73,7 +75,22 @@ export class ContraComponent implements OnInit {
     public refreshValue(value: any): void {
         this.value = value;
     }
+    public showNotification(from, align) {
+        const type = ['', 'info', 'success', 'warning', 'danger'];
 
+        var color = Math.floor((Math.random() * 4) + 1);
+        $.notify({
+            icon: "pe-7s-gift",
+            message: "Welcome to <b>ProWorkTree Dashboard</b> - a beautiful freebie for every web developer."
+        }, {
+                type: type[color],
+                timer: 1000,
+                placement: {
+                    from: from,
+                    align: align
+                }
+            });
+    }
 
 
     ngOnInit() {
