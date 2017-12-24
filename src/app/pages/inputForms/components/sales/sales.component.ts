@@ -8,9 +8,9 @@ import { IMyDpOptions } from 'mydatepicker';
 declare var $: any;
 
 @Component({
-    selector: 'app-contra',
-    templateUrl: './contra.component.html',
-    styleUrls: ['./contra.component.scss']
+    selector: 'app-sales',
+    templateUrl: './sales.component.html',
+    styleUrls: ['./sales.component.scss']
 })
 
 
@@ -27,16 +27,29 @@ declare var $: any;
 // submit functions
 
 
-export class ContraComponent implements OnInit {
+export class SalesComponent implements OnInit {
 
 
     form: FormGroup;
     selectedIndex = 1;
 
-    contraNumber: string;
-    account: string;
-    chequeNumber: string;
-    drawnBank: string;
+    invoiceNumber: string;
+    vehicleNumber: string;
+    date: string;
+    partyName: string;
+    saleType: string;
+    transportationMode: string;
+    supplyPlace: string;
+    nameOfProduct: string;  // required field
+    qty: string;
+    units: string;
+    rate: string;
+    subAmount: string;
+    gstRate: string;
+    amount: string;
+    narration: string;
+    total: number;
+    
 
     paramId: string;
 
@@ -56,15 +69,21 @@ export class ContraComponent implements OnInit {
 
     ngOnInit() {
         this.form = this.fb.group({
-            contraNumber: [''],
-            date: [''],
-            account: [''],
-            chequeNumber: [''],
-            drawnBank: [''],
+            invoiceNumber: [''],
+            LtransportationMode:[''],
+            vehicleNumber:[''],
+            partyName: [''],
+            saleType: [''],
+            transportationMode: [''],
+            supplyPlace: [''],
+            // vehicleNumber: [''],
+            // vehicleNumber: [''],
+            // vehicleNumber: [''],
+            // vehicleNumber: [''],
+            // vehicleNumber: [''],
             particularsData: this.fb.array([]),
             file: [""],
-            xDate: [null, Validators.required],
-            yDate: [null, Validators.required],
+            date: [null, Validators.required],
         });
         this.addParticular();
     }
@@ -139,8 +158,13 @@ export class ContraComponent implements OnInit {
 
     initParticular() {
         return this.fb.group({
-            particulars: ['', Validators.required],
-            amount: ['']
+            nameOfProduct: [''],
+            qty: [''],
+            units: [''],
+            rate: [''],
+            subAmount: [''],
+            gstRate: [''],
+            amount: [''],
         })
     }
     addParticular() {
@@ -193,6 +217,11 @@ interface Customer {
 }
 
 interface Address {
-    particulars: string;  // required field
+    nameOfProduct: string;  // required field
+    qty: string;
+    units: string;
+    rate: string;
+    subAmount: string;
+    gstRate: string;
     amount: string;
 }

@@ -97,7 +97,7 @@
                                 <div class="row">
                                     <div class="col-md-5 col-lg-offset-4">
                                         <label>Date</label>
-                                            <my-date-picker name="xdate" [options]="myDatePickerOptions" formControlName="yDate"></my-date-picker>
+                                        <my-date-picker name="xdate" [options]="myDatePickerOptions" formControlName="yDate"></my-date-picker>
 
                                     </div>
                                 </div>
@@ -130,7 +130,8 @@
                                                                 <div class="col-lg-4">
                                                                     <!-- <input type="text" class="form-control" formControlName="particulars"> -->
                                                                     <ng-select [allowClear]="true" [items]="items" formControlName="particulars" (data)="refreshValue($event)" (selected)="selected($event)"
-                                                                      (removed)="removed($event)" (typed)="showNotification('top','left')" placeholder="No city selected">
+                                                                        (removed)="removed($event)" (typed)="showNotification('top','left')"
+                                                                        placeholder="No city selected">
                                                                     </ng-select>
                                                                     <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
                                                                         <span (click)="showNotification('top','left')"> Particulars is required</span>
