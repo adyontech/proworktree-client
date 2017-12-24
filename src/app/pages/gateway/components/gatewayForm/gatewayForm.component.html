@@ -193,14 +193,14 @@
                                         <img class="avatar border-gray" *ngIf="!image_view" id="company-logo" height="50px;width:50px" src="../../../../../assets/images/signup/company-logo.PNG">
                                         <img class="avatar border-gray" *ngIf="image_view" id="company-logo" height="50px;width:50px" src={{imageFile}}>
                                     </div>
-                                    <h4 class="title">{{companyName}}
+                                    <h4 class="title">{{form.get('companyName').value}}
                                         <br />
                                         <small>michael24</small>
                                     </h4>
                                 </a>
                             </div>
-                            <p class="description text-center"> "Lamborghini Mercy
-                                <br> {{email}}
+                            <p class="description text-center"> 
+                                <br> Email: " {{form.get('email').value}} "
                                 <br> I'm in that two seat Lambo"
                             </p>
                         </div>
