@@ -4,8 +4,7 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 
 import { ActivatedRoute } from '@angular/router';
 import { ContraService } from "./service/contra.service";
-import { INgxMyDpOptions } from 'ngx-mydatepicker';
-
+import { IMyDpOptions } from 'mydatepicker';
 declare var $: any;
 
 @Component({
@@ -13,6 +12,20 @@ declare var $: any;
     templateUrl: './contra.component.html',
     styleUrls: ['./contra.component.scss']
 })
+
+
+// Index
+// declaration
+// constructor
+// ngOnInit
+// datepicker functions
+// select functions
+// Notification
+// particulars functions
+// file handler 
+// tab navigator 
+// submit functions
+
 
 export class ContraComponent implements OnInit {
 
@@ -31,11 +44,36 @@ export class ContraComponent implements OnInit {
 
 
 
-    constructor(private route: ActivatedRoute, public _contraService: ContraService, public fb: FormBuilder, private router: Router) {
+    constructor(
+        private route: ActivatedRoute,
+        public _contraService: ContraService,
+        public fb: FormBuilder,
+        private router: Router) {
         this.route.params.subscribe(params => this.paramId = params.id);
         console.log(this.paramId)
     }
 
+
+    ngOnInit() {
+        this.form = this.fb.group({
+            contraNumber: [''],
+            date: [''],
+            account: [''],
+            chequeNumber: [''],
+            drawnBank: [''],
+            particularsData: this.fb.array([]),
+            file: [""],
+            xDate: [null, Validators.required],
+            yDate: [null, Validators.required],
+        });
+        this.addParticular();
+    }
+
+    // real date picker active from here
+    public myDatePickerOptions: IMyDpOptions = {
+        // other options...
+        dateFormat: 'dd.mm.yyyy',
+    };
 
     public items: Array<string> = ['Amsterdam', 'Antwerp', 'Athens', 'Barcelona',
         'Berlin', 'Birmingham', 'Bradford', 'Bremen', 'Brussels', 'Bucharest',
@@ -75,6 +113,10 @@ export class ContraComponent implements OnInit {
     public refreshValue(value: any): void {
         this.value = value;
     }
+
+
+
+
     public showNotification(from, align) {
         const type = ['', 'info', 'success', 'warning', 'danger'];
 
@@ -93,19 +135,6 @@ export class ContraComponent implements OnInit {
     }
 
 
-    ngOnInit() {
-        this.form = this.fb.group({
-            contraNumber: [''],
-            date: [''],
-            account: [''],
-            chequeNumber: [''],
-            drawnBank: [''],
-            particularsData: this.fb.array([]),
-            file: [""],
-            myDate: [null, Validators.required]
-        });
-        this.addParticular();
-    }
 
 
     initParticular() {
@@ -124,28 +153,6 @@ export class ContraComponent implements OnInit {
         control.removeAt(i);
     }
 
-    // calender codes 
-    myOptions: INgxMyDpOptions = {
-        dateFormat: 'dd.mm.yyyy',
-    };
-    setDate(): void {
-        // Set today date using the patchValue function
-        let date = new Date();
-        this.form.patchValue({
-            myDate: {
-                date: {
-                    year: date.getFullYear(),
-                    month: date.getMonth() + 1,
-                    day: date.getDate()
-                }
-            }
-        });
-    }
-
-    clearDate(): void {
-        // Clear the date using the patchValue function
-        this.form.patchValue({ myDate: null });
-    }
 
 
     // file upload code here
@@ -167,18 +174,17 @@ export class ContraComponent implements OnInit {
         //     this.file_size = true;
         // }
     }
-
-
-
-
-
-    onSubmit(user) {
-        console.log(user);
-    }
-
+    
     setSelected(id: number) {
         this.selectedIndex = id;
     }
+    
+    
+    onSubmit(user) {
+            console.log(user);
+    }
+    
+
 
 }
 

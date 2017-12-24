@@ -36,7 +36,8 @@ import { ServiceCreationService } from "./components/serviceCreation/service/ser
 import { DatePickerModule } from "angular-io-datepicker/src/datepicker/index";
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { SelectModule } from 'ng2-select';
-
+import { NgDatepickerModule } from 'ng2-datepicker';
+import { MyDatePickerModule } from 'mydatepicker';
 @NgModule({
     imports: [
         FormsModule,
@@ -45,7 +46,9 @@ import { SelectModule } from 'ng2-select';
         FormsRoutingModule,
         DatePickerModule,
         NgxMyDatePickerModule,
-        SelectModule
+        SelectModule, 
+        NgDatepickerModule,
+        MyDatePickerModule
     ],
     declarations: [
         InputFormsComponent,

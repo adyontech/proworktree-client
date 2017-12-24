@@ -47,24 +47,7 @@
                                 <div class="row">
                                     <div class="col-md-5 col-lg-offset-4">
                                         <label>Date</label>
-                                        <div class="input-group">
-                                            <input class="form-control" style="float:none" placeholder="Select a date" ngx-mydatepicker name="myDate" formControlName="myDate"
-                                                [options]="myOptions" #dp="ngx-mydatepicker" />
-
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-default" (click)="dp.clearDate()">
-                                                    <i class="glyphicon glyphicon-remove"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-default" (click)="dp.toggleCalendar()">
-                                                    <i class="glyphicon glyphicon-calendar"></i>
-                                                </button>
-                                            </span>
-                                        </div>
-
-                                        <div class="btnGroup">
-                                            <!-- <button class="button" type="submit" [disabled]="form.controls.myDate.errors">Submit</button>
-                                            <p class="error" *ngIf="form.controls.myDate.errors">Date is required!</p> -->
-                                        </div>
+                                        <my-date-picker name="ydate" [options]="myDatePickerOptions" formControlName="yDate"></my-date-picker>
                                     </div>
                                 </div>
 
@@ -114,19 +97,8 @@
                                 <div class="row">
                                     <div class="col-md-5 col-lg-offset-4">
                                         <label>Date</label>
-                                        <div class="input-group">
-                                            <input class="form-control" style="float:none" placeholder="Select a date" ngx-mydatepicker name="myDate" formControlName="myDate"
-                                                [options]="myOptions" #dp="ngx-mydatepicker" />
+                                            <my-date-picker name="xdate" [options]="myDatePickerOptions" formControlName="yDate"></my-date-picker>
 
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-default" (click)="dp.clearDate()">
-                                                    <i class="glyphicon glyphicon-remove"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-default" (click)="dp.toggleCalendar()">
-                                                    <i class="glyphicon glyphicon-calendar"></i>
-                                                </button>
-                                            </span>
-                                        </div>
                                     </div>
                                 </div>
 
