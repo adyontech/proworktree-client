@@ -58,7 +58,7 @@
                                     <div class="col-md-5 col-lg-offset-4">
                                         <div class="form-group">
                                             <label>Applicable taxes</label>
-                                            <select class="form-control" id="business" name="business" formControlName="natureOfBuisness">
+                                            <select class="form-control" formControlName="applicableTax">
                                                 <option value=" GST" selected> GST</option>
                                                 <option value="Other">Other</option>
                                                 <option value="NotApplicable">Not Applicable</option>
@@ -70,7 +70,7 @@
                                     <div class="col-md-5 col-lg-offset-4">
                                         <div class="form-group">
                                             <label>Business Type</label>
-                                            <select class="form-control" id="business" name="business" formControlName="BusinessType">
+                                            <select class="form-control" formControlName="BusinessType">
                                                 <option value=" Goods" selected> Goods</option>
                                                 <option value="Services">Services</option>
                                                 <option value="Other">Other</option>
@@ -99,80 +99,92 @@
                             </div>
                             <div id="step3" class="tab-pane fade">
                                 <div class="row">
-                                    <div class="col-lg-offset-3">
-                                        <div class="row">
-                                            <div class="col-lg-4 text-center">
-                                                Particulars
-                                            </div>
-                                            <div class="col-lg-offset-2 col-lg-6 text-center">
-                                                Amount
-                                            </div>
-                                        </div>
-
-                                        <div formArrayName="particularsData">
-                                            <div *ngFor="let address of form.controls.particularsData.controls; let i=index">
-                                                <!-- <span>{{i + 1}}</span> -->
-                                                <div [formGroupName]="i">
-                                                    <div class="block">
-                                                        <div class="content ">
-                                                            <div class="row">
-                                                                <div class="col-lg-4">
-                                                                    <!-- <input type="text" class="form-control" formControlName="particulars"> -->
-                                                                    <ng-select [allowClear]="true" [items]="items" formControlName="particulars" (data)="refreshValue($event)" (selected)="selected($event)"
-                                                                        (removed)="removed($event)" (typed)="showNotification('top','left')"
-                                                                        placeholder="No city selected">
-                                                                    </ng-select>
-                                                                    <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
-                                                                        <span (click)="showNotification('top','left')"> Particulars is required</span>
-                                                                    </small>
-                                                                </div>
-                                                                <div class="col-lg-offset-2 col-lg-5 ">
-                                                                    <input type="text" required class="form-control" formControlName="amount">
-                                                                    <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
-                                                                        Amount is required
-                                                                    </small>
-                                                                </div>
-                                                                <div class="col-md-1">
-                                                                    <span class="fa fa-times pull-right" *ngIf="form.controls.particularsData.controls.length > 1" (click)="removeParticular(i)"></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-lg-offset-3 col-md-3">
-                                        <a (click)="addParticular()" style="cursor: default">
-                                            Add another field +
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-offset-2 col-md-3">
-                                        <p class="p1">Total Amount: Rs. 1325</p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-5 col-lg-offset-1">
                                         <div class="form-group">
-                                            <label>Narration</label>
-                                            <textarea rows="5" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                            <label>Name</label>
+                                            <input type="text" class="form-control"  formControlName="name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-lg-offset-1">
+                                        <div class="form-group">
+                                            <label>E-mail</label>
+                                            <input type="text" class="form-control" formControlName="email">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-11 col-lg-offset-1">
+                                        <div class="form-group">
+                                            <label>Address</label>
+                                            <input type="text" class="form-control" formControlName="address">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5 col-lg-offset-1">
+                                        <div class="form-group">
+                                            <label>City</label>
+                                            <input type="text" class="form-control" formControlName="address">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-lg-offset-1">
+                                        <div class="form-group">
+                                            <label>State</label>
+                                            <ng-select [allowClear]="true" [items]="items" formControlName="state" (data)="refreshValue($event)" (selected)="selected($event)"
+                                                (removed)="removed($event)" (typed)="showNotification('top','left')" placeholder="No city selected">
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5 col-lg-offset-1">
+                                        <div class="form-group">
+                                            <label>Pin Code</label>
+                                            <input type="text" class="form-control" formControlName="pinCode">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-lg-offset-1">
+                                        <div class="form-group">
+                                            <label>Country</label>
+                                            <ng-select [allowClear]="true" [items]="items" formControlName="country" (data)="refreshValue($event)" (selected)="selected($event)"
+                                                (removed)="removed($event)" (typed)="showNotification('top','left')" placeholder="No city selected">
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5 col-lg-offset-1">
+                                        <div class="form-group">
+                                            <label>Phone Number</label>
+                                            <input type="text" class="form-control" formControlName="phoneNumber">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <h3>Opening Balance:</h3>
+
+                                <div class="row">
+                                    <div class="col-md-3 col-lg-offset-1">
+                                        <div class="form-group">
+                                            <label>Qty.</label>
+                                            <input type="text" class="form-control" formControlName="qty">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-lg-offset-1">
+                                        <div class="form-group">
+                                            <label>Rate.</label>
+                                            <input type="text" class="form-control" formControlName="rate">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-lg-offset-1">
+                                        <div class="form-group">
+                                            <label>Total.</label>
+                                            <input type="text" class="form-control" value=" {{(form.get('qty').value)*(form.get('rate').value) }}" formControlName="total">
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="form-inline">
-                                        <div class="form-group">
-                                            <label for="upload">Attachment:</label>
-                                            <input type="file" class="" formControlName="file" (change)="handleFileUpload($event)">
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="row" style="text-align: center; margin-top: 20px">
                                     <button type="submit" data-toggle="tab" href="#step1" (click)="setSelected(1)" class="btn btn-info btn-fill ">Back</button>
