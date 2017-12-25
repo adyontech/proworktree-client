@@ -28,7 +28,6 @@
                             <br>
 
 
-                             h<p>{{address.get('debitAmount').value =='dr'}}</p>
                             <div class="row">
                                 <div class="row col-lg-offset-1">
                                     <div class="col-lg-2 text-center">
@@ -60,6 +59,8 @@
                                                                 </select>
                                                             </div>
                                                         </div>
+
+                                                        <!-- <p>{{address.get('drcr').value== 'dr'}}</p> -->
                                                         <div class="col-lg-3">
                                                             <ng-select [allowClear]="true" [items]="items" formControlName="particulars" (data)="refreshValue($event)" (selected)="selected($event)"
                                                                 (removed)="removed($event)" (typed)="showNotification('top','left')"
@@ -70,13 +71,13 @@
                                                             </small>
                                                         </div>
                                                         <div class="col-lg-3 ">
-                                                            <input type="text" required class="form-control" formControlName="debitAmount">
+                                                            <input type="text" required class="form-control" [attr.disabled]="address.get('drcr').value == 'dr'? null: true" formControlName="debitAmount">
                                                             <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
                                                                 Amount is required
                                                             </small>
                                                         </div>
                                                         <div class="col-lg-3 ">
-                                                            <input type="text" required class="form-control" formControlName="creditAmount">
+                                                            <input type="text" required class="form-control" [attr.disabled]="address.get('drcr').value == 'cr'? null: true" formControlName="creditAmount">
                                                             <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
                                                                 Amount is required
                                                             </small>
@@ -107,7 +108,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Narration</label>
-                                        <textarea rows="5" formControlName="narration"  class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                        <textarea rows="5" formControlName="narration" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
                                     </div>
                                 </div>
                             </div>
