@@ -1,178 +1,126 @@
 <form id="form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)" novalidate>
-    <div class="main-content">
+    <div class="main-content" style="scroll-behavior: hidden">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
+                        <!-- heading here -->
                         <div class="header">
-                            <h4 class="title text-center">Gateway of companies</h4>
+                            <h2 class="title text-center">Journal Entry</h2>
                         </div>
-                        <div class="content">
+                        <div class="content tab-content" style="width: 70%; margin-left: 10%;">
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-5 col-lg-offset-4">
                                     <div class="form-group">
-                                        <label>Name of company</label>
-                                        <input type="text" class="form-control" [(ngModel)]="companyName" name="company_name" placeholder="Company Name" formControlName="companyName">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Company Pan</label>
-                                        <input type="text" class="form-control" placeholder="Username" formControlName="pan">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" [(ngModel)]="email" placeholder="Email" formControlName="email">
+                                        <label>Journal Number</label>
+                                        <input type="text" class="form-control" formControlName="journalNumber">
                                     </div>
                                 </div>
                             </div>
 
+
+                            <div class="row">
+                                <div class="col-md-5 col-lg-offset-4">
+                                    <label>Date</label>
+                                    <my-date-picker name="ydate" [options]="myDatePickerOptions" formControlName="date"></my-date-picker>
+                                </div>
+                            </div>
+                            <br>
+
+
+                             h<p>{{address.get('debitAmount').value =='dr'}}</p>
+                            <div class="row">
+                                <div class="row col-lg-offset-1">
+                                    <div class="col-lg-2 text-center">
+                                        Dr/Cr
+                                    </div>
+                                    <div class="col-lg-4 text-center">
+                                        Particulars
+                                    </div>
+                                    <div class="col-lg-3 text-center">
+                                        Debit Amount
+                                    </div>
+                                    <div class="col-lg-3 text-center">
+                                        Credit Amount
+                                    </div>
+                                </div>
+
+                                <div formArrayName="particularsData">
+                                    <div *ngFor="let address of form.controls.particularsData.controls; let i=index">
+                                        <!-- <span>{{i + 1}}</span> -->
+                                        <div [formGroupName]="i">
+                                            <div class="block">
+                                                <div class="content ">
+                                                    <div class="row col-lg-offset-1">
+                                                        <div class="col-lg-2 ">
+                                                            <div class="form-group">
+                                                                <select class="form-control" formControlName="drcr">
+                                                                    <option value="dr" selected>DR</option>
+                                                                    <option value="cr">CR</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <ng-select [allowClear]="true" [items]="items" formControlName="particulars" (data)="refreshValue($event)" (selected)="selected($event)"
+                                                                (removed)="removed($event)" (typed)="showNotification('top','left')"
+                                                                placeholder="No city selected">
+                                                            </ng-select>
+                                                            <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
+                                                                <span (click)="showNotification('top','left')"> Particulars is required</span>
+                                                            </small>
+                                                        </div>
+                                                        <div class="col-lg-3 ">
+                                                            <input type="text" required class="form-control" formControlName="debitAmount">
+                                                            <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
+                                                                Amount is required
+                                                            </small>
+                                                        </div>
+                                                        <div class="col-lg-3 ">
+                                                            <input type="text" required class="form-control" formControlName="creditAmount">
+                                                            <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
+                                                                Amount is required
+                                                            </small>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <span class="fa fa-times pull-right" *ngIf="form.controls.particularsData.controls.length > 1" (click)="removeParticular(i)"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-offset-3 col-md-3">
+                                    <a (click)="addParticular()" style="cursor: default">
+                                        Add another field +
+                                    </a>
+                                </div>
+                                <div class="col-lg-offset-2 col-md-3">
+                                    <p class="p1">Total Amount: Rs. 1325</p>
+                                </div>
+                            </div>
 
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Address</label>
-                                        <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                        <label>Narration</label>
+                                        <textarea rows="5" formControlName="narration"  class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="form-inline">
                                     <div class="form-group">
-                                        <label>Company Gstin</label>
-                                        <input type="text" class="form-control" placeholder="City" value="Mike">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>city</label>
-                                        <input type="text" class="form-control" placeholder="Country" value="Andrew">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>State</label>
-                                        <input type="number" class="form-control" placeholder="ZIP Code">
+                                        <label for="upload">Attachment:</label>
+                                        <input type="file" class="" formControlName="file" (change)="handleFileUpload($event)">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Phone Number</label>
-                                        <input type="text" class="form-control" placeholder="City" value="Mike">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="business">Nature of business:</label>
-                                        <br>
-                                        <select class="form-control" id="business" name="business" formControlName="natureOfBuisness">
-                                            <option value="freight" selected>Freight</option>
-                                            <option value="option2">Option2</option>
-                                            <option value="option3">Option3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="currency">Currency:</label>
-                                        <br>
-                                        <select class="form-control" id="currency" name="currency" formControlName="currency">
-                                            <option value="inr" selected>₹ - INR</option>
-                                            <option value="usd">$ - USD</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="language">Preferred language</label>
-                                        <br>
-                                        <select class="form-control" id="language" name="language" formControlName="language">
-                                            <option value="english" selected>English</option>
-                                            <option value="hindi">Hindi</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Starting Date</label>
-                                        <!-- <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker> -->
-                                        <date-picker formControlName="date"></date-picker>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>End date</label>
-                                        <date-picker formControlName="date2"></date-picker>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="row" style="margin-top: 10px">
-                                <div class="col-md-4">
-                                    <div class="input-group info-text">
-                                        <ul>
-                                            <li>Should be .jpg or .png of at least 200x200px.</li>
-                                            <li>Maximum file size 200kb.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="company-logo">Company logo:</label>
-                                        <br>
-                                        <span class='label label-default' id="upload-file-info"></span>
-                                        <div class="form-inline">
-                                            <!-- <div class="input-group company-logo-div">
-                                                <img *ngIf="!image_view" id="company-logo" height="50px;width:50px" src="../../../../../assets/images/signup/company-logo.PNG">
-                                                <img *ngIf="image_view" id="company-logo" height="50px;width:50px" src={{imageFile}}>
-                                            </div> -->
-                                            <div class="input-group info-text">
-                                                <ul style="margin-left: -50px;">
-                                                    <li>
-                                                        <input type="file" class="file" accept="image/x-png,image/jpg" formControlName="logo" (change)="handleFileUpload($event)">
-                                                        <br>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="company-logo">Signature pic:</label>
-                                        <br>
-                                        <span class='label label-default' id="upload-file-info"></span>
-                                        <div class="form-inline">
-                                            <!-- <div class="input-group company-logo-div">
-                                                <img *ngIf="!image_view" id="company-logo" height="50px;width:50px" src="../../../../../assets/images/signup/company-logo.PNG">
-                                                <img *ngIf="image_view" id="company-logo" height="50px;width:50px" src={{imageFile}}>
-                                            </div> -->
-                                            <div class="input-group info-text">
-                                                <ul style="margin-left: -50px;">
-                                                    <li>
-                                                        <input type="file" class="file" accept="image/x-png,image/jpg" formControlName="logo" (change)="handleFileUpload($event)">
-                                                        <br>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button type="submit" class="btn btn-info btn-fill pull-right">Getting started</button>
-                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
