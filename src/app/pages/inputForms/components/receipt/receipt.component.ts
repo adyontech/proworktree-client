@@ -42,16 +42,17 @@ export class ReceiptComponent implements OnInit {
 
     ngOnInit() {
         this.form = this.fb.group({
-            contraNumber: [''],
+            receiptNumber: [''],
             date: [''],
             account: [''],
             chequeNumber: [''],
             receiptType:[''],
             receiptThrough: [''],
+            against: [''],
             particularsData: this.fb.array([]),
             file: [""],
             drawnOn: [null, Validators.required],
-            yate: [null, Validators.required],
+            yDate: [null, Validators.required],
         });
         this.addParticular();
     }
@@ -173,13 +174,4 @@ export class ReceiptComponent implements OnInit {
 
 
 
-}
-
-interface Customer {
-    particularsData: Address[];
-}
-
-interface Address {
-    particulars: string;  // required field
-    amount: string;
 }
