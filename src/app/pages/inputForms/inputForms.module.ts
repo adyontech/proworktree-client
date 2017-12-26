@@ -16,7 +16,7 @@ import { ReceiptComponent } from "./components/receipt/receipt.component";
 import { SalesComponent } from "./components/sales/sales.component";
 import { SalesReturnComponent } from "./components/salesReturn/salesReturn.component";
 import { SidebarComponent } from "./../shared/sidebar/sidebar.component";
-
+import { underGroupComponent } from "./components/underGroup/underGroup.component";
 
 
 import { InputFormService } from "./service/inputForms.service";
@@ -30,6 +30,7 @@ import { PurchaseReturnService } from "./components/purchaseReturn/service/purch
 import { ReceiptService } from "./components/receipt/service/receipt.service";
 import { SalesService } from "./components/sales/service/sales.service";
 import { SalesReturnService } from "./components/salesReturn/service/salesReturn.service";
+import { UnderGroupsService } from "./components/underGroup/service/underGroup.service";
 
 import { DatePickerModule } from "angular-io-datepicker/src/datepicker/index";
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
@@ -38,19 +39,19 @@ import { NgDatepickerModule } from 'ng2-datepicker';
 import { MyDatePickerModule } from 'mydatepicker';
 @NgModule({
     imports: [
-        FormsModule,
         CommonModule,
+        DatePickerModule,
+        FormsModule,
         ReactiveFormsModule,
         FormsRoutingModule,
-        DatePickerModule,
         NgxMyDatePickerModule,
         SelectModule, 
         NgDatepickerModule,
         MyDatePickerModule
     ],
     declarations: [
-        InputFormsComponent,
         ContraComponent,
+        InputFormsComponent,
         JournalEntryComponent,
         LedgerComponent,
         PaymentComponent,
@@ -60,11 +61,12 @@ import { MyDatePickerModule } from 'mydatepicker';
         ReceiptComponent,
         SalesComponent,
         SalesReturnComponent,
-        SidebarComponent
+        SidebarComponent,
+        underGroupComponent
     ],
     providers: [
-        InputFormService,
         ContraService,
+        InputFormService,
         JournalEntryService,
         LedgerService,
         PaymentService,
@@ -74,6 +76,7 @@ import { MyDatePickerModule } from 'mydatepicker';
         ReceiptService,
         SalesService,
         SalesReturnService,
+        UnderGroupsService
     ]
 })
 
