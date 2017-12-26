@@ -10,7 +10,8 @@ import 'rxjs/'
 @Injectable()
 export class ProductServiceService {
 
-    constructor(private http: Http, private router: Router, private route: ActivatedRoute, public _inputFormService: InputFormService) {
+    constructor(private http: Http,
+         private router: Router, private route: ActivatedRoute, public _inputFormService: InputFormService) {
         
     }
   

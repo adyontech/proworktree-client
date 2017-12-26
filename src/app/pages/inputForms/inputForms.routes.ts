@@ -6,13 +6,12 @@ import { ContraComponent } from "./components/contra/contra.component";
 import { JournalEntryComponent } from "./components/journalEntry/journalEntry.component";
 import { LedgerComponent } from "./components/ledger/ledger.component";
 import { PaymentComponent } from "./components/payment/payment.component";
-import { ProductComponent } from "./components/product/product.component";
+import { ProductServiceComponent } from "./components/productService/productService.component";
 import { PurchaseComponent } from "./components/purchase/purchase.component";
 import { PurchaseReturnComponent } from "./components/purchaseReturn/purchaseReturn.component";
 import { ReceiptComponent } from "./components/receipt/receipt.component";
 import { SalesComponent } from "./components/sales/sales.component";
 import { SalesReturnComponent } from "./components/salesReturn/salesReturn.component";
-import { ServiceCreationComponent } from "./components/serviceCreation/serviceCreation.component";
 
 const INDEX_ROUTES: Routes = [
     {
@@ -40,8 +39,8 @@ const INDEX_ROUTES: Routes = [
                 component: PaymentComponent
             },
             {
-                path: 'product',
-                component: ProductComponent
+                path: 'productService',
+                component: ProductServiceComponent
             },
             {
                 path: 'purchase',
@@ -63,10 +62,6 @@ const INDEX_ROUTES: Routes = [
                 path: 'salesreturn',
                 component: SalesReturnComponent
             },
-            {
-                path: 'service',
-                component: ServiceCreationComponent
-            }
         ]
     }
 

@@ -122,11 +122,11 @@ export class LedgerComponent implements OnInit {
 
 }
 
-interface Customer {
-    particularsData: Address[];
-}
+// interface Customer {
+//     particularsData: Address[];
+// }
 
-interface Address {
-    particulars: string;  // required field
-    amount: string;
-}
+// interface Address {
+//     particulars: string;  // required field
+//     amount: string;
+// }
