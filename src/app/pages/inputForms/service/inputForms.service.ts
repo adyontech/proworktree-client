@@ -12,8 +12,14 @@ export class InputFormService {
 
     windowStorage: any;
     token: string;
+    paramCompanyName: string;
 
-    constructor(private http: Http, private router: Router, private route: ActivatedRoute, public _userStateService: UserStateService) {
+    constructor(private http: Http,
+         private router: Router,
+         private route: ActivatedRoute,
+         public _userStateService: UserStateService,
+        
+        ) {
         this.windowStorage = JSON.parse(window.localStorage.getItem('user'));
         this.token = this.windowStorage.token;
         console.log(this.windowStorage.token)

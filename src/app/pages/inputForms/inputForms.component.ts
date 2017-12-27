@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-// import { DashboardService } from "./service/dashboard.service";
+import { InputFormService } from "./service/inputForms.service";
 
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 declare const $: any;
 declare interface RouteInfo {
     path: string;
@@ -29,8 +29,15 @@ export class InputFormsComponent implements OnInit {
 
     menuItems: any[];
 
-    constructor(){ }
+    constructor(
+        private activatedRoute: ActivatedRoute,
+        private _inputFormService: InputFormService,
 
+        ) {
+        this.activatedRoute.params.subscribe((params: Params) => {
+            this._inputFormService.paramCompanyName = params['id'];
+        });
+    }
     ngOnInit() {
         this.menuItems = ROUTES.filter(menuItem => menuItem);
     }

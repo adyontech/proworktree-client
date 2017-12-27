@@ -27,7 +27,7 @@ import { LoginModule } from "./pages/login/login.module";
 import { ActivationModule } from "./pages/activation/activation.module";
 
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +53,8 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     LbdModule,
     LoginModule,
     ActivationModule,
-    NgxMyDatePickerModule.forRoot() 
+    NgxMyDatePickerModule.forRoot() ,
+    NgbModule.forRoot()
   ],
   providers: [UserStateService],
   bootstrap: [AppComponent]

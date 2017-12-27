@@ -35,7 +35,7 @@ export class SidebarComponent implements OnInit {
         private activatedRoute: ActivatedRoute) {
         this.activatedRoute.params.subscribe((params: Params) => {
             this.paramId = params['id'];
-            console.log(this.paramId);
+            // console.log(this.paramId);
         });
     }
 

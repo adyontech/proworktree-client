@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 import { ActivatedRoute } from '@angular/router';
 import { LedgerService } from "./service/ledger.service";
 import { IMyDpOptions } from 'mydatepicker';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+
+
 declare var $: any;
 
 @Component({
@@ -14,37 +16,37 @@ declare var $: any;
 })
 
 export class LedgerComponent implements OnInit {
-
     form: FormGroup;
     selectedIndex = 1;
-
+    dataCopy: any;
     paramId: string;
 
     constructor(
         private route: ActivatedRoute,
         public _ledgerService: LedgerService,
         public fb: FormBuilder,
-        private router: Router) {
-        this.route.params.subscribe(params => this.paramId = params.id);
-        console.log(this.paramId)
+        private modalService: NgbModal) {
+            console.log(this._ledgerService);
     }
 
 
     ngOnInit() {
+        this.getUnderGroupList();
         this.form = this.fb.group({
             ledgerName: [''],
+            underGroup: [''],
             applicableTax: [''],
             BusinessType: [''],
-            gstin: [''],
+            gstin:[''],
+            name: [''],
+            email: [''],
             pan: [''],
-            name:[''],
             address: [''],
             city: [''],
             state: [''],
-            country: [''],
             pinCode: [''],
+            country: [''],
             phoneNumber: [''],
-            email: [''],
             qty: [''],
             rate: [''],
             total: ['']
@@ -118,15 +120,14 @@ export class LedgerComponent implements OnInit {
         console.log(user);
     }
 
-
-
+    getUnderGroupList() {
+        this.dataCopy = this._ledgerService.getUnderGroupList().map(
+            (response) => response.json()
+        ).subscribe(
+            (data) => {
+                console.log(data)
+            })
+    }
+    
+   
 }
-
-// interface Customer {
-//     particularsData: Address[];
-// }
-
-// interface Address {
-//     particulars: string;  // required field
-//     amount: string;
-// }

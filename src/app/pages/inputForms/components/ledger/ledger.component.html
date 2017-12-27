@@ -38,12 +38,22 @@
                                     <div class="col-md-5 col-lg-offset-4">
                                         <div class="form-group">
                                             <label>Name of ledger</label>
-                                            <ng-select [allowClear]="true" [items]="items" formControlName="ledgerName" (data)="refreshValue($event)" (selected)="selected($event)"
-                                                (removed)="removed($event)" (typed)="showNotification('top','left')" placeholder="No city selected">
-                                            </ng-select>
+                                            <input type="text" class="form-control" formControlName="ledgerName">
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-5 col-lg-offset-4">
+                                        <div class="form-group">
+                                            <label>Under Group</label>
+                                            <ng-select [allowClear]="true" [items]="items" formControlName="underGroup" (data)="refreshValue($event)" (selected)="selected($event)"
+                                                (removed)="removed($event)"  placeholder="No under group selected">
+                                            </ng-select>
+                                             <!-- (typed)="showNotification('top','left')" -->
+                                        </div>
+                                    </div>
+                                </div>
+
 
                                 <div class="row" style="text-align: center; margin-top: 20px">
                                     <button type="submit" data-toggle="tab" href="#step2" (click)="setSelected(2)" class="btn btn-info btn-fill">Next</button>
