@@ -13,17 +13,20 @@ export class UnderGroupsService {
     token: string;
     windowStorage: any;
     _url: string;
+    paramCompanyName: string;
 
 
     constructor(private http: Http, private router: Router, private route: ActivatedRoute, public _inputFormService: InputFormService) {
         this.windowStorage = JSON.parse(window.localStorage.getItem('user'));
         this.token = this.windowStorage.token;
         console.log(this.windowStorage)
+        this.paramCompanyName = this._inputFormService.paramCompanyName;
+        console.log(this.paramCompanyName)
     }
     
     createNewCompany(user: any) {
 
-        this._url = `http://localhost:3000/api/uglist?token=${this.token}&anotherParam=shsjajsdf`;
+        this._url = `http://localhost:3000/api/uglist?token=${this.token}&companyName=${this.paramCompanyName}`;
         return this.http.post(this._url, user)
             .map((res: Response) => {
                 this.result = res.json();

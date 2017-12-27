@@ -9,7 +9,7 @@ import { IMyDpOptions } from 'mydatepicker';
 declare var $: any;
 
 @Component({
-    selector: 'app-ledger',
+    selector: 'app-undergroup',
     templateUrl: './underGroup.component.html',
     styleUrls: ['./underGroup.component.scss']
 })
@@ -19,16 +19,12 @@ export class underGroupComponent implements OnInit {
     form: FormGroup;
     selectedIndex = 1;
 
-    paramId: string;
 
     constructor(
         private route: ActivatedRoute,
         public _ledgerService: LedgerService,
         public _underGroupsService: UnderGroupsService,
-        public fb: FormBuilder,
-        private router: Router) {
-        this.route.params.subscribe(params => this.paramId = params.id);
-        console.log(this.paramId)
+        public fb: FormBuilder,) {
     }
 
 
