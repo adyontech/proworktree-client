@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import { DashboardService } from "./service/dashboard.service";
+import { UrlParamService } from "./../../sharedService/urlParam/urlParam.service";
 
 import { ActivatedRoute } from '@angular/router';
 declare const $: any;
@@ -29,7 +30,7 @@ export class InputFormsComponent implements OnInit {
 
     menuItems: any[];
 
-    constructor() { }
+    constructor(public _urlParamService: UrlParamService) { this._urlParamService.hello; console.log('hello') }
 
     ngOnInit() {
         this.menuItems = ROUTES.filter(menuItem => menuItem);
