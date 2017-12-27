@@ -12,7 +12,7 @@
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label>Name of company</label>
-                                        <input type="text" class="form-control" [(ngModel)]="companyName" name="company_name" placeholder="Company Name" formControlName="companyName">
+                                        <input type="text" class="form-control" name="company_name" placeholder="Company Name" formControlName="companyName">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -34,7 +34,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Address</label>
-                                        <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                        <input type="text" class="form-control" placeholder="company Address" formControlName="address">
                                     </div>
                                 </div>
                             </div>
@@ -42,29 +42,30 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Company Gstin</label>
-                                        <input type="text" class="form-control" placeholder="City" value="Mike">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
                                         <label>city</label>
-                                        <input type="text" class="form-control" placeholder="Country" value="Andrew">
+                                        <input type="text" class="form-control" placeholder="Country"  formControlName="city">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>State</label>
-                                        <input type="number" class="form-control" placeholder="ZIP Code">
+                                        <input type="text" class="form-control" placeholder="state" formControlName="state">
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Phone Number</label>
+                                            <input type="text" class="form-control"  formControlName="phoneNo">
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Phone Number</label>
-                                        <input type="text" class="form-control" placeholder="City" value="Mike">
+                                        <label>Company Gstin</label>
+                                        <input type="text" class="form-control"  value="Mike" formControlName="gstin">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -72,7 +73,7 @@
                                         <label for="business">Nature of business:</label>
                                         <br>
                                         <select class="form-control" id="business" name="business" formControlName="natureOfBuisness">
-                                            <option value="freight" selected>Freight</option>
+                                            <option value="freight" selected selected>Freight</option>
                                             <option value="option2">Option2</option>
                                             <option value="option3">Option3</option>
                                         </select>
@@ -104,14 +105,15 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Starting Date</label>
+                                        <my-date-picker name="ydate" [options]="myDatePickerOptions" formControlName="startDate"></my-date-picker>
                                         <!-- <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker> -->
-                                        <date-picker formControlName="date"name="date"></date-picker>
+
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>End date</label>
-                                        <date-picker formControlName="date2" name="date2"></date-picker>
+                                        <my-date-picker name="ydate" [options]="myDatePickerOptions" formControlName="endDate"></my-date-picker>
                                     </div>
                                 </div>
 
@@ -133,10 +135,6 @@
                                         <br>
                                         <span class='label label-default' id="upload-file-info"></span>
                                         <div class="form-inline">
-                                            <!-- <div class="input-group company-logo-div">
-                                                <img *ngIf="!image_view" id="company-logo" height="50px;width:50px" src="../../../../../assets/images/signup/company-logo.PNG">
-                                                <img *ngIf="image_view" id="company-logo" height="50px;width:50px" src={{imageFile}}>
-                                            </div> -->
                                             <div class="input-group info-text">
                                                 <ul style="margin-left: -50px;">
                                                     <li>
@@ -154,14 +152,10 @@
                                         <br>
                                         <span class='label label-default' id="upload-file-info"></span>
                                         <div class="form-inline">
-                                            <!-- <div class="input-group company-logo-div">
-                                                <img *ngIf="!image_view" id="company-logo" height="50px;width:50px" src="../../../../../assets/images/signup/company-logo.PNG">
-                                                <img *ngIf="image_view" id="company-logo" height="50px;width:50px" src={{imageFile}}>
-                                            </div> -->
                                             <div class="input-group info-text">
                                                 <ul style="margin-left: -50px;">
                                                     <li>
-                                                        <input type="file" class="file" accept="image/x-png,image/jpg" formControlName="logo" (change)="handleFileUpload($event)">
+                                                        <input type="file" class="file" accept="image/x-png,image/jpg" formControlName="signature" (change)="handleFileUpload($event)">
                                                         <br>
                                                     </li>
                                                 </ul>
@@ -169,7 +163,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
 
 
                             </div>
@@ -199,7 +193,7 @@
                                     </h4>
                                 </a>
                             </div>
-                            <p class="description text-center"> 
+                            <p class="description text-center">
                                 <br> Email: " {{form.get('email').value}} "
                                 <br> I'm in that two seat Lambo"
                             </p>

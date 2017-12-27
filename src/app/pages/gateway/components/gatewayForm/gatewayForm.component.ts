@@ -52,16 +52,15 @@ export class GatewayFormComponent implements OnInit {
 
       address: ['', Validators.compose([Validators.minLength(10)])],
 
+      city: [''],
+
+      state: ['', Validators.compose([Validators.minLength(1)])],
+
       gstin: ['', Validators.compose([Validators.maxLength(15),
       GstinValidator.isValid])],
 
       phoneNo: ['', Validators.compose([Validators.maxLength(10),
       PhoneValidator.isValid])],
-
-      hsnCode: ['', Validators.compose([Validators.minLength(6),
-      HsnValidator.isValid])],
-
-      gstRate: ['', Validators.compose([Validators.required])],
 
       language: ['', Validators.compose([Validators.required])],
 
@@ -74,21 +73,24 @@ export class GatewayFormComponent implements OnInit {
 
       currency: ['', Validators.compose([Validators.required])],
 
-      endDate: ['', Validators.compose([Validators.required])],
-
       startDate: ['', Validators.compose([Validators.required])],
-
+      
+      endDate: ['', Validators.compose([Validators.required])],
+      
       logo: [""],
+
+      signature: [""],
     });
   }
 
   onSubmit(user) {
+    console.log(user)
     user.pan = user.pan.toUpperCase();
     user.gstin = user.gstin.toUpperCase();
     user.logo = this.imageFile;
     // user.endDate = user.endDate.toDateString();
     // user.startDate = user.startDate.toDateString();
-    user.logo = "https://a.optnmstr.com/app/src/Themes/Lightbox/Metro/assets/images/metro-icon.png"
+    user.logo = "https://lorempixel.com/400/200/"
 
 
     // this._AlertService.warningAlert('Save Information ?')
