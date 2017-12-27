@@ -12,6 +12,7 @@ import { SidebarComponent } from "./../sharedPageComponent/sidebar/sidebar.compo
 
 
 import { DashboardService } from "./service/dashboard.service";
+import { UserStateService } from "./../../sharedService/userDetails/user-state.service";
 
 @NgModule({
     imports: [
@@ -28,7 +29,8 @@ import { DashboardService } from "./service/dashboard.service";
 
     ],
     providers: [
-        DashboardService
+        DashboardService,
+        UserStateService
     ]
 })
 

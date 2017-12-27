@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UserStateService {
   userData: UserInterface
-
+  paramId: string;
   constructor() {
     
   }
