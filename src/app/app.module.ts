@@ -22,7 +22,6 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { UpgradeComponent } from './upgrade/upgrade.component';
 
 import { UserStateService } from "./sharedService/userDetails/user-state.service";
-import { UrlParamService } from "./sharedService/urlParam/urlParam.service";
 
 import { LoginModule } from "./pages/login/login.module";
 import { ActivationModule } from "./pages/activation/activation.module";
@@ -56,7 +55,7 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     ActivationModule,
     NgxMyDatePickerModule.forRoot() 
   ],
-  providers: [UserStateService, UrlParamService],
+  providers: [UserStateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

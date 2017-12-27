@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserStateService } from "./../../../sharedService/userDetails/user-state.service";
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -31,8 +32,11 @@ export class SidebarComponent implements OnInit {
     menuItems: any[];
     paramId: string;
     constructor(
-        private _userStateService: UserStateService) {
-        this.paramId =  this._userStateService.paramId
+        private activatedRoute: ActivatedRoute) {
+        this.activatedRoute.params.subscribe((params: Params) => {
+            this.paramId = params['id'];
+            console.log(this.paramId);
+        });
     }
 
     ngOnInit() {

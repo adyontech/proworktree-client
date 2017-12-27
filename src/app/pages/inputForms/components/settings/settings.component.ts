@@ -14,8 +14,6 @@ export class SettingsComponent implements OnInit {
     paramId: string;
 
     constructor(private route: ActivatedRoute, public _settingsService: SettingsService) {
-        this.route.params.subscribe(params => this.paramId = params.id);
-        console.log(this.paramId)
     }
 
     ngOnInit() {

@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
 
     paramId: string;
 
-    constructor(private _dashboardService: DashboardService, private _userStateService: UserStateService, private route: ActivatedRoute) {
+    constructor( private _userStateService: UserStateService, private route: ActivatedRoute) {
         
         this.route.params.subscribe(params => this.paramId = params.id);
         console.log(this.paramId);
