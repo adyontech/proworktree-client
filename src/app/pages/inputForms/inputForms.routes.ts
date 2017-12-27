@@ -13,6 +13,7 @@ import { ReceiptComponent } from "./components/receipt/receipt.component";
 import { SalesComponent } from "./components/sales/sales.component";
 import { SalesReturnComponent } from "./components/salesReturn/salesReturn.component";
 import { SettingsComponent } from "./components/settings/settings.component";
+import { underGroupComponent } from "./components/underGroup/underGroup.component";
 const INDEX_ROUTES: Routes = [
     {
         path: '',
@@ -65,6 +66,10 @@ const INDEX_ROUTES: Routes = [
             {
                 path: 'settings',
                 component: SettingsComponent
+            },
+            {
+                path: 'ug',
+                component: underGroupComponent
             },
         ]
     }

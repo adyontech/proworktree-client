@@ -20,7 +20,7 @@ export class LedgerComponent implements OnInit {
     selectedIndex = 1;
     dataCopy: any;
     paramId: string;
-
+    closeResult: string;
     constructor(
         private route: ActivatedRoute,
         public _ledgerService: LedgerService,
@@ -28,7 +28,23 @@ export class LedgerComponent implements OnInit {
         private modalService: NgbModal) {
             console.log(this._ledgerService);
     }
+    open(content) {
+        this.modalService.open(content).result.then((result) => {
+            this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+    }
 
+    private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+            return 'by pressing ESC';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+        } else {
+            return `with: ${reason}`;
+        }
+    }
 
     ngOnInit() {
         this.getUnderGroupList();
