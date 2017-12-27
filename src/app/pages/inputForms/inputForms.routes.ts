@@ -12,7 +12,7 @@ import { PurchaseReturnComponent } from "./components/purchaseReturn/purchaseRet
 import { ReceiptComponent } from "./components/receipt/receipt.component";
 import { SalesComponent } from "./components/sales/sales.component";
 import { SalesReturnComponent } from "./components/salesReturn/salesReturn.component";
-
+import { SettingsComponent } from "./components/settings/settings.component";
 const INDEX_ROUTES: Routes = [
     {
         path: '',
@@ -61,6 +61,10 @@ const INDEX_ROUTES: Routes = [
             {
                 path: 'salesreturn',
                 component: SalesReturnComponent
+            },
+            {
+                path: 'settings',
+                component: SettingsComponent
             },
         ]
     }

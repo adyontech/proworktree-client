@@ -16,8 +16,8 @@ import { ReceiptComponent } from "./components/receipt/receipt.component";
 import { SalesComponent } from "./components/sales/sales.component";
 import { SalesReturnComponent } from "./components/salesReturn/salesReturn.component";
 import { SidebarComponent } from "./../sharedPageComponent/sidebar/sidebar.component";
+import { SettingsComponent } from "./components/settings/settings.component";
 import { underGroupComponent } from "./components/underGroup/underGroup.component";
-
 
 import { InputFormService } from "./service/inputForms.service";
 import { ContraService } from "./components/contra/service/contra.service";
@@ -30,6 +30,7 @@ import { PurchaseReturnService } from "./components/purchaseReturn/service/purch
 import { ReceiptService } from "./components/receipt/service/receipt.service";
 import { SalesService } from "./components/sales/service/sales.service";
 import { SalesReturnService } from "./components/salesReturn/service/salesReturn.service";
+import { SettingsService } from "./components/settings/service/settings.service";
 import { UnderGroupsService } from "./components/underGroup/service/underGroup.service";
 
 import { DatePickerModule } from "angular-io-datepicker/src/datepicker/index";
@@ -61,6 +62,7 @@ import { MyDatePickerModule } from 'mydatepicker';
         ReceiptComponent,
         SalesComponent,
         SalesReturnComponent,
+        SettingsComponent,
         SidebarComponent,
         underGroupComponent
     ],
@@ -76,6 +78,7 @@ import { MyDatePickerModule } from 'mydatepicker';
         ReceiptService,
         SalesService,
         SalesReturnService,
+        SettingsService,
         UnderGroupsService
     ]
 })
