@@ -15,7 +15,7 @@ import { PurchaseReturnComponent } from "./components/purchaseReturn/purchaseRet
 import { ReceiptComponent } from "./components/receipt/receipt.component";
 import { SalesComponent } from "./components/sales/sales.component";
 import { SalesReturnComponent } from "./components/salesReturn/salesReturn.component";
-import { SidebarComponent } from "./../shared/sidebar/sidebar.component";
+import { SidebarComponent } from "./../sharedPageComponent/sidebar/sidebar.component";
 import { underGroupComponent } from "./components/underGroup/underGroup.component";
 
 

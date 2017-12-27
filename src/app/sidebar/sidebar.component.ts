@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+// import { DashboardService } from "./../pages/ ./service/dashboard.service";
+
 declare const $: any;
 declare interface RouteInfo {
     path: string;
