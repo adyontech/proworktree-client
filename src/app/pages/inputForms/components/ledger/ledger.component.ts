@@ -4,8 +4,6 @@ import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@ang
 import { ActivatedRoute } from '@angular/router';
 import { LedgerService } from "./service/ledger.service";
 import { IMyDpOptions } from 'mydatepicker';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-
 
 declare var $: any;
 
@@ -24,28 +22,9 @@ export class LedgerComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         public _ledgerService: LedgerService,
-        public fb: FormBuilder,
-        private modalService: NgbModal) {
+        public fb: FormBuilder,) {
         console.log(this._ledgerService);
     }
-    open(content) {
-        this.modalService.open(content).result.then((result) => {
-            this.closeResult = `Closed with: ${result}`;
-        }, (reason) => {
-            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        });
-    }
-
-    private getDismissReason(reason: any): string {
-        if (reason === ModalDismissReasons.ESC) {
-            return 'by pressing ESC';
-        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-            return 'by clicking on a backdrop';
-        } else {
-            return `with: ${reason}`;
-        }
-    }
-
     ngOnInit() {
         this.getUnderGroupList();
         this.form = this.fb.group({
