@@ -24,7 +24,7 @@ export class UnderGroupsService {
         console.log(this.paramCompanyName)
     }
     
-    createNewCompany(user: any) {
+    createNewUnderGroup(user: any) {
 
         this._url = `http://localhost:3000/api/uglist?token=${this.token}&companyName=${this.paramCompanyName}`;
         return this.http.post(this._url, user)

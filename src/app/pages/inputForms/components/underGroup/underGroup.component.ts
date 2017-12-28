@@ -38,7 +38,7 @@ export class underGroupComponent implements OnInit {
 
     onSubmit(user) {
         console.log(user);
-        this._underGroupsService.createNewCompany(user)
+        this._underGroupsService.createNewUnderGroup(user)
             .subscribe(
             (data) => {
                 // console.log('hello gateway service')

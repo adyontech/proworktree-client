@@ -52,7 +52,7 @@ export class LedgerComponent implements OnInit {
             ledgerName: [''],
             underGroup: [''],
             applicableTax: [''],
-            BusinessType: [''],
+            businessType: [''],
             gstin: [''],
             name: [''],
             email: [''],
@@ -132,11 +132,6 @@ export class LedgerComponent implements OnInit {
     }
 
 
-    onSubmit(user) {
-        this.form.get('underGroup')= this.form.get('underGroup').value[0].text
-        // underGroup =this.underGroup.text
-        console.log(user);
-    }
 
     getUnderGroupList() {
         this.dataCopy = this._ledgerService.getUnderGroupList().map(
@@ -150,5 +145,17 @@ export class LedgerComponent implements OnInit {
             })
     }
 
+    onSubmit(user) {
+        // var newValue = this.form.get('underGroup').value[0].text;
+        // this.form.controls['underGroup'].patchValue(newValue);
+        console.log(user);
+        console.log(user);
+        this._ledgerService.createNewLedger(user)
+            .subscribe(
+            (data) => {
+                // console.log('hello gateway service')
+            }
+            )
+    }
 
 }
