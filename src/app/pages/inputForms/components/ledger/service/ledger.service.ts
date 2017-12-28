@@ -20,10 +20,12 @@ export class LedgerService {
     constructor(private http: Http, private router: Router, private route: ActivatedRoute, public _inputFormService: InputFormService) {
         this.windowStorage = JSON.parse(window.localStorage.getItem('user'));
         this.token = this.windowStorage.token;
+        this.paramCompanyName = this._inputFormService.paramCompanyName;
+        console.log(this.paramCompanyName)
     }
 
     getUnderGroupList() {
-        this._url = `http://localhost:3000/api/uglist?token=${this.token}&anotherParam=shsjajsdf`;
+        this._url = `http://localhost:3000/api/uglist?token=${this.token}&&companyName=${this.paramCompanyName}`;
         return this.http.get(this._url);
     }
 

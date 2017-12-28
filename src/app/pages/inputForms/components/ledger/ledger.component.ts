@@ -26,7 +26,7 @@ export class LedgerComponent implements OnInit {
         public _ledgerService: LedgerService,
         public fb: FormBuilder,
         private modalService: NgbModal) {
-            console.log(this._ledgerService);
+        console.log(this._ledgerService);
     }
     open(content) {
         this.modalService.open(content).result.then((result) => {
@@ -53,7 +53,7 @@ export class LedgerComponent implements OnInit {
             underGroup: [''],
             applicableTax: [''],
             BusinessType: [''],
-            gstin:[''],
+            gstin: [''],
             name: [''],
             email: [''],
             pan: [''],
@@ -71,10 +71,10 @@ export class LedgerComponent implements OnInit {
     }
 
     public items: Array<string> = ['cash in hand(dr)', 'cash at bank(dr)', 'sales a / c(cr)', 'purchases a / c(dr)', 'stock in hand(dr)',
-        ' sundry debtors(dr)', 'sundry creditors(cr)', 'current asset(dr)', 'current liabilities(cr)', 'non - current assets(dr)',
-        ' non - current liabilities(cr)', 'capital(cr)', ' bank overdraft(cr)', 'duties and taxes(cr)', ' Deposit(asset)(DR)',
-        ' Direct expenses(DR)', ' Direct Income(CR)', 'indirect expense(DR)', ' Indirect Income(CR)', ' Fixed Asset(DR)',
-        ' Investments(DR)', ' Loans & advances(Asset)(DR)', ' Loans(liability)(CR)', ' Reserves and Surplus(CR)', ' Provisions(CR)',
+        // ' sundry debtors(dr)', 'sundry creditors(cr)', 'current asset(dr)', 'current liabilities(cr)', 'non - current assets(dr)',
+        // ' non - current liabilities(cr)', 'capital(cr)', ' bank overdraft(cr)', 'duties and taxes(cr)', ' Deposit(asset)(DR)',
+        // ' Direct expenses(DR)', ' Direct Income(CR)', 'indirect expense(DR)', ' Indirect Income(CR)', ' Fixed Asset(DR)',
+        // ' Investments(DR)', ' Loans & advances(Asset)(DR)', ' Loans(liability)(CR)', ' Reserves and Surplus(CR)', ' Provisions(CR)',
         ' Bad debt(DR)', ' Suspense.'];
 
 
@@ -133,6 +133,8 @@ export class LedgerComponent implements OnInit {
 
 
     onSubmit(user) {
+        console.log(this.form.get('underGroup').value[0].text)
+        // underGroup =this.underGroup.text
         console.log(user);
     }
 
@@ -141,9 +143,12 @@ export class LedgerComponent implements OnInit {
             (response) => response.json()
         ).subscribe(
             (data) => {
-                console.log(data)
+                this.items = this.items.concat(data);
+                console.log(this.items);
+                console.log(data);
+
             })
     }
-    
-   
+
+
 }
