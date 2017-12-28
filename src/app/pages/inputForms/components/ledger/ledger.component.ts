@@ -133,7 +133,7 @@ export class LedgerComponent implements OnInit {
 
 
     onSubmit(user) {
-        console.log(this.form.get('underGroup').value[0].text)
+        this.form.get('underGroup')= this.form.get('underGroup').value[0].text
         // underGroup =this.underGroup.text
         console.log(user);
     }
