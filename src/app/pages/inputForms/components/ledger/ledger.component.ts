@@ -126,7 +126,10 @@ export class LedgerComponent implements OnInit {
     }
 
     onSubmit(user) {
-        // var newValue = this.form.get('underGroup').value[0].text;
+        user.underGroup = this.form.get('underGroup').value[0].text;
+        user.state = this.form.get('state').value[0].text;
+        user.country = this.form.get('country').value[0].text;
+
         // this.form.controls['underGroup'].patchValue(newValue);
         console.log(user);
         console.log(user);
