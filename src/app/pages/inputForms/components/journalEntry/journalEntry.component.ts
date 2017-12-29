@@ -17,7 +17,9 @@ declare var $: any;
 export class JournalEntryComponent implements OnInit {
 
     form: FormGroup;
+    dataCopy: any;
     paramId: string;
+    closeResult: string
 
 
     constructor(
@@ -25,8 +27,7 @@ export class JournalEntryComponent implements OnInit {
         public _journalEntryService: JournalEntryService,
         public fb: FormBuilder,
         private router: Router) {
-        this.route.params.subscribe(params => this.paramId = params.id);
-        console.log(this.paramId)
+            
     }
 
 
@@ -149,9 +150,13 @@ export class JournalEntryComponent implements OnInit {
         // }
     }
 
-
     onSubmit(user) {
-        console.log(user);
+
+        console.log(user)
+        this._journalEntryService.createNewEntry(user)
+            .subscribe(
+            (data) => { }
+            )
     }
 
 
