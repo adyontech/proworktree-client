@@ -18,25 +18,15 @@ export class ReceiptComponent implements OnInit {
 
     form: FormGroup;
     selectedIndex = 1;
-
-    contraNumber: string;
-    account: string;
-    chequeNumber: string;
-    drawnBank: string;
-
+    dataCopy: any;
     paramId: string;
-
-
-
-
+    closeResult: string;
 
     constructor(
         private route: ActivatedRoute,
         public _receiptService: ReceiptService,
         public fb: FormBuilder,
         private router: Router) {
-        this.route.params.subscribe(params => this.paramId = params.id);
-        console.log(this.paramId)
     }
 
 
@@ -45,14 +35,14 @@ export class ReceiptComponent implements OnInit {
             receiptNumber: [''],
             date: [''],
             account: [''],
-            chequeNumber: [''],
             receiptType:[''],
             receiptThrough: [''],
+            chequeNumber: [''],
+            drawnOn: [null, Validators.required],
             against: [''],
             particularsData: this.fb.array([]),
+            narration:[''],
             file: [""],
-            drawnOn: [null, Validators.required],
-            yDate: [null, Validators.required],
         });
         this.addParticular();
     }
@@ -169,9 +159,16 @@ export class ReceiptComponent implements OnInit {
 
 
     onSubmit(user) {
+        // var newValue = this.form.get('underGroup').value[0].text;
+        // this.form.controls['underGroup'].patchValue(newValue);
         console.log(user);
+        console.log(user);
+        this._receiptService.createNewEntry(user)
+            .subscribe(
+            (data) => {
+                // console.log('hello gateway service')
+            }
+            )
     }
-
-
 
 }

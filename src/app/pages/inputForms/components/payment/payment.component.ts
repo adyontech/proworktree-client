@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-
 import { ActivatedRoute } from '@angular/router';
 import { PaymentService } from "./service/payment.service";
 import { IMyDpOptions } from 'mydatepicker';
@@ -19,16 +18,7 @@ export class PaymentComponent implements OnInit {
 
     form: FormGroup;
     selectedIndex = 1;
-
-    contraNumber: string;
-    account: string;
-    chequeNumber: string;
-    drawnBank: string;
-
     paramId: string;
-
-
-
 
 
     constructor(
@@ -36,8 +26,6 @@ export class PaymentComponent implements OnInit {
         public _paymentService: PaymentService,
         public fb: FormBuilder,
         private router: Router) {
-        this.route.params.subscribe(params => this.paramId = params.id);
-        console.log(this.paramId)
     }
 
 
