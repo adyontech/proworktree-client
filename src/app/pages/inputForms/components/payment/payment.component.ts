@@ -158,10 +158,7 @@ export class PaymentComponent implements OnInit {
 
 
     onSubmit(user) {
-        // var newValue = this.form.get('underGroup').value[0].text;
-        // this.form.controls['underGroup'].patchValue(newValue);
-        console.log(user);
-        console.log(user);
+        console.log(user)
         this._paymentService.createNewEntry(user)
             .subscribe(
             (data) => {
