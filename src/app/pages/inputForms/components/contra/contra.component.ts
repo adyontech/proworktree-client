@@ -32,15 +32,9 @@ export class ContraComponent implements OnInit {
 
     form: FormGroup;
     selectedIndex = 1;
-
-    contraNumber: string;
-    account: string;
-    chequeNumber: string;
-    drawnBank: string;
-
+    dataCopy: any;
     paramId: string;
-
-
+    closeResult: string;
 
 
 
@@ -49,22 +43,20 @@ export class ContraComponent implements OnInit {
         public _contraService: ContraService,
         public fb: FormBuilder,
         private router: Router) {
-        this.route.params.subscribe(params => this.paramId = params.id);
-        console.log(this.paramId)
     }
 
 
     ngOnInit() {
         this.form = this.fb.group({
-            contraNumber: [''],
-            date: [''],
             account: [''],
             chequeNumber: [''],
+            contraNumber: [''],
+            date: [''],
+            drawnOn: [null, Validators.required],
             drawnBank: [''],
-            particularsData: this.fb.array([]),
             file: [""],
-            xDate: [null, Validators.required],
-            yDate: [null, Validators.required],
+            narration:[""],
+            particularsData: this.fb.array([]),
         });
         this.addParticular();
     }
@@ -181,18 +173,13 @@ export class ContraComponent implements OnInit {
     
     
     onSubmit(user) {
-            console.log(user);
+
+        console.log(user)
+        this._contraService.createNewEntry(user)
+            .subscribe(
+            (data) => { }
+            )
     }
-    
 
 
-}
-
-interface Customer {
-    particularsData: Address[];
-}
-
-interface Address {
-    particulars: string;  // required field
-    amount: string;
 }
