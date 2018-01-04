@@ -1,8 +1,20 @@
+<button type="button" class="btn btn-default" (click)="modal.open()">Add undergroup!</button>
+
+<bs-modal #modal [backdrop]="false" [keyboard]="false">
+    <!-- <bs-modal-header [showDismiss]="true">
+        <h4 class="modal-title">I'm a modal!</h4>
+    </bs-modal-header> -->
+    <bs-modal-body>
+        <app-undergroup></app-undergroup>
+    </bs-modal-body>
+    <bs-modal-footer [showDefaultButtons]="true"></bs-modal-footer>
+</bs-modal>
+
 <form id="form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)" novalidate>
     <div class="main-content" style="scroll-behavior: hidden">
         <div class="container-fluid">
             <div class="row">
-                 <!-- <app-undergroup></app-undergroup> -->
+               
                 <div class="col-md-12">
                     <div class="card">
                         <!-- heading here -->
@@ -48,14 +60,14 @@
                                         <div class="form-group">
                                             <label>Under Group</label>
                                             <ng-select [allowClear]="true" [items]="items" formControlName="underGroup" (data)="refreshValue($event)" (selected)="selected($event)"
-                                                (removed)="removed($event)"  placeholder="No under group selected">
+                                                (removed)="removed($event)" placeholder="No under group selected">
                                             </ng-select>
-                                             <!-- (typed)="showNotification('top','left')" -->
+                                            <!-- (typed)="showNotification('top','left')" -->
                                         </div>
                                     </div>
                                 </div>
 
-                                
+
                                 <div class="row" style="text-align: center; margin-top: 20px">
                                     <button type="submit" data-toggle="tab" href="#step2" (click)="setSelected(2)" class="btn btn-info btn-fill">Next</button>
                                     <button type="submit" data-toggle="tab" href="#step2" (click)="setSelected(2)" class="btn btn-info btn-fill">Exit</button>
@@ -98,7 +110,7 @@
                                 <div class="row">
                                     <div class="col-md-5 col-lg-offset-4">
                                         <label>PAN</label>
-                                        <input type="text" class="form-control"  formControlName="pan">
+                                        <input type="text" class="form-control" formControlName="pan">
                                     </div>
                                 </div>
 
@@ -113,7 +125,7 @@
                                     <div class="col-md-5 col-lg-offset-1">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input type="text" class="form-control"  formControlName="name">
+                                            <input type="text" class="form-control" formControlName="name">
                                         </div>
                                     </div>
                                     <div class="col-md-5 col-lg-offset-1">
@@ -162,7 +174,7 @@
                                             </ng-select>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5 col-lg-offset-1">
@@ -172,7 +184,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <h3>Opening Balance:</h3>
 
                                 <div class="row">

@@ -17,6 +17,10 @@
     width: 183px !important
 }
 
-.ui-select-match > .ui-select-toggle {
+.ui-select-match>.ui-select-toggle {
     width: 266px !important;
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.55);
 }

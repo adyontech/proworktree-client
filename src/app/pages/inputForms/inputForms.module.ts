@@ -38,6 +38,7 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { SelectModule } from 'ng2-select';
 import { NgDatepickerModule } from 'ng2-datepicker';
 import { MyDatePickerModule } from 'mydatepicker';
+import { BsModalModule } from 'ng2-bs3-modal';
 @NgModule({
     imports: [
         CommonModule,
@@ -48,7 +49,8 @@ import { MyDatePickerModule } from 'mydatepicker';
         NgxMyDatePickerModule,
         SelectModule, 
         NgDatepickerModule,
-        MyDatePickerModule
+        MyDatePickerModule,
+        BsModalModule
     ],
     declarations: [
         ContraComponent,
