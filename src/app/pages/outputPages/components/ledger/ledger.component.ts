@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 
 import { ActivatedRoute } from '@angular/router';
@@ -16,17 +16,33 @@ declare var $: any;
 export class LedgerComponent implements OnInit {
 
     // Models 
-    dateFrom: Date;
-    dateTo: Date;
-    dropdFilter: string;
+    public dateFrom: Date;
+    public dateTo: Date;
+    public dropdFilter: string;
+
+
+    //Modal for column hide and show
+
+    VColTransportation: string = "ColTransportation";
+    VColSaleType: string = "ColSaleType";
+    VColPlaceSupply: string = "ColPlaceSupply";
+    VColVehicle: string = "ColVehicle";
+    VColGstRate: string = "ColGstRate";
+
+    @Input()
+    public ColTransportation: Boolean = false;
+    public ColSaleType: Boolean = false;
+    public ColPlaceSupply: Boolean = false;
+    public ColVehicle: Boolean = false;
+    public ColGstRate: Boolean = false;
 
 
     form: FormGroup;
-    dataCopy: any;
-    paramId: string;
-    closeResult: string;
-    
-    
+    public dataCopy: any;
+    public paramId: string;
+    public closeResult: string;
+
+
     dropdownList = [];
     selectedItems = [];
     dropdownSettings = {};
@@ -40,23 +56,12 @@ export class LedgerComponent implements OnInit {
     ngOnInit() {
         this.getUnderGroupList();
         this.dropdownList = [
-            // { "id": "Transportaion Mode", "itemName": "Transportaion Mode" },
-            // { "id": "Type of sales", "itemName": "Type of sales" },
-            // { "id": "place of supply", "itemName": "place of supply" },
-            // { "id": "GST rate", "itemName": "GST rate" },
-            // { "id": "Vehicle Number", "itemName": "Vehicle Number" }
-            { "id": "1", "itemName": "Transportaion Mode" },
-            { "id": "2", "itemName": "Type of sales" },
-            { "id": "3", "itemName": "place of supply" },
-            { "id": "4", "itemName": "GST rate" },
-            { "id": "5", "itemName": "Vehicle Number" }
+            { "id": "ColTransportation", "itemName": "Transportaion Mode" },
+            { "id": "ColSaleType", "itemName": "Type of sales" },
+            { "id": "ColPlaceSupply", "itemName": "place of supply" },
+            { "id": "ColVehicle", "itemName": "GST rate" },
+            { "id": "ColGstRate", "itemName": "Vehicle Number" }
         ];
-        // this.selectedItems = [
-        //     { "id": 2, "itemName": "Transportaion Mode" },
-        //     { "id": "Type of sales", "itemName": "Type of sales" },
-        //     { "id": "place of supply", "itemName": "place of supply" },
-        //     { "id": "GST rate", "itemName": "GST rate" }
-        // ];
         this.dropdownSettings = {
             singleSelection: false,
             text: "Select filter",
@@ -64,21 +69,52 @@ export class LedgerComponent implements OnInit {
             unSelectAllText: 'UnSelect All',
             enableSearchFilter: false,
             classes: "myclass custom-class"
-        }; 
+        };
     }
-    onItemSelect(item: any) {
-        console.log(item.id);
+    onItemSelect(item: any): void {
+        console.log(typeof item.id);
+        console.log(typeof this.VColTransportation);
+        // item.id
+        switch (item.id) {
+            case this.VColTransportation:
+                this.ColTransportation = true;
+                break;
+            case this.VColSaleType:
+                this.ColSaleType = true;
+                break;
+            case this.VColPlaceSupply:
+                this.ColPlaceSupply = true;
+                break;
+            case this.VColVehicle:
+                this.ColVehicle = true;
+                break;
+            case this.VColGstRate:
+                this.ColGstRate = true;
+                break;
+
+        }
         console.log(this.selectedItems);
     }
+
     OnItemDeSelect(item: any) {
         console.log(item);
         console.log(this.selectedItems);
     }
     onSelectAll(items: any) {
-        console.log(items);
+        // console.log(items);
+        this.ColTransportation = true;
+        this.ColSaleType = true;
+        this.ColPlaceSupply = true;
+        this.ColVehicle = true;
+        this.ColGstRate = true;
     }
     onDeSelectAll(items: any) {
-        console.log(items);
+        // console.log(items);
+        this.ColTransportation = false;
+        this.ColSaleType = false;
+        this.ColPlaceSupply = false;
+        this.ColVehicle = false;
+        this.ColGstRate = false;
     }
     // real date picker active from here
     public myDatePickerOptions: IMyDpOptions = {
@@ -87,7 +123,6 @@ export class LedgerComponent implements OnInit {
     };
 
     getUnderGroupList() {
-        console.log("jhjgh");
         this.dataCopy = this._ledgerService.getUnderGroupList().map(
             (response) => response.json()
         ).subscribe(
