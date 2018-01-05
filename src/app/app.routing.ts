@@ -57,6 +57,11 @@ const routes: Routes = [
     loadChildren: './pages/inputForms/inputForms.module#InputFormsModule',
     // canActivate: [LoggedInGuard] 
   },
+  {
+    path: 'report/:id',
+    loadChildren: './pages/outputPages/outputPages.module#OutputPagesModule',
+    // canActivate: [LoggedInGuard] 
+  },
   { path: '', redirectTo: 'gateway', pathMatch: 'full' }
 ];
 
