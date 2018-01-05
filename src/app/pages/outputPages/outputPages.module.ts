@@ -31,6 +31,8 @@ import { SalesReturnService } from "./components/salesReturn/service/salesReturn
 import { SettingsService } from "./components/settings/service/settings.service";
 import { UnderGroupsService } from "./components/underGroup/service/underGroup.service";
 
+
+import { AngularMultiSelectModule } from 'angular2-multiselect-checkbox-dropdown/angular2-multiselect-dropdown';
 import { DatePickerModule } from "angular-io-datepicker/src/datepicker/index";
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { SelectModule } from 'ng2-select';
@@ -39,6 +41,7 @@ import { MyDatePickerModule } from 'mydatepicker';
 import { BsModalModule } from 'ng2-bs3-modal';
 @NgModule({
     imports: [
+        AngularMultiSelectModule,
         CommonModule,
         DatePickerModule,
         FormsModule,

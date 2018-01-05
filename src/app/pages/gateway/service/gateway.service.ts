@@ -5,8 +5,6 @@ import { UserStateService } from './../../../sharedService/userDetails/user-stat
 import 'rxjs/add/operator/map';
 import 'rxjs/'
 @Injectable()
-// `http://localhost:3000/api/gateway?token=${variable}&anotherParam=shsjajsdf`;
-
 export class GatewayService {
   result: {};
   token: string;
@@ -15,8 +13,6 @@ export class GatewayService {
   _BaseUrl = 'http://localhost:3000/api/gateway';
 
 
-  // _url = `${this._BaseUrl}?token=${this.token}&anotherParam=shsjajsdf`;
-  // _url = `http://localhost:3000/api/gateway?token=${this.token}&anotherParam=shsjajsdf`;
   constructor(private http: Http, public _userStateService: UserStateService) {
     
     this.windowStorage = JSON.parse(window.localStorage.getItem('user'));
@@ -25,17 +21,17 @@ export class GatewayService {
   }
   createNewCompany(user: any) {
 
-    this._url = `http://localhost:3000/api/gateway?token=${this.token}&anotherParam=shsjajsdf`;
+    this._url = `http://localhost:3000/api/gateway?token=${this.token}`;
     return this.http.post(this._url, user)
       .map((res: Response) => {
         this.result = res.json();
-        // console.log(this.result)
+        console.log(this.result)
       })
   }
 
 
   getCompanyList() {
-    this._url = `http://localhost:3000/api/gatewaylist?token=${this.token}&anotherParam=shsjajsdf`;
+    this._url = `http://localhost:3000/api/gatewaylist?token=${this.token}`;
     return this.http.get(this._url);
   }
 

@@ -27,18 +27,8 @@ export class LedgerService {
     }
 
     getUnderGroupList() {
-        this._url = `http://localhost:3000/api/uglist?token=${this.token}&&companyName=${this.paramCompanyName}`;
+        this._url = `http://localhost:3000/api/pay?token=${this.token}&&companyName=${this.paramCompanyName}`;
         return this.http.get(this._url);
-    }
-    
-    createNewLedger(user: any) {
-
-        this._url = `http://localhost:3000/api/ledger?token=${this.token}&companyName=${this.paramCompanyName}`;
-        return this.http.post(this._url, user)
-            .map((res: Response) => {
-                this.result = res.json();
-                // console.log(this.result)
-            })
     }
 
 }

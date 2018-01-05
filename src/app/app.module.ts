@@ -26,9 +26,10 @@ import { UserStateService } from "./sharedService/userDetails/user-state.service
 import { LoginModule } from "./pages/login/login.module";
 import { ActivationModule } from "./pages/activation/activation.module";
 
-import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AngularMultiSelectModule } from 'angular2-multiselect-checkbox-dropdown/angular2-multiselect-dropdown';
 import { BsModalModule } from 'ng2-bs3-modal';
+import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +44,7 @@ import { BsModalModule } from 'ng2-bs3-modal';
 
   ],
   imports: [
+    AngularMultiSelectModule,
     BrowserModule,
     FormsModule,
     HttpModule,
