@@ -63,7 +63,9 @@
 
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr *ngFor="let list of companyList">
+                                    <td>{{list.address}}</td>
+                                    <!-- <td> fd</td>
                                     <td> fd</td>
                                     <td> fd</td>
                                     <td> fd</td>
@@ -71,11 +73,9 @@
                                     <td> fd</td>
                                     <td> fd</td>
                                     <td> fd</td>
-                                    <td> fd</td>
-                                    <td> fd</td>
-                                    <td> fd</td>
+                                    <td> fd</td> -->
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td> fd</td>
                                     <td> fd</td>
                                     <td> fd</td>
@@ -86,7 +86,8 @@
                                     <td> fd</td>
                                     <td> fd</td>
                                     <td> fd</td>
-                                </tr>
+                                </tr> -->
+
                             </tbody>
                         </table>
                     </div>

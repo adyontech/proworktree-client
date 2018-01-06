@@ -36,7 +36,7 @@ export class LedgerComponent implements OnInit {
     public ColVehicle: Boolean = false;
     public ColGstRate: Boolean = false;
 
-
+    companyList: Array<string>;
     form: FormGroup;
     public dataCopy: any;
     public paramId: string;
@@ -54,7 +54,7 @@ export class LedgerComponent implements OnInit {
 
     }
     ngOnInit() {
-        this.getUnderGroupList();
+        this.getIncomingData();
         this.dropdownList = [
             { "id": "ColTransportation", "itemName": "Transportaion Mode" },
             { "id": "ColSaleType", "itemName": "Type of sales" },
@@ -122,15 +122,15 @@ export class LedgerComponent implements OnInit {
         dateFormat: 'dd.mm.yyyy',
     };
 
-    getUnderGroupList() {
-        this.dataCopy = this._ledgerService.getUnderGroupList().map(
+    getIncomingData() {
+        this.dataCopy = this._ledgerService.getIncomingData().map(
             (response) => response.json()
         ).subscribe(
             (data) => {
-                console.log(data);
+                console.log(data.ledgerData)
+                this.companyList = data.ledgerData;
             })
     }
-
 
 
 }

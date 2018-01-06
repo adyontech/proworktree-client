@@ -26,7 +26,7 @@ export class LedgerService {
         console.log(this.paramCompanyName)
     }
 
-    getUnderGroupList() {
+    getIncomingData() {
         this._url = `http://localhost:3000/api/ledgerStored?token=${this.token}&&companyName=${this.paramCompanyName}`;
         return this.http.get(this._url);
     }
