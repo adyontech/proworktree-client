@@ -31,5 +31,4 @@ export class LedgerService {
         return this.http.get(this._url);
     }
 
-} 
- 
+}
