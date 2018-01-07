@@ -8,6 +8,7 @@ import { OutputPagesComponent } from './outputPages.component';
 import { ContraComponent } from "./components/contra/contra.component";
 import { JournalEntryComponent } from "./components/journalEntry/journalEntry.component";
 import { LedgerComponent } from "./components/ledger/ledger.component";
+import { PaymentComponent } from "./components/payment/payment.component";
 import { ProductServiceComponent } from "./components/productService/productService.component";
 import { PurchaseComponent } from "./components/purchase/purchase.component";
 import { PurchaseReturnComponent } from "./components/purchaseReturn/purchaseReturn.component";
@@ -18,10 +19,15 @@ import { SidebarComponent } from "./../sharedPageComponent/sidebar/sidebar.compo
 import { SettingsComponent } from "./components/settings/settings.component";
 import { underGroupComponent } from "./components/underGroup/underGroup.component";
 
+//inner-form components
+import { PopPaymentComponent } from "./components/payment/component/popPayment.component";
+
+
 import { OutputPagesService } from "./service/outputPages.service";
 import { ContraService } from "./components/contra/service/contra.service";
 import { JournalEntryService } from "./components/journalEntry/service/journalEntry.service";
 import { LedgerService } from "./components/ledger/service/ledger.service";
+import { PaymentService } from "./components/payment/service/payment.service";
 import { ProductServiceService } from "./components/productService/service/productService.service";
 import { PurchaseService } from "./components/purchase/service/purchase.service";
 import { PurchaseReturnService } from "./components/purchaseReturn/service/purchaseReturn.service";
@@ -31,6 +37,9 @@ import { SalesReturnService } from "./components/salesReturn/service/salesReturn
 import { SettingsService } from "./components/settings/service/settings.service";
 import { UnderGroupsService } from "./components/underGroup/service/underGroup.service";
 
+
+//inner-form service
+import { PopPaymentService } from "./components/payment/component/service/popPayment.service"
 
 import { AngularMultiSelectModule } from 'angular2-multiselect-checkbox-dropdown/angular2-multiselect-dropdown';
 import { DatePickerModule } from "angular-io-datepicker/src/datepicker/index";
@@ -58,6 +67,7 @@ import { BsModalModule } from 'ng2-bs3-modal';
         OutputPagesComponent,
         JournalEntryComponent,
         LedgerComponent,
+        PaymentComponent,
         ProductServiceComponent,
         PurchaseComponent,
         PurchaseReturnComponent,
@@ -66,13 +76,18 @@ import { BsModalModule } from 'ng2-bs3-modal';
         SalesReturnComponent,
         SettingsComponent,
         SidebarComponent,
-        underGroupComponent
+        underGroupComponent,
+
+
+
+        PopPaymentComponent
     ],
     providers: [
         ContraService,
         OutputPagesService,
         JournalEntryService,
         LedgerService,
+        PaymentService,
         ProductServiceService,
         PurchaseService,
         PurchaseReturnService,
@@ -80,7 +95,11 @@ import { BsModalModule } from 'ng2-bs3-modal';
         SalesService,
         SalesReturnService,
         SettingsService,
-        UnderGroupsService
+        UnderGroupsService,
+
+
+
+        PopPaymentService
     ]
 })
 

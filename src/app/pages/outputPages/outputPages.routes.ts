@@ -5,7 +5,7 @@ import { OutputPagesComponent } from "./outputPages.component";
 import { ContraComponent } from "./components/contra/contra.component";
 import { JournalEntryComponent } from "./components/journalEntry/journalEntry.component";
 import { LedgerComponent } from "./components/ledger/ledger.component";
-// import { PaymentComponent } from "./components/payment/payment.component";
+import { PaymentComponent } from "./components/payment/payment.component";
 import { ProductServiceComponent } from "./components/productService/productService.component";
 import { PurchaseComponent } from "./components/purchase/purchase.component";
 import { PurchaseReturnComponent } from "./components/purchaseReturn/purchaseReturn.component";
@@ -32,10 +32,10 @@ const INDEX_ROUTES: Routes = [
                 path: 'ledger',
                 component: LedgerComponent
             },
-            // {
-            //     path: 'payment',
-            //     component: PaymentComponent
-            // },
+            {
+                path: 'payment',
+                component: PaymentComponent
+            },
             {
                 path: 'productService',
                 component: ProductServiceComponent
