@@ -14,7 +14,7 @@
                 <div class="card">
                     <!-- heading here -->
                     <div class="header">
-                        <h2 class="title text-center">Sales</h2>
+                        <h2 class="title text-center">Payment</h2>
                     </div>
                     <div class="row">
                         <div class="col-lg-6 title text-center ">
@@ -76,7 +76,7 @@
                                             <i class="fa fa-bars"></i>
                                         </button>
                                     </td>
-                                    <td> {{list.date}}</td>
+                                    <td> {{list.date | date}}</td>
                                     <td> {{list.paymentNumber}}</td>
                                     <td>
                                         <tr *ngFor="let parti of list.particularsData">
