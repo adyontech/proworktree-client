@@ -31,7 +31,6 @@ export class PopPaymentService {
     }
 
     getData() {
-        console.log('hello')
         this._url = `http://localhost:3000/api/paymentFormData?token=${this.token}&&dataId=5a46339d5571642579c6051d`;
         return this.http.get(this._url);
     }

@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Component,Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
@@ -191,6 +192,16 @@ export class PopPaymentComponent implements OnInit {
         this.form.controls['drawnOn'].patchValue(value[0].drawnOn);
         this.form.controls['narration'].patchValue(value[0].narration);
         this.form.controls['against'].patchValue(value[0].against);
+
+        // console.log(value[0].particularsData)
+        // var oldArray = value[0].particularsData;
+        // oldArray.forEach((element) => {
+        //     console.log(element);
+        //     this.form.get['amount'].patchValue(element.amount);
+        // });    
+
+
+
     }
 
 }
