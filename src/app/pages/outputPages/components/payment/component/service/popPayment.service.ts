@@ -23,15 +23,16 @@ export class PopPaymentService {
         public _paymentService:PaymentService,
         // public _inputFormService: InputFormService
     ) {
-        this.contentId = this._paymentService.contentId;
+        // this.contentId = this._paymentService.contentId;
         this.windowStorage = JSON.parse(window.localStorage.getItem('user'));
         this.token = this.windowStorage.token;
         // this.paramCompanyName = this._inputFormService.paramCompanyName;
         // console.log(this.paramCompanyName)
     }
 
-    getData() {
-        this._url = `http://localhost:3000/api/paymentFormData?token=${this.token}&&dataId=5a46339d5571642579c6051d`;
+    getData(id: string) {
+        // 5a46339d5571642579c6051d
+        this._url = `http://localhost:3000/api/paymentFormData?token=${this.token}&&dataId=${id}`;
         return this.http.get(this._url);
     }
 

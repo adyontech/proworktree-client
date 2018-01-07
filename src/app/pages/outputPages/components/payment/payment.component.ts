@@ -1,10 +1,11 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component,Input, ViewChild, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 import { ActivatedRoute } from '@angular/router';
 import { PaymentService } from "./service/payment.service";
 import { IMyDpOptions } from 'mydatepicker';
+import { BsModalComponent, BsModalBodyComponent } from "ng2-bs3-modal";
 declare var $: any;
 
 @Component({
@@ -15,7 +16,11 @@ declare var $: any;
 
 export class PaymentComponent implements OnInit {
 
+
+    
+    
     // Models 
+    contentId: string = "";
     public dateFrom: Date;
     public dateTo: Date;
     public dropdFilter: string;
@@ -27,7 +32,11 @@ export class PaymentComponent implements OnInit {
     VColPaymentThrough: string = "ColPaymentThrough";
     VColChequeNO: string = "ColChequeNO";
     VColAgainst: string = "ColAgainst";
-
+    
+    @ViewChild('modal')
+    modal: BsModalComponent;
+    
+    
     @Input()
     public ColPaymentType: Boolean = false;
     public ColPaymentThrough: Boolean = false;
@@ -66,6 +75,8 @@ export class PaymentComponent implements OnInit {
             enableSearchFilter: false,
             classes: "myclass custom-class"
         };
+
+        this.modal.onClose.subscribe(this.onClose.bind(this));
     }
     onItemSelect(item: any): void {
         switch (item.id) {
@@ -104,6 +115,10 @@ export class PaymentComponent implements OnInit {
         this.ColChequeNO = false;
         this.ColAgainst = false;
     }
+    onClose(){
+        console.log('Modal Closed');
+        this.contentId = "";
+    }
     // real date picker active from here
     public myDatePickerOptions: IMyDpOptions = {
         // other options...
@@ -122,6 +137,7 @@ export class PaymentComponent implements OnInit {
 
     editData(id){
         console.log(id);
+        this.contentId = id;
         this._paymentService.contentId = id;
 
     }

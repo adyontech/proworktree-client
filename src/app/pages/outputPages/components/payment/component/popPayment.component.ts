@@ -1,5 +1,5 @@
 import { element } from 'protractor';
-import { Component,Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, DoCheck } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
@@ -15,13 +15,16 @@ declare var $: any;
     styleUrls: ['./popPayment.component.scss']
 })
 
-export class PopPaymentComponent implements OnInit {
+export class PopPaymentComponent implements OnInit, DoCheck {
 
+    @Input()
+    contentId: string;
 
     form: FormGroup;
     selectedIndex = 1;
     paramId: string;
-    contentId: string;
+    popContnetId: string = "";
+
     dataContent: Array<string>;
     dataCopy: any;
     constructor(
@@ -29,13 +32,15 @@ export class PopPaymentComponent implements OnInit {
         public _paymentService: PaymentService,
         public _popPaymentService: PopPaymentService,
         public fb: FormBuilder,
-        private router: Router) {
-            
+        private router: Router,
+
+    ) {
+
     }
 
 
     ngOnInit() {
-        this.getIncomingData();
+        // this.getIncomingData();
         this.form = this.fb.group({
             paymentNumber: [''],
             date: [''],
@@ -45,11 +50,19 @@ export class PopPaymentComponent implements OnInit {
             chequeNumber: [''],
             drawnOn: [null, Validators.required],
             particularsData: this.fb.array([]),
-            narration:[''],
+            narration: [''],
             against: [''],
             file: [""],
         });
         this.addParticular();
+    }
+    ngDoCheck() {
+        if (this.contentId != this.popContnetId) {
+            console.log(`Content Id: ${this.contentId}, Pop Content Id: ${this.popContnetId}`);
+            this.popContnetId = this.contentId;
+            if (this.popContnetId != "")
+                this.getIncomingData(this.popContnetId);
+        }
     }
 
     // real date picker active from here
@@ -172,8 +185,8 @@ export class PopPaymentComponent implements OnInit {
         //     }
         //     )
     }
-    getIncomingData() {
-        this.dataCopy = this._popPaymentService.getData().map(
+    getIncomingData(id: string) {
+        this.dataCopy = this._popPaymentService.getData(id).map(
             (response) => response.json()
         ).subscribe(
             (data) => {
@@ -182,7 +195,7 @@ export class PopPaymentComponent implements OnInit {
                 this.fillForm(this.dataContent);
             })
     }
-    fillForm(value){
+    fillForm(value) {
         this.form.controls['paymentNumber'].patchValue(value[0].paymentNumber);
         this.form.controls['date'].patchValue(value[0].date);
         this.form.controls['account'].patchValue(value[0].account);
