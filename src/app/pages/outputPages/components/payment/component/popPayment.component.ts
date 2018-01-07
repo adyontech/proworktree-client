@@ -176,9 +176,21 @@ export class PopPaymentComponent implements OnInit {
             (response) => response.json()
         ).subscribe(
             (data) => {
-                console.log(data)
-                this.dataContent = data.companyData;
+                this.dataContent = data.paymentData;
+                console.log(this.dataContent);
+                this.fillForm(this.dataContent);
             })
+    }
+    fillForm(value){
+        this.form.controls['paymentNumber'].patchValue(value[0].paymentNumber);
+        this.form.controls['date'].patchValue(value[0].date);
+        this.form.controls['account'].patchValue(value[0].account);
+        this.form.controls['paymentType'].patchValue(value[0].paymentType);
+        this.form.controls['paymentThrough'].patchValue(value[0].paymentThrough);
+        this.form.controls['chequeNumber'].patchValue(value[0].chequeNumber);
+        this.form.controls['drawnOn'].patchValue(value[0].drawnOn);
+        this.form.controls['narration'].patchValue(value[0].narration);
+        this.form.controls['against'].patchValue(value[0].against);
     }
 
 }
