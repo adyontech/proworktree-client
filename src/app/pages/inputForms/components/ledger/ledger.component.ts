@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 
 import { ActivatedRoute } from '@angular/router';
 import { LedgerService } from "./service/ledger.service";
 import { IMyDpOptions } from 'mydatepicker';
+import { BsModalComponent } from 'ng2-bs3-modal';
 
 declare var $: any;
 
 @Component({
     selector: 'app-ledger',
+    host: { '(window:keydown)': 'hotkeys($event)' },
     templateUrl: './ledger.component.html',
-    styleUrls: ['./ledger.component.scss']
+    styleUrls: ['./ledger.component.scss'],
 })
 
 export class LedgerComponent implements OnInit {
@@ -19,7 +21,11 @@ export class LedgerComponent implements OnInit {
     dataCopy: any;
     paramId: string;
     closeResult: string;
-
+    @ViewChild('modal')
+    modal: BsModalComponent;
+    open() {
+        this.modal.open();
+    }
     constructor(
         private route: ActivatedRoute,
         public _ledgerService: LedgerService,
@@ -104,6 +110,13 @@ export class LedgerComponent implements OnInit {
                     align: align
                 }
             });
+    }
+
+    hotkeys(event) {
+        if (event.keyCode == 65) {
+            
+                this.modal.open();
+        }
     }
 
 
