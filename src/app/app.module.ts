@@ -21,6 +21,7 @@ import { ActivationModule } from "./pages/activation/activation.module";
 import { AngularMultiSelectModule } from 'angular2-multiselect-checkbox-dropdown/angular2-multiselect-dropdown';
 import { BsModalModule } from 'ng2-bs3-modal';
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
+import { UiSwitchModule } from 'angular2-ui-switch'
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,7 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     LoginModule,
     ActivationModule,
     NgxMyDatePickerModule.forRoot() ,
-    BsModalModule
+    BsModalModule,
   ],
   providers: [UserStateService],
   bootstrap: [AppComponent]

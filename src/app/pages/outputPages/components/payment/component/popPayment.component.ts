@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PaymentService } from "./../service/payment.service";
 import { PopPaymentService } from "./service/popPayment.service";
 import { IMyDpOptions } from 'mydatepicker';
+import { loadavg } from 'os';
 declare var $: any;
 
 @Component({
@@ -20,6 +21,7 @@ export class PopPaymentComponent implements OnInit, DoCheck {
     @Input()
     contentId: string;
 
+    action: Boolean = true;
     form: FormGroup;
     selectedIndex = 1;
     paramId: string;
@@ -176,14 +178,32 @@ export class PopPaymentComponent implements OnInit, DoCheck {
     }
 
 
-    onSubgetComanyListmit(user) {
-        console.log(user)
-        // this._paymentService.createNewEntry(user)
-        //     .subscribe(
-        //     (data) => {
-        //         // console.log('hello gateway service')
-        //     }
-        //     )
+    onSubmit(user, action) {
+        user.contentId = this.popContnetId;
+        console.log(user);
+        if (action == !true) {
+
+            this._popPaymentService.editEntry(user)
+                .subscribe(
+                (data) => {
+
+                }
+                )
+
+        } else {
+            console.log(user)
+            this._popPaymentService.createNewEntry(user)
+                .subscribe(
+                (data) => {
+                    // console.log('hello gateway service')
+                }
+                )
+
+        }
+
+
+
+
     }
     getIncomingData(id: string) {
         this.dataCopy = this._popPaymentService.getData(id).map(
@@ -216,5 +236,16 @@ export class PopPaymentComponent implements OnInit, DoCheck {
 
 
     }
+
+    delete() {
+
+    }
+    edit() {
+
+    }
+    copyAsNew() {
+
+    }
+
 
 }

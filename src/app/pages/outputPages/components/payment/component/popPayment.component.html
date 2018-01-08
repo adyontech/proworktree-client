@@ -1,11 +1,21 @@
-<button (click)="getIncomingData()">s</button>
-<form id="form" [formGroup]="form"  novalidate>
+<div class="header">
+    <button type="button" name="delete" class="btn btn-danger pull-left " (click)="delete()"> Delete</button>
+    <div class="pull-right">
+        Edit
+        <!-- <ui-switch size="small" [(ngModel)]="action"></ui-switch> -->
+        Copy and new
+    </div>
+
+    <!-- <button type="button" name="copy" class="btn btn-success pull-right "  [(ngModel)]="action"> Copy /as New</button> -->
+</div>
+<form id="form" [formGroup]="form" novalidate (ngSubmit)="onSubmit(form.value,action)">
     <div class="main-content" style="scroll-behavior: hidden">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <!-- heading here -->
+
                         <div class="header">
                             <h2 class="title text-center">Payment</h2>
                         </div>
@@ -71,8 +81,8 @@
                                 </div>
 
                                 <div class="row" style="text-align: center; margin-top: 20px">
-                                    <button type="submit" data-toggle="tab" href="#step2" (click)="setSelected(2)" class="btn btn-info btn-fill">Next</button>
-                                    <button type="submit" data-toggle="tab" href="#step2" (click)="setSelected(2)" class="btn btn-info btn-fill">Exit</button>
+                                    <button type="button" data-toggle="tab" href="#step2" (click)="setSelected(2)" class="btn btn-info btn-fill">Next</button>
+                                    <button type="button" data-toggle="tab" href="#step2" (click)="setSelected(2)" class="btn btn-info btn-fill">Exit</button>
 
                                 </div>
 
@@ -140,9 +150,9 @@
                                     </div>
                                 </div>
                                 <div class="row" style="text-align: center; margin-top: 20px">
-                                    <button type="submit" data-toggle="tab" href="#step1" (click)="setSelected(1)" class="btn btn-info btn-fill">Back</button>
-                                    <button type="submit" data-toggle="tab" href="#step3" (click)="setSelected(3)" class="btn btn-info btn-fill">Next</button>
-                                    <button type="submit" data-toggle="tab" href="#step3" (click)="setSelected(3)" class="btn btn-info btn-fill">Exit</button>
+                                    <button type="button" data-toggle="tab" href="#step1" (click)="setSelected(1)" class="btn btn-info btn-fill">Back</button>
+                                    <button type="button" data-toggle="tab" href="#step3" (click)="setSelected(3)" class="btn btn-info btn-fill">Next</button>
+                                    <button type="button" data-toggle="tab" href="#step3" (click)="setSelected(3)" class="btn btn-info btn-fill">Exit</button>
                                 </div>
                             </div>
                             <div id="step3" class="tab-pane fade">
@@ -223,8 +233,8 @@
                                 </div>
 
                                 <div class="row" style="text-align: center; margin-top: 20px">
-                                    <button type="submit" data-toggle="tab" href="#step1" (click)="setSelected(1)" class="btn btn-info btn-fill ">Back</button>
-                                    <button type="submit" data-toggle="tab" href="#step3" (click)="setSelected(3)" class="btn btn-info btn-fill ">Save and exit</button>
+                                    <button type="button" data-toggle="tab" href="#step1" (click)="setSelected(1)" class="btn btn-info btn-fill ">Back</button>
+                                    <button type="button" data-toggle="tab" href="#step3" (click)="setSelected(3)" class="btn btn-info btn-fill ">Save and exit</button>
                                     <button type="submit" class="btn btn-info btn-fill pull-right">Save and close</button>
 
                                 </div>

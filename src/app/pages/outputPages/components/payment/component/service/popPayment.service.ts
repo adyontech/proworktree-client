@@ -46,5 +46,15 @@ export class PopPaymentService {
             })
     }
 
+    editEntry(user: any) {
+
+        this._url = `http://localhost:3000/api/paymentEdit?token=${this.token}&companyName=${this.paramCompanyName}`;
+        return this.http.put(this._url, user)
+            .map((res: Response) => {
+                this.result = res.json();
+                // console.log(this.result)
+            })
+    }
+
 
 }
