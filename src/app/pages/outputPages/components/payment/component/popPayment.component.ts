@@ -3,6 +3,7 @@ import { Component, Input, OnInit, DoCheck } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
+import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { PaymentService } from "./../service/payment.service";
 import { PopPaymentService } from "./service/popPayment.service";
@@ -216,8 +217,9 @@ export class PopPaymentComponent implements OnInit, DoCheck {
             })
     }
     fillForm(value) {
+        console.log(value[0].date)
         this.form.controls['paymentNumber'].patchValue(value[0].paymentNumber);
-        this.form.controls['date'].patchValue(value[0].date);
+        this.form.controls['date'].patchValue('2017-02-02');
         this.form.controls['account'].patchValue(value[0].account);
         this.form.controls['paymentType'].patchValue(value[0].paymentType);
         this.form.controls['paymentThrough'].patchValue(value[0].paymentThrough);
@@ -226,26 +228,17 @@ export class PopPaymentComponent implements OnInit, DoCheck {
         this.form.controls['narration'].patchValue(value[0].narration);
         this.form.controls['against'].patchValue(value[0].against);
 
-        // console.log(value[0].particularsData)
-        // var oldArray = value[0].particularsData;
-        // oldArray.forEach((element) => {
-        //     console.log(element);
-        //     this.form.get['amount'].patchValue(element.amount);
-        // });    
+        console.log(value[0].particularsData)
+        var oldArray = value[0].particularsData;
+        oldArray.forEach((element) => {
+            console.log(element);
+            this.form.get['amount'].patchValue(element.amount);
+        });    
 
 
 
     }
 
-    delete() {
-
-    }
-    edit() {
-
-    }
-    copyAsNew() {
-
-    }
 
 
 }

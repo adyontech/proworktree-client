@@ -42,10 +42,7 @@ import { UnderGroupsService } from "./components/underGroup/service/underGroup.s
 import { PopPaymentService } from "./components/payment/component/service/popPayment.service"
 
 import { AngularMultiSelectModule } from 'angular2-multiselect-checkbox-dropdown/angular2-multiselect-dropdown';
-import { DatePickerModule } from "angular-io-datepicker/src/datepicker/index";
-import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { SelectModule } from 'ng2-select';
-import { NgDatepickerModule } from 'ng2-datepicker';
 import { MyDatePickerModule } from 'mydatepicker';
 import { BsModalModule } from 'ng2-bs3-modal';
 import { UiSwitchModule } from 'angular2-ui-switch'
@@ -54,13 +51,10 @@ import { UiSwitchModule } from 'angular2-ui-switch'
     imports: [
         AngularMultiSelectModule,
         CommonModule,
-        DatePickerModule,
         FormsModule,
         ReactiveFormsModule,
         OutputPagesRoutingModule,
-        NgxMyDatePickerModule,
-        SelectModule, 
-        NgDatepickerModule,
+        SelectModule,
         MyDatePickerModule,
         BsModalModule,
     ],

@@ -20,7 +20,6 @@ import { ActivationModule } from "./pages/activation/activation.module";
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularMultiSelectModule } from 'angular2-multiselect-checkbox-dropdown/angular2-multiselect-dropdown';
 import { BsModalModule } from 'ng2-bs3-modal';
-import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { UiSwitchModule } from 'angular2-ui-switch'
 @NgModule({
   declarations: [
@@ -39,7 +38,6 @@ import { UiSwitchModule } from 'angular2-ui-switch'
     AppRoutingModule,
     LoginModule,
     ActivationModule,
-    NgxMyDatePickerModule.forRoot() ,
     BsModalModule,
   ],
   providers: [UserStateService],
