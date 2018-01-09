@@ -61,7 +61,7 @@ export class PopPaymentComponent implements OnInit, DoCheck {
     }
     ngDoCheck() {
         if (this.contentId != this.popContnetId) {
-            console.log(`Content Id: ${this.contentId}, Pop Content Id: ${this.popContnetId}`);
+            // console.log(`Content Id: ${this.contentId}, Pop Content Id: ${this.popContnetId}`);
             this.popContnetId = this.contentId;
             if (this.popContnetId != "")
                 this.getIncomingData(this.popContnetId);
@@ -98,11 +98,11 @@ export class PopPaymentComponent implements OnInit, DoCheck {
     }
 
     public selected(value: any): void {
-        console.log('Selected value is: ', value);
+        // console.log('Selected value is: ', value);
     }
 
     public removed(value: any): void {
-        console.log('Removed value is: ', value);
+        // console.log('Removed value is: ', value);
     }
 
     // public typed(value: any): void {
@@ -186,13 +186,11 @@ export class PopPaymentComponent implements OnInit, DoCheck {
 
             this._popPaymentService.editEntry(user)
                 .subscribe(
-                (data) => {
-
-                }
+                (data) => {}
                 )
 
         } else {
-            console.log(user)
+            // console.log(user)
             this._popPaymentService.createNewEntry(user)
                 .subscribe(
                 (data) => {
@@ -212,28 +210,57 @@ export class PopPaymentComponent implements OnInit, DoCheck {
         ).subscribe(
             (data) => {
                 this.dataContent = data.paymentData;
-                console.log(this.dataContent);
+                // console.log(this.dataContent);
                 this.fillForm(this.dataContent);
             })
     }
+
+    setDate(value): void {
+        let date = new Date();
+        this.form.patchValue({
+            date: {
+                date: {
+                    year: value.substring(0, 4),
+                    month: value.substring(5, 7),
+                    day: value.substring(8, 10)
+                }
+            }
+        });
+    }
+
+    setDate2(value): void {
+        let date = new Date();
+        this.form.patchValue({
+            drawnOn: {
+                date: {
+                    year: value.substring(0, 4),
+                    month: value.substring(5, 7),
+                    day: value.substring(8, 10)
+                }
+            }
+        });
+    }
+
     fillForm(value) {
         console.log(value[0].date)
         this.form.controls['paymentNumber'].patchValue(value[0].paymentNumber);
-        this.form.controls['date'].patchValue('2017-02-02');
         this.form.controls['account'].patchValue(value[0].account);
         this.form.controls['paymentType'].patchValue(value[0].paymentType);
         this.form.controls['paymentThrough'].patchValue(value[0].paymentThrough);
         this.form.controls['chequeNumber'].patchValue(value[0].chequeNumber);
-        this.form.controls['drawnOn'].patchValue(value[0].drawnOn);
         this.form.controls['narration'].patchValue(value[0].narration);
         this.form.controls['against'].patchValue(value[0].against);
+        
+
+        this.setDate(value[0].date);
+        this.setDate2(value[0].drawnOn);
 
         console.log(value[0].particularsData)
         var oldArray = value[0].particularsData;
-        oldArray.forEach((element) => {
-            console.log(element);
-            this.form.get['amount'].patchValue(element.amount);
-        });    
+        // oldArray.forEach((element) => {
+        //     console.log(element);
+        //     this.form.get['amount'].patchValue(element.amount);
+        // });    
 
 
 
