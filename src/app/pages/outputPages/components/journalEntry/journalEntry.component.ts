@@ -2,47 +2,42 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-import { DatePipe } from '@angular/common';
+
 import { ActivatedRoute } from '@angular/router';
-import { PaymentService } from "./service/payment.service";
+import { JournalEntryService } from "./service/journalEntry.service";
 import { IMyDpOptions } from 'mydatepicker';
 declare var $: any;
 
 @Component({
-    selector: 'app-payment',
-    templateUrl: './payment.component.html',
-    styleUrls: ['./payment.component.scss']
+    selector: 'app-journalEntry',
+    templateUrl: './journalEntry.component.html',
+    styleUrls: ['./journalEntry.component.scss']
 })
 
-export class PaymentComponent implements OnInit {
-
+export class JournalEntryComponent implements OnInit {
 
     form: FormGroup;
-    selectedIndex = 1;
+    dataCopy: any;
     paramId: string;
+    closeResult: string
 
 
     constructor(
         private route: ActivatedRoute,
-        public _paymentService: PaymentService,
+        public _journalEntryService: JournalEntryService,
         public fb: FormBuilder,
         private router: Router) {
+            
     }
 
 
     ngOnInit() {
         this.form = this.fb.group({
-            paymentNumber: [''],
+            journalNumber: [''],
             date: [''],
-            account: [''],
-            paymentType: [''],
-            paymentThrough: [''],
-            chequeNumber: [''],
-            drawnOn: [null, Validators.required],
-            particularsData: this.fb.array([]),
             narration:[''],
-            against: [''],
-            file: [""],
+            particularsData: this.fb.array([]),
+            file: [""]
         });
         this.addParticular();
     }
@@ -118,7 +113,9 @@ export class PaymentComponent implements OnInit {
     initParticular() {
         return this.fb.group({
             particulars: ['', Validators.required],
-            amount: ['']
+            drcr: [''],
+            debitAmount: [''],
+            creditAmount: ['']
         })
     }
     addParticular() {
@@ -153,18 +150,12 @@ export class PaymentComponent implements OnInit {
         // }
     }
 
-    setSelected(id: number) {
-        this.selectedIndex = id;
-    }
-
-
     onSubmit(user) {
+
         console.log(user)
-        this._paymentService.createNewEntry(user)
+        this._journalEntryService.createNewEntry(user)
             .subscribe(
-            (data) => {
-                // console.log('hello gateway service')
-            }
+            (data) => { }
             )
     }
 

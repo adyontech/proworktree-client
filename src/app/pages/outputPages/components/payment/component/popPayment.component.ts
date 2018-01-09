@@ -1,36 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { element } from 'protractor';
+import { Component, Input, OnInit, DoCheck } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { PaymentService } from "./service/payment.service";
+import { PaymentService } from "./../service/payment.service";
+import { PopPaymentService } from "./service/popPayment.service";
 import { IMyDpOptions } from 'mydatepicker';
+import { loadavg } from 'os';
 declare var $: any;
 
 @Component({
-    selector: 'app-payment',
-    templateUrl: './payment.component.html',
-    styleUrls: ['./payment.component.scss']
+    selector: 'app-popPayment',
+    templateUrl: './popPayment.component.html',
+    styleUrls: ['./popPayment.component.scss']
 })
 
-export class PaymentComponent implements OnInit {
+export class PopPaymentComponent implements OnInit, DoCheck {
 
+    @Input()
+    contentId: string;
 
+    action: Boolean = true;
     form: FormGroup;
     selectedIndex = 1;
     paramId: string;
+    popContnetId: string = "";
 
-
+    dataContent: Array<string>;
+    dataCopy: any;
     constructor(
         private route: ActivatedRoute,
         public _paymentService: PaymentService,
+        public _popPaymentService: PopPaymentService,
         public fb: FormBuilder,
-        private router: Router) {
+        private router: Router,
+
+    ) {
+
     }
 
 
     ngOnInit() {
+        // this.getIncomingData();
         this.form = this.fb.group({
             paymentNumber: [''],
             date: [''],
@@ -40,11 +53,19 @@ export class PaymentComponent implements OnInit {
             chequeNumber: [''],
             drawnOn: [null, Validators.required],
             particularsData: this.fb.array([]),
-            narration:[''],
+            narration: [''],
             against: [''],
             file: [""],
         });
         this.addParticular();
+    }
+    ngDoCheck() {
+        if (this.contentId != this.popContnetId) {
+            // console.log(`Content Id: ${this.contentId}, Pop Content Id: ${this.popContnetId}`);
+            this.popContnetId = this.contentId;
+            if (this.popContnetId != "")
+                this.getIncomingData(this.popContnetId);
+        }
     }
 
     // real date picker active from here
@@ -77,11 +98,11 @@ export class PaymentComponent implements OnInit {
     }
 
     public selected(value: any): void {
-        console.log('Selected value is: ', value);
+        // console.log('Selected value is: ', value);
     }
 
     public removed(value: any): void {
-        console.log('Removed value is: ', value);
+        // console.log('Removed value is: ', value);
     }
 
     // public typed(value: any): void {
@@ -158,14 +179,91 @@ export class PaymentComponent implements OnInit {
     }
 
 
-    onSubmit(user) {
-        console.log(user)
-        this._paymentService.createNewEntry(user)
-            .subscribe(
+    onSubmit(user, action) {
+        user.contentId = this.popContnetId;
+        console.log(user);
+        if (action == !true) {
+
+            this._popPaymentService.editEntry(user)
+                .subscribe(
+                (data) => {}
+                )
+
+        } else {
+            // console.log(user)
+            this._popPaymentService.createNewEntry(user)
+                .subscribe(
+                (data) => {
+                    // console.log('hello gateway service')
+                }
+                )
+
+        }
+
+
+
+
+    }
+    getIncomingData(id: string) {
+        this.dataCopy = this._popPaymentService.getData(id).map(
+            (response) => response.json()
+        ).subscribe(
             (data) => {
-                // console.log('hello gateway service')
+                this.dataContent = data.paymentData;
+                // console.log(this.dataContent);
+                this.fillForm(this.dataContent);
+            })
+    }
+
+    setDate(value): void {
+        let date = new Date();
+        this.form.patchValue({
+            date: {
+                date: {
+                    year: value.substring(0, 4),
+                    month: value.substring(5, 7),
+                    day: value.substring(8, 10)
+                }
             }
-            )
+        });
+    }
+
+    setDate2(value): void {
+        let date = new Date();
+        this.form.patchValue({
+            drawnOn: {
+                date: {
+                    year: value.substring(0, 4),
+                    month: value.substring(5, 7),
+                    day: value.substring(8, 10)
+                }
+            }
+        });
+    }
+
+    fillForm(value) {
+        console.log(value[0].date)
+        this.form.controls['paymentNumber'].patchValue(value[0].paymentNumber);
+        this.form.controls['account'].patchValue(value[0].account);
+        this.form.controls['paymentType'].patchValue(value[0].paymentType);
+        this.form.controls['paymentThrough'].patchValue(value[0].paymentThrough);
+        this.form.controls['chequeNumber'].patchValue(value[0].chequeNumber);
+        this.form.controls['narration'].patchValue(value[0].narration);
+        this.form.controls['against'].patchValue(value[0].against);
+        
+
+        this.setDate(value[0].date);
+        this.setDate2(value[0].drawnOn);
+
+        console.log(value[0].particularsData)
+        var oldArray = value[0].particularsData;
+        // oldArray.forEach((element) => {
+        //     console.log(element);
+        //     this.form.get['amount'].patchValue(element.amount);
+        // });    
+
+
+
     }
 
 

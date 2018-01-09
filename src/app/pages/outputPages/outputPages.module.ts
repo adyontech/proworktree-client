@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormsRoutingModule } from './inputForms.routes'
+import { OutputPagesRoutingModule } from './outputPages.routes'
 
-import { InputFormsComponent } from './inputForms.component';
+import { OutputPagesComponent } from './outputPages.component';
 
 import { ContraComponent } from "./components/contra/contra.component";
 import { JournalEntryComponent } from "./components/journalEntry/journalEntry.component";
@@ -19,7 +19,11 @@ import { SidebarComponent } from "./../sharedPageComponent/sidebar/sidebar.compo
 import { SettingsComponent } from "./components/settings/settings.component";
 import { underGroupComponent } from "./components/underGroup/underGroup.component";
 
-import { InputFormService } from "./service/inputForms.service";
+//inner-form components
+import { PopPaymentComponent } from "./components/payment/component/popPayment.component";
+
+
+import { OutputPagesService } from "./service/outputPages.service";
 import { ContraService } from "./components/contra/service/contra.service";
 import { JournalEntryService } from "./components/journalEntry/service/journalEntry.service";
 import { LedgerService } from "./components/ledger/service/ledger.service";
@@ -33,22 +37,30 @@ import { SalesReturnService } from "./components/salesReturn/service/salesReturn
 import { SettingsService } from "./components/settings/service/settings.service";
 import { UnderGroupsService } from "./components/underGroup/service/underGroup.service";
 
+
+//inner-form service
+import { PopPaymentService } from "./components/payment/component/service/popPayment.service"
+
+import { AngularMultiSelectModule } from 'angular2-multiselect-checkbox-dropdown/angular2-multiselect-dropdown';
 import { SelectModule } from 'ng2-select';
 import { MyDatePickerModule } from 'mydatepicker';
 import { BsModalModule } from 'ng2-bs3-modal';
+import { UiSwitchModule } from 'angular2-ui-switch'
+// import { AppComponent } from './app.component';
 @NgModule({
     imports: [
+        AngularMultiSelectModule,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        FormsRoutingModule,
-        SelectModule, 
+        OutputPagesRoutingModule,
+        SelectModule,
         MyDatePickerModule,
-        BsModalModule
+        BsModalModule,
     ],
     declarations: [
         ContraComponent,
-        InputFormsComponent,
+        OutputPagesComponent,
         JournalEntryComponent,
         LedgerComponent,
         PaymentComponent,
@@ -60,11 +72,15 @@ import { BsModalModule } from 'ng2-bs3-modal';
         SalesReturnComponent,
         SettingsComponent,
         SidebarComponent,
-        underGroupComponent
+        underGroupComponent,
+
+
+
+        PopPaymentComponent
     ],
     providers: [
         ContraService,
-        InputFormService,
+        OutputPagesService,
         JournalEntryService,
         LedgerService,
         PaymentService,
@@ -75,8 +91,12 @@ import { BsModalModule } from 'ng2-bs3-modal';
         SalesService,
         SalesReturnService,
         SettingsService,
-        UnderGroupsService
+        UnderGroupsService,
+
+
+
+        PopPaymentService
     ]
 })
 
-export class InputFormsModule { }
+export class OutputPagesModule { }

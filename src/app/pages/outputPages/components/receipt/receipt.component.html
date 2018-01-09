@@ -6,7 +6,7 @@
                     <div class="card">
                         <!-- heading here -->
                         <div class="header">
-                            <h2 class="title text-center">Payment</h2>
+                            <h2 class="title text-center">Receipt</h2>
                         </div>
                         <!-- step indicator starts here -->
                         <div class="row">
@@ -37,8 +37,8 @@
                                 <div class="row">
                                     <div class="col-md-5 col-lg-offset-4">
                                         <div class="form-group">
-                                            <label>Payment Number</label>
-                                            <input type="text" class="form-control" formControlName="paymentNumber">
+                                            <label>Receipt Number</label>
+                                            <input type="text" class="form-control" formControlName="receiptNumber">
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                     <div class="col-md-5 col-lg-offset-4">
                                         <div class="form-group">
                                             <label>account</label>
-                                            <input type="text" class="form-control" formControlName="account">
+                                            <input type="text" class="form-control"  formControlName="account">
                                         </div>
                                     </div>
                                 </div>
@@ -81,13 +81,12 @@
                                 <div class="row">
                                     <div class="col-md-5 col-lg-offset-4">
                                         <div class="form-group">
-                                            <label>Payment type</label>
-                                            <select class="form-control" formControlName="paymentType">
+                                            <label>Receipt type</label>
+                                            <select class="form-control" formControlName="receiptType">
                                                 <option value="general" selected>General</option>
-                                                <option value="purchasePayment">Purchase payment</option>
-                                                <option value="advancePayment">Advance payment</option>
-                                                <option value="salesRefund">Sales refund</option>
-                                                <option value="creditNote">Credit Note</option>
+                                                <option value="salesReceipt">Sales receipt</option>
+                                                <option value="advanceReceipt">Advance receipt</option>
+                                                <option value="purchaseRefund">Purchase refund</option>
                                                 <option value="others">others</option>
                                             </select>
                                             <!-- <input type="text" class="form-control" [(ngModel)]="chequeNumber" name="company_name" placeholder="Company Name" formControlName="chequeNumber"> -->
@@ -97,8 +96,8 @@
                                 <div class="row">
                                     <div class="col-md-5 col-lg-offset-4">
                                         <div class="form-group">
-                                            <label>Payment Through</label>
-                                            <select class="form-control" formControlName="paymentThrough">
+                                            <label>Receipt Through</label>
+                                            <select class="form-control" formControlName="receiptThrough">
                                                 <option value="cash" selected>Cash</option>
                                                 <option value="cheque">Cheque</option>
                                                 <option value="Etransfe">E transfe</option>
@@ -108,7 +107,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row" *ngIf=" form.get('paymentThrough').value =='cheque'">
+                                <div class="row" *ngIf=" form.get('receiptThrough').value =='cheque'">
                                     <div class="col-md-5 col-lg-offset-4">
                                         <div class="form-group">
                                             <label>Cheque no.</label>
@@ -130,9 +129,9 @@
                                             <select class="form-control" formControlName="against">
                                                 <option value="againstInvoice" selected>Against invoice</option>
                                                 <option value="againstAccount ">Against account</option>
-                                                <option value="againstAdvance" *ngIf=" form.get('paymentType').value =='purchasePayment'">Against advance</option>
+                                                <option value="againstAdvance" *ngIf=" form.get('receiptType').value =='salesReceipt'">Against advance</option>
                                                 <option value="advanceReceipt">Advance receipt</option>
-                                                <option value="others" *ngIf=" form.get('paymentThrough').value =='cash'"> others</option>
+                                                <option value="others" *ngIf=" form.get('receiptThrough').value =='cash'" > others</option>
                                             </select>
                                             <!-- <input type="text" class="form-control" [(ngModel)]="chequeNumber" name="company_name" placeholder="Company Name" formControlName="chequeNumber"> -->
                                         </div>
@@ -207,7 +206,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Narration</label>
-                                            <textarea rows="5" class="form-control" formControlName="narration" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                            <textarea rows="5" class="form-control" placeholder="Here can be your description" formControlName="narration" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -224,7 +223,7 @@
                                 <div class="row" style="text-align: center; margin-top: 20px">
                                     <button type="submit" data-toggle="tab" href="#step1" (click)="setSelected(1)" class="btn btn-info btn-fill ">Back</button>
                                     <button type="submit" data-toggle="tab" href="#step3" (click)="setSelected(3)" class="btn btn-info btn-fill ">Save and exit</button>
-                                    <button type="submit" class="btn btn-info btn-fill pull-right" >Save and close</button>
+                                    <button type="submit" class="btn btn-info btn-fill pull-right">Save and close</button>
 
                                 </div>
 

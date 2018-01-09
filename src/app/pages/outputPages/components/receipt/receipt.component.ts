@@ -2,29 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { PaymentService } from "./service/payment.service";
+import { ReceiptService } from "./service/receipt.service";
 import { IMyDpOptions } from 'mydatepicker';
 declare var $: any;
 
 @Component({
-    selector: 'app-payment',
-    templateUrl: './payment.component.html',
-    styleUrls: ['./payment.component.scss']
+    selector: 'app-receipt',
+    templateUrl: './receipt.component.html',
+    styleUrls: ['./receipt.component.scss']
 })
 
-export class PaymentComponent implements OnInit {
+export class ReceiptComponent implements OnInit {
 
 
     form: FormGroup;
     selectedIndex = 1;
+    dataCopy: any;
     paramId: string;
-
+    closeResult: string;
 
     constructor(
         private route: ActivatedRoute,
-        public _paymentService: PaymentService,
+        public _receiptService: ReceiptService,
         public fb: FormBuilder,
         private router: Router) {
     }
@@ -32,16 +32,16 @@ export class PaymentComponent implements OnInit {
 
     ngOnInit() {
         this.form = this.fb.group({
-            paymentNumber: [''],
+            receiptNumber: [''],
             date: [''],
             account: [''],
-            paymentType: [''],
-            paymentThrough: [''],
+            receiptType: [''],
+            receiptThrough: [''],
             chequeNumber: [''],
             drawnOn: [null, Validators.required],
-            particularsData: this.fb.array([]),
-            narration:[''],
             against: [''],
+            particularsData: this.fb.array([]),
+            narration: [''],
             file: [""],
         });
         this.addParticular();
@@ -159,15 +159,12 @@ export class PaymentComponent implements OnInit {
 
 
     onSubmit(user) {
+
         console.log(user)
-        this._paymentService.createNewEntry(user)
+        this._receiptService.createNewEntry(user)
             .subscribe(
-            (data) => {
-                // console.log('hello gateway service')
-            }
+            (data) => {}
             )
     }
-
-
 
 }

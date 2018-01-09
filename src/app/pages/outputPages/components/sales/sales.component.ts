@@ -2,47 +2,83 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { PaymentService } from "./service/payment.service";
+import { SalesService } from "./service/sales.service";
 import { IMyDpOptions } from 'mydatepicker';
 declare var $: any;
 
 @Component({
-    selector: 'app-payment',
-    templateUrl: './payment.component.html',
-    styleUrls: ['./payment.component.scss']
+    selector: 'app-sales',
+    templateUrl: './sales.component.html',
+    styleUrls: ['./sales.component.scss']
 })
 
-export class PaymentComponent implements OnInit {
+
+// Index
+// declaration
+// constructor
+// ngOnInit
+// datepicker functions
+// select functions
+// Notification
+// particulars functions
+// file handler 
+// tab navigator 
+// submit functions
+
+
+export class SalesComponent implements OnInit {
 
 
     form: FormGroup;
     selectedIndex = 1;
+
+    invoiceNumber: string;
+    vehicleNumber: string;
+    date: string;
+    partyName: string;
+    saleType: string;
+    transportationMode: string;
+    supplyPlace: string;
+    nameOfProduct: string;  // required field
+    qty: string;
+    units: string;
+    rate: string;
+    subAmount: string;
+    gstRate: string;
+    amount: string;
+    narration: string;
+    total: number;
+    
+
     paramId: string;
+
+
+
 
 
     constructor(
         private route: ActivatedRoute,
-        public _paymentService: PaymentService,
+        public _salesService: SalesService,
         public fb: FormBuilder,
         private router: Router) {
+        this.route.params.subscribe(params => this.paramId = params.id);
+        console.log(this.paramId)
     }
 
 
     ngOnInit() {
         this.form = this.fb.group({
-            paymentNumber: [''],
-            date: [''],
-            account: [''],
-            paymentType: [''],
-            paymentThrough: [''],
-            chequeNumber: [''],
-            drawnOn: [null, Validators.required],
+            invoiceNumber: [''],
+            LtransportationMode:[''],
+            vehicleNumber:[''],
+            partyName: [''],
+            saleType: [''],
+            transportationMode: [''],
+            supplyPlace: [''],
             particularsData: this.fb.array([]),
-            narration:[''],
-            against: [''],
             file: [""],
+            date: [null, Validators.required],
         });
         this.addParticular();
     }
@@ -117,8 +153,13 @@ export class PaymentComponent implements OnInit {
 
     initParticular() {
         return this.fb.group({
-            particulars: ['', Validators.required],
-            amount: ['']
+            nameOfProduct: [''],
+            qty: [''],
+            units: [''],
+            rate: [''],
+            subAmount: [''],
+            gstRate: [''],
+            amount: [''],
         })
     }
     addParticular() {
@@ -159,15 +200,23 @@ export class PaymentComponent implements OnInit {
 
 
     onSubmit(user) {
-        console.log(user)
-        this._paymentService.createNewEntry(user)
-            .subscribe(
-            (data) => {
-                // console.log('hello gateway service')
-            }
-            )
+        console.log(user);
     }
 
 
 
+}
+
+interface Customer {
+    particularsData: Address[];
+}
+
+interface Address {
+    nameOfProduct: string;  // required field
+    qty: string;
+    units: string;
+    rate: string;
+    subAmount: string;
+    gstRate: string;
+    amount: string;
 }
