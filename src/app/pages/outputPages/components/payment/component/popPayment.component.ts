@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PaymentService } from "./../service/payment.service";
 import { PopPaymentService } from "./service/popPayment.service";
 import { IMyDpOptions } from 'mydatepicker';
-import { loadavg } from 'os';
+
 declare var $: any;
 
 @Component({

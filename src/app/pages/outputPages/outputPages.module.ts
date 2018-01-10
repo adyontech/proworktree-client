@@ -46,7 +46,8 @@ import { SelectModule } from 'ng2-select';
 import { MyDatePickerModule } from 'mydatepicker';
 import { BsModalModule } from 'ng2-bs3-modal';
 import { UiSwitchModule } from 'angular2-ui-switch'
-// import { AppComponent } from './app.component';
+
+// import { UiSwitchModule } from "./../../../../node_modules/angular2-ui-switch/src";
 @NgModule({
     imports: [
         AngularMultiSelectModule,
@@ -57,6 +58,7 @@ import { UiSwitchModule } from 'angular2-ui-switch'
         SelectModule,
         MyDatePickerModule,
         BsModalModule,
+        UiSwitchModule
     ],
     declarations: [
         ContraComponent,

@@ -17,10 +17,10 @@ import { UserStateService } from "./sharedService/userDetails/user-state.service
 import { LoginModule } from "./pages/login/login.module";
 import { ActivationModule } from "./pages/activation/activation.module";
 
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AngularMultiSelectModule } from 'angular2-multiselect-checkbox-dropdown/angular2-multiselect-dropdown';
 import { BsModalModule } from 'ng2-bs3-modal';
-import { UiSwitchModule } from 'angular2-ui-switch'
+import { UiSwitchModule } from '../../node_modules/angular2-ui-switch/src';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +38,8 @@ import { UiSwitchModule } from 'angular2-ui-switch'
     AppRoutingModule,
     LoginModule,
     ActivationModule,
-    BsModalModule,
+    BsModalModule, 
+    UiSwitchModule
   ],
   providers: [UserStateService],
   bootstrap: [AppComponent]
