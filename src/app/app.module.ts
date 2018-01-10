@@ -20,7 +20,7 @@ import { ActivationModule } from "./pages/activation/activation.module";
 
 import { AngularMultiSelectModule } from 'angular2-multiselect-checkbox-dropdown/angular2-multiselect-dropdown';
 import { BsModalModule } from 'ng2-bs3-modal';
-import { UiSwitchModule } from '../../node_modules/angular2-ui-switch/src';
+// import { UiSwitchModule } from '../../node_modules/angular2-ui-switch/src';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +39,7 @@ import { UiSwitchModule } from '../../node_modules/angular2-ui-switch/src';
     LoginModule,
     ActivationModule,
     BsModalModule, 
-    UiSwitchModule
+    // UiSwitchModule
   ],
   providers: [UserStateService],
   bootstrap: [AppComponent]

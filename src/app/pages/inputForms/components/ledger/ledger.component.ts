@@ -113,7 +113,7 @@ export class LedgerComponent implements OnInit {
     }
 
     hotkeys(event) {
-        if (event.keyCode == 65) {
+        if (event.keyCode == 81) {
             
                 this.modal.open();
         }

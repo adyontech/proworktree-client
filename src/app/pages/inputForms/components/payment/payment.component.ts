@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, ViewChild, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
@@ -6,10 +6,12 @@ import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { PaymentService } from "./service/payment.service";
 import { IMyDpOptions } from 'mydatepicker';
+import { BsModalComponent, BsModalBodyComponent } from "ng2-bs3-modal";
 declare var $: any;
 
 @Component({
     selector: 'app-payment',
+    host: { '(window:keydown)': 'hotkeys($event)' },
     templateUrl: './payment.component.html',
     styleUrls: ['./payment.component.scss']
 })
@@ -20,15 +22,18 @@ export class PaymentComponent implements OnInit {
     form: FormGroup;
     selectedIndex = 1;
     paramId: string;
-
-
+    @ViewChild('moodal')
+    moodal: BsModalComponent;
+    open() {
+        this.moodal.open();
+    }
     constructor(
         private route: ActivatedRoute,
         public _paymentService: PaymentService,
         public fb: FormBuilder,
         private router: Router) {
     }
-
+    
 
     ngOnInit() {
         this.form = this.fb.group({
@@ -45,6 +50,13 @@ export class PaymentComponent implements OnInit {
             file: [""],
         });
         this.addParticular();
+    }
+
+    hotkeys(event) {
+        if (event.keyCode == 65 ) {
+
+            this.moodal.open();
+        }
     }
 
     // real date picker active from here
