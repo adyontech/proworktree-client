@@ -131,9 +131,11 @@ export class LedgerComponent implements OnInit {
             (response) => response.json()
         ).subscribe(
             (data) => {
+
+                data = data.ugData.map(item => item.groupName);
+                // console.log(data);
                 this.items = this.items.concat(data);
-                console.log(this.items);
-                console.log(data);
+                // console.log(this.items);
 
             })
     }

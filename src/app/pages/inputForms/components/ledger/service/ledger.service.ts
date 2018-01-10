@@ -22,7 +22,7 @@ export class LedgerService {
         this.windowStorage = JSON.parse(window.localStorage.getItem('user'));
         this.token = this.windowStorage.token;
         this.paramCompanyName = this._inputFormService.paramCompanyName;
-        console.log(this.paramCompanyName)
+        // console.log(this.paramCompanyName)
     }
 
     getUnderGroupList() {
