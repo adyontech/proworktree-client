@@ -182,8 +182,8 @@ export class PopPaymentComponent implements OnInit, DoCheck {
     onSubmit(user, action) {
         user.contentId = this.popContnetId;
         console.log(user);
-        if (action == !true) {
-
+        if (action == true) {
+            console.log('edit')
             this._popPaymentService.editEntry(user)
                 .subscribe(
                 (data) => {}
@@ -216,13 +216,14 @@ export class PopPaymentComponent implements OnInit, DoCheck {
     }
 
     setDate(value): void {
+        console.log(value.substring(5, 7))
         let date = new Date();
         this.form.patchValue({
             date: {
                 date: {
                     year: value.substring(0, 4),
                     month: value.substring(5, 7),
-                    day: value.substring(8, 10)
+                    day: parseInt(value.substring(8, 10))+1
                 }
             }
         });
@@ -235,7 +236,7 @@ export class PopPaymentComponent implements OnInit, DoCheck {
                 date: {
                     year: value.substring(0, 4),
                     month: value.substring(5, 7),
-                    day: value.substring(8, 10)
+                    day: parseInt(value.substring(8, 10))+1
                 }
             }
         });

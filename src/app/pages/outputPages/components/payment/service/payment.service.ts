@@ -11,7 +11,7 @@ import 'rxjs/'
 export class PaymentService {
 
 
-    private paramCompanyName: string;
+    public paramCompanyName: string;
     result: {};
     token: string;
     windowStorage: any;

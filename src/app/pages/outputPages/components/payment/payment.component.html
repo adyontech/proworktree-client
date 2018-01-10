@@ -70,7 +70,7 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let list of incomingData">
-                                    <td class="opt">
+                                    <td class="opt">z{{list._id}}
                                         <button type="button" class="btn btn-simple" (click)="editData(list._id); modal.open();">
                                             <i class="fa fa-bars"></i>
                                         </button>
