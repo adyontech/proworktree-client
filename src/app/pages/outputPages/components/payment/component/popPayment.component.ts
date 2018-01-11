@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PaymentService } from "./../service/payment.service";
 import { PopPaymentService } from "./service/popPayment.service";
 import { IMyDpOptions } from 'mydatepicker';
+import { SelectItem } from 'ng2-select';
 
 declare var $: any;
 
@@ -186,7 +187,7 @@ export class PopPaymentComponent implements OnInit, DoCheck {
             console.log('edit')
             this._popPaymentService.editEntry(user)
                 .subscribe(
-                (data) => {}
+                (data) => { }
                 )
 
         } else {
@@ -223,7 +224,7 @@ export class PopPaymentComponent implements OnInit, DoCheck {
                 date: {
                     year: value.substring(0, 4),
                     month: value.substring(5, 7),
-                    day: parseInt(value.substring(8, 10))+1
+                    day: parseInt(value.substring(8, 10)) + 1
                 }
             }
         });
@@ -236,14 +237,14 @@ export class PopPaymentComponent implements OnInit, DoCheck {
                 date: {
                     year: value.substring(0, 4),
                     month: value.substring(5, 7),
-                    day: parseInt(value.substring(8, 10))+1
+                    day: parseInt(value.substring(8, 10)) + 1
                 }
             }
         });
     }
 
     fillForm(value) {
-        console.log(value[0].date)
+        console.log(value[0]);
         this.form.controls['paymentNumber'].patchValue(value[0].paymentNumber);
         this.form.controls['account'].patchValue(value[0].account);
         this.form.controls['paymentType'].patchValue(value[0].paymentType);
@@ -251,20 +252,28 @@ export class PopPaymentComponent implements OnInit, DoCheck {
         this.form.controls['chequeNumber'].patchValue(value[0].chequeNumber);
         this.form.controls['narration'].patchValue(value[0].narration);
         this.form.controls['against'].patchValue(value[0].against);
-        
+
 
         this.setDate(value[0].date);
         this.setDate2(value[0].drawnOn);
 
-        console.log(value[0].particularsData)
+        let particularsData = <FormArray>this.form.controls['particularsData'];
         var oldArray = value[0].particularsData;
-        // oldArray.forEach((element) => {
-        //     console.log(element);
-        //     this.form.get['amount'].patchValue(element.amount);
-        // });    
-
-
-
+        oldArray.forEach((element, index) => {
+            let array = particularsData.at(index);
+            if(!array) {
+                particularsData.push(this.fb.group({
+                    particulars: [element.particulars],
+                    amount: element.amount
+                }));
+            } else {
+                array.patchValue({
+                    particulars: element.particulars,
+                    amount: element.amount
+                });
+            }
+        });
+        console.log(this.form);
     }
 
 

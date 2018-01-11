@@ -145,8 +145,6 @@ export class LedgerComponent implements OnInit {
         user.state = this.form.get('state').value[0].text;
         user.country = this.form.get('country').value[0].text;
 
-        // this.form.controls['underGroup'].patchValue(newValue);
-        console.log(user);
         console.log(user);
         this._ledgerService.createNewLedger(user)
             .subscribe(
