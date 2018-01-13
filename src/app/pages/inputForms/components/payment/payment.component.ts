@@ -21,21 +21,25 @@ export class PaymentComponent implements OnInit {
 
     form: FormGroup;
     selectedIndex = 1;
+    public dataCopy: any;
     paramId: string;
     @ViewChild('moodal')
     moodal: BsModalComponent;
     open() {
         this.moodal.open();
     }
+
     constructor(
         private route: ActivatedRoute,
         public _paymentService: PaymentService,
         public fb: FormBuilder,
         private router: Router) {
     }
-    
+
 
     ngOnInit() {
+        this.getAccountNames();
+        this.getLedgerNames();
         this.form = this.fb.group({
             paymentNumber: [''],
             date: [''],
@@ -45,7 +49,7 @@ export class PaymentComponent implements OnInit {
             chequeNumber: [''],
             drawnOn: [null, Validators.required],
             particularsData: this.fb.array([]),
-            narration:[''],
+            narration: [''],
             against: [''],
             file: [""],
         });
@@ -53,7 +57,7 @@ export class PaymentComponent implements OnInit {
     }
 
     hotkeys(event) {
-        if (event.keyCode == 65 ) {
+        if (event.keyCode == 65) {
 
             this.moodal.open();
         }
@@ -65,16 +69,8 @@ export class PaymentComponent implements OnInit {
         dateFormat: 'dd.mm.yyyy',
     };
 
-    public items: Array<string> = ['Amsterdam', 'Antwerp', 'Athens', 'Barcelona',
-        'Berlin', 'Birmingham', 'Bradford', 'Bremen', 'Brussels', 'Bucharest',
-        'Budapest', 'Cologne', 'Copenhagen', 'Dortmund', 'Dresden', 'Dublin',
-        'Düsseldorf', 'Essen', 'Frankfurt', 'Genoa', 'Glasgow', 'Gothenburg',
-        'Hamburg', 'Hannover', 'Helsinki', 'Kraków', 'Leeds', 'Leipzig', 'Lisbon',
-        'London', 'Madrid', 'Manchester', 'Marseille', 'Milan', 'Munich', 'Málaga',
-        'Naples', 'Palermo', 'Paris', 'Poznań', 'Prague', 'Riga', 'Rome',
-        'Rotterdam', 'Seville', 'Sheffield', 'Sofia', 'Stockholm', 'Stuttgart',
-        'The Hague', 'Turin', 'Valencia', 'Vienna', 'Vilnius', 'Warsaw', 'Wrocław',
-        'Zagreb', 'Zaragoza', 'Łódź'];
+    public items: Array<string> = [ ];
+    public accountList: Array<string> = ['Cash'];
 
     public value: any = {};
     public _disabledV: string = '0';
@@ -165,6 +161,24 @@ export class PaymentComponent implements OnInit {
         // }
     }
 
+    getLedgerNames() {
+        this.dataCopy = this._paymentService.getLedgerNames().map(
+            (response) => response.json()
+        ).subscribe(
+            (data) => {
+                this.items = this.items.concat(data.ledgerData);
+            })
+    }
+    getAccountNames() {
+        this.dataCopy = this._paymentService.getAccountNames().map(
+            (response) => response.json()
+        ).subscribe(
+            (data) => {
+                this.accountList = this.accountList.concat(data.accountNameList);
+                
+            })
+    }
+
     setSelected(id: number) {
         this.selectedIndex = id;
     }
@@ -175,6 +189,7 @@ export class PaymentComponent implements OnInit {
         this._paymentService.createNewEntry(user)
             .subscribe(
             (data) => {
+
                 // console.log('hello gateway service')
             }
             )

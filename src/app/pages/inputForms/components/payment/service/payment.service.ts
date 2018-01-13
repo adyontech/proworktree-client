@@ -39,4 +39,13 @@ export class PaymentService {
             })
     }
 
+    getLedgerNames() {
+        this._url = `http://localhost:3000/api/ledgerNameList?token=${this.token}&&companyName=${this.paramCompanyName}`;
+        return this.http.get(this._url);
+    }
+    getAccountNames() {
+        this._url = `http://localhost:3000/api/accountNameList?token=${this.token}&&companyName=${this.paramCompanyName}`;
+        return this.http.get(this._url);
+    }
+
 }

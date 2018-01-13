@@ -62,11 +62,10 @@
                                     <div class="col-md-5 col-lg-offset-4">
                                         <div class="form-group">
                                             <label>account</label>
-                                            <select class="form-control" formControlName="account">
-                                                <option value="cash" selected>Cash</option>
-                                                <option value="purchasePayment">Cash-in-hand</option>
-                                                <option value="advancePayment">Cash-at-bank</option>
-                                            </select>
+                                            <ng-select [allowClear]="true" [items]="accountList" formControlName="account" (data)="refreshValue($event)" (selected)="selected($event)"
+                                                (removed)="removed($event)" (click)="showNotification('top','left')" placeholder="No particulars selected">
+                                            </ng-select>
+                                           
                                         </div>
                                     </div>
                                 </div>
