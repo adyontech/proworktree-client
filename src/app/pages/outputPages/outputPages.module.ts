@@ -45,9 +45,9 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-checkbox-dropdown
 import { SelectModule } from 'ng2-select';
 import { MyDatePickerModule } from 'mydatepicker';
 import { BsModalModule } from 'ng2-bs3-modal';
-import { UiSwitchModule } from 'angular2-ui-switch'
+// import { UiSwitchModule } from 'angular2-ui-switch'
 
-// import { UiSwitchModule } from "./../../../../node_modules/angular2-ui-switch/src";
+import { UiSwitchModule } from "./../../../../node_modules/angular2-ui-switch/src";
 @NgModule({
     imports: [
         AngularMultiSelectModule,
