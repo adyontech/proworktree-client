@@ -85,7 +85,7 @@ export class PaymentComponent implements OnInit {
     }
 
     public selected(value: any): void {
-        console.log('Selected value is: ', value);
+        // console.log('Selected value is: ', value);
     }
 
     public removed(value: any): void {
@@ -188,10 +188,7 @@ export class PaymentComponent implements OnInit {
         console.log(user)
         this._paymentService.createNewEntry(user)
             .subscribe(
-            (data) => {
-
-                // console.log('hello gateway service')
-            }
+            (data) => {}
             )
     }
 
