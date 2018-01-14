@@ -30,7 +30,7 @@ export class ReceiptService {
 
     createNewEntry(user: any) {
 
-        this._url = `http://localhost:3000/api/receipt?token=${this.token}&companyName=${this.paramCompanyName}`;
+        this._url = `http://localhost:3000/api/receipts?token=${this.token}&companyName=${this.paramCompanyName}`;
         return this.http.post(this._url, user)
             .map((res: Response) => {
                 this.result = res.json();
