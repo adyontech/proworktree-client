@@ -57,7 +57,7 @@ export class PaymentComponent implements OnInit {
     }
 
     hotkeys(event) {
-        if (event.keyCode == 65) {
+        if (event.keyCode == 65 && event.ctrlKey) {
 
             this.moodal.open();
         }
@@ -68,8 +68,8 @@ export class PaymentComponent implements OnInit {
         // other options...
         dateFormat: 'dd.mm.yyyy',
     };
-
-    public items: Array<string> = [ ];
+    
+    public ledgerList: Array<string> = [ ];
     public accountList: Array<string> = [];
 
     public value: any = {};
@@ -166,7 +166,7 @@ export class PaymentComponent implements OnInit {
             (response) => response.json()
         ).subscribe(
             (data) => {
-                this.items = this.items.concat(data.ledgerData);
+                this.ledgerList = this.ledgerList.concat(data.ledgerData);
             })
     }
     getAccountNames() {

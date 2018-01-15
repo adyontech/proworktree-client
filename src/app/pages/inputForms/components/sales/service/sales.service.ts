@@ -23,6 +23,11 @@ export class SalesService {
     }
 
     getLedgerNames() {
+        this._url = `http://localhost:3000/api/ledgerNameList?token=${this.token}&&companyName=${this.paramCompanyName}`;
+        return this.http.get(this._url);
+    }
+
+    getprsrList() {
         this._url = `http://localhost:3000/api/prsrList?token=${this.token}&&companyName=${this.paramCompanyName}`;
         return this.http.get(this._url);
     }

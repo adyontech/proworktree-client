@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, ViewChild, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 import { ActivatedRoute } from '@angular/router';
 import { SalesService } from "./service/sales.service";
 import { IMyDpOptions } from 'mydatepicker';
+import { BsModalComponent, BsModalBodyComponent } from "ng2-bs3-modal";
 declare var $: any;
 
 @Component({
@@ -21,8 +22,14 @@ export class SalesComponent implements OnInit {
 
     form: FormGroup;
     selectedIndex = 1;
+    public dataCopy1: any;
+    public dataCopy2: any;
     paramId: string;
-
+    @ViewChild('moodal')
+    moodal: BsModalComponent;
+    open() {
+        this.moodal.open();
+    }
 
 
 
@@ -36,6 +43,8 @@ export class SalesComponent implements OnInit {
 
 
     ngOnInit() {
+        this.getPrsrList();
+        this.getLedgerNames();
         this.form = this.fb.group({
             invoiceNumber: [''],
             LtransportationMode:[''],
@@ -51,11 +60,23 @@ export class SalesComponent implements OnInit {
         this.addParticular();
     }
 
+    hotkeys(event) {
+        if (event.keyCode == 65 && event.ctrlKey) {
+
+            this.moodal.open();
+        }
+    }
+
     // real date picker active from here
     public myDatePickerOptions: IMyDpOptions = {
         // other options...
         dateFormat: 'dd.mm.yyyy',
     };
+
+    
+    public ledgerList: Array<string> = [];
+    public prsrList: Array<string> = [];
+
 
     public items: Array<string> = ['Amsterdam', 'Antwerp', 'Athens', 'Barcelona',
         'Berlin', 'Birmingham', 'Bradford', 'Bremen', 'Brussels', 'Bucharest',
@@ -120,6 +141,8 @@ export class SalesComponent implements OnInit {
 
 
     initParticular() {
+
+        this.getLedgerNames();
         return this.fb.group({
             nameOfProduct: [''],
             qty: [''],
@@ -171,8 +194,25 @@ export class SalesComponent implements OnInit {
         console.log(user);
     }
 
+    getLedgerNames() {
+        this.dataCopy1 = this._salesService.getLedgerNames().map(
+            (response) => response.json()
+        ).subscribe(
+            (data) => {
+                this.ledgerList = this.ledgerList.concat(data.ledgerData);
+            })
+    }
 
-
+    getPrsrList() {
+        this.dataCopy2 = this._salesService.getprsrList().map(
+            (response) => response.json()
+        ).subscribe(
+            (data) => {
+                // console.log(data.prsr)
+                this.prsrList = data.prsr.map(item => this.prsrList.concat(item.prsrName))[0]
+            })
+    }
+    
 }
 
 interface Customer {
