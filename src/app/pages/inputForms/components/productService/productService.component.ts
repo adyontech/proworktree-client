@@ -18,7 +18,6 @@ export class ProductServiceComponent implements OnInit {
     form: FormGroup;
     dataCopy: any;
     paramId: string;
-    closeResult: string;
 
     constructor(
         private route: ActivatedRoute,

@@ -14,17 +14,6 @@ declare var $: any;
 })
 
 
-// Index
-// declaration
-// constructor
-// ngOnInit
-// datepicker functions
-// select functions
-// Notification
-// particulars functions
-// file handler 
-// tab navigator 
-// submit functions
 
 
 export class SalesComponent implements OnInit {
@@ -32,25 +21,6 @@ export class SalesComponent implements OnInit {
 
     form: FormGroup;
     selectedIndex = 1;
-
-    invoiceNumber: string;
-    vehicleNumber: string;
-    date: string;
-    partyName: string;
-    saleType: string;
-    transportationMode: string;
-    supplyPlace: string;
-    nameOfProduct: string;  // required field
-    qty: string;
-    units: string;
-    rate: string;
-    subAmount: string;
-    gstRate: string;
-    amount: string;
-    narration: string;
-    total: number;
-    
-
     paramId: string;
 
 
@@ -62,8 +32,6 @@ export class SalesComponent implements OnInit {
         public _salesService: SalesService,
         public fb: FormBuilder,
         private router: Router) {
-        this.route.params.subscribe(params => this.paramId = params.id);
-        console.log(this.paramId)
     }
 
 

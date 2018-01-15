@@ -9,10 +9,22 @@ import 'rxjs/add/operator/map';
 import 'rxjs/'
 @Injectable()
 export class SalesService {
+    private paramCompanyName: string;
+    result: {};
+    token: string;
+    windowStorage: any;
+    _url: string;
 
     constructor(private http: Http, private router: Router, private route: ActivatedRoute, public _inputFormService: InputFormService) {
-        
+        this.windowStorage = JSON.parse(window.localStorage.getItem('user'));
+        this.token = this.windowStorage.token;
+        this.paramCompanyName = this._inputFormService.paramCompanyName;
+        console.log(this.paramCompanyName)
     }
-  
+
+    getLedgerNames() {
+        this._url = `http://localhost:3000/api/prsrList?token=${this.token}&&companyName=${this.paramCompanyName}`;
+        return this.http.get(this._url);
+    }
 
 }

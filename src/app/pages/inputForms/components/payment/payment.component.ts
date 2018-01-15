@@ -70,7 +70,7 @@ export class PaymentComponent implements OnInit {
     };
 
     public items: Array<string> = [ ];
-    public accountList: Array<string> = ['Cash'];
+    public accountList: Array<string> = [];
 
     public value: any = {};
     public _disabledV: string = '0';

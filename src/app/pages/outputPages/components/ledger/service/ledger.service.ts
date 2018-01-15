@@ -16,7 +16,9 @@ export class LedgerService {
     result: {};
     token: string;
     windowStorage: any;
+    ledgerName: string;
     _url: string;
+
     
 
     constructor(private http: Http, private router: Router, private route: ActivatedRoute, public _inputFormService: OutputPagesService) {
@@ -26,9 +28,14 @@ export class LedgerService {
         console.log(this.paramCompanyName)
     }
 
-    getIncomingData() {
-        this._url = `http://localhost:3000/api/ledgerStored?token=${this.token}&&companyName=${this.paramCompanyName}`;
+    getLedgerNames() {
+        this._url = `http://localhost:3000/api/ledgerNameList?token=${this.token}&&companyName=${this.paramCompanyName}`;
         return this.http.get(this._url);
     }
+    getIncomingData() {
+        this._url = `http://localhost:3000/api/ledgerformData?token=${this.token}&&companyName=${this.paramCompanyName}&&ledgerName=${this.ledgerName}`;
+        return this.http.get(this._url);
+    }
+
 
 }

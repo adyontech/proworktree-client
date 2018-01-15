@@ -24,3 +24,13 @@
 .modal {
     background-color: rgba(0, 0, 0, 0.55);
 }
+
+::ng-deep .ui-select-container {
+    width: 20%!important;
+    margin-left: 30%!important;
+}
+
+::ng-deep .ui-select-container>.dropdown,
+::ng-deep  .ui-select-container>.dropup {
+    position: absolute!important;
+}
