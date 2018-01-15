@@ -69,7 +69,7 @@
                                     <div class="col-md-5">
                                         <div class="form-group">
                                             <label>Party Name</label>
-                                            <ng-select [allowClear]="true" [items]="ledgerList" formControlName="partyName"  placeholder="No party selected">
+                                            <ng-select [allowClear]="true" [items]="ledgerList" formControlName="partyName" placeholder="No party selected">
                                             </ng-select>
                                         </div>
                                     </div>
@@ -94,8 +94,8 @@
                                     <div class="col-md-5">
                                         <div class="form-group">
                                             <label>Place supplyPlace</label>
-                                            <ng-select [allowClear]="true" [items]="items" formControlName="supplyPlace" (data)="refreshValue($event)" (selected)="selected($event)"
-                                                (removed)="removed($event)" (typed)="showNotification('top','left')" placeholder="No city selected">
+                                            <ng-select [allowClear]="true" [items]="items" formControlName="supplyPlace" (data)="refreshValue($event)" (removed)="removed($event)"
+                                                (typed)="showNotification('top','left')" placeholder="No city selected">
                                             </ng-select>
                                         </div>
                                     </div>
@@ -151,7 +151,7 @@
                                                             <div class="row">
                                                                 <div class="col-lg-3 text-center">
                                                                     <!-- <input type="text" class="form-control" formControlName="particulars"> -->
-                                                                    <ng-select [allowClear]="true" [items]="prsrList" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)"
+                                                                    <ng-select [allowClear]="true" [items]="prsrList" (data)="refreshValue($event)" (selected)="selectedprsr($event, i)" (removed)="removed($event)"
                                                                         (typed)="showNotification('top','left')" placeholder="No city selected">
                                                                     </ng-select>
                                                                     <!-- <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">

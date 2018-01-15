@@ -24,6 +24,7 @@ export class SalesComponent implements OnInit {
     selectedIndex = 1;
     public dataCopy1: any;
     public dataCopy2: any;
+    private prsrData: any;
     paramId: string;
     @ViewChild('moodal')
     moodal: BsModalComponent;
@@ -101,8 +102,12 @@ export class SalesComponent implements OnInit {
         this.disabled = this._disabledV === '1';
     }
 
-    public selected(value: any): void {
-        console.log('Selected value is: ', value);
+    public selectedprsr(value: any, indexValue): void {
+        let particularsData = <FormArray>this.form.controls['particularsData'];
+        let array = (particularsData.at(indexValue))
+        array.patchValue({
+            units: this.prsrData.prsr[0].units
+        });
     }
 
     public removed(value: any): void {
@@ -208,6 +213,7 @@ export class SalesComponent implements OnInit {
             (response) => response.json()
         ).subscribe(
             (data) => {
+                this.prsrData = data;
                 // console.log(data.prsr)
                 this.prsrList = data.prsr.map(item => this.prsrList.concat(item.prsrName))[0]
             })
