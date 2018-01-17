@@ -75,6 +75,25 @@
                                     </div>
                                     <div class="col-md-5 col-lg-offset-1">
                                         <div class="form-group">
+                                            <label>Sales ledger</label>
+                                            <ng-select [allowClear]="true" [items]="salesList" formControlName="partyName" placeholder="No party selected">
+                                            </ng-select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>Place supplyPlace</label>
+                                            <ng-select [allowClear]="true" [items]="items" formControlName="supplyPlace" (data)="refreshValue($event)" (removed)="removed($event)"
+                                                (typed)="showNotification('top','left')" placeholder="No city selected">
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-lg-offset-1">
+                                        <div class="form-group">
                                             <label>Type of sales</label>
                                             <select class="form-control" id="business" name="business" formControlName="saleType">
                                                 <option value="intraState" selected> within state sales (intra State)</option>
@@ -88,18 +107,10 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
 
+                                </div>
                                 <div class="row">
                                     <div class="col-md-5">
-                                        <div class="form-group">
-                                            <label>Place supplyPlace</label>
-                                            <ng-select [allowClear]="true" [items]="items" formControlName="supplyPlace" (data)="refreshValue($event)" (removed)="removed($event)"
-                                                (typed)="showNotification('top','left')" placeholder="No city selected">
-                                            </ng-select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5 col-lg-offset-2">
                                         <div class="form-group">
                                             <label>Current balance</label>
                                             <p>123456</p>

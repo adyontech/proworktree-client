@@ -27,6 +27,7 @@ declare var $: any;
 export class SalesComponent implements OnInit {
   form: FormGroup;
   selectedIndex = 1;
+  public dataCopy: any;
   public dataCopy1: any;
   public dataCopy2: any;
   private prsrData: any;
@@ -45,7 +46,8 @@ export class SalesComponent implements OnInit {
 
   ngOnInit() {
     this.getPrsrList();
-    this.getLedgerNames();
+    this.getLedgerUGNames();
+    this.getSalesUGNames();
     this.form = this.fb.group({
       invoiceNumber: [""],
       vehicleNumber: [""],
@@ -74,6 +76,7 @@ export class SalesComponent implements OnInit {
   };
 
   public ledgerList: Array<string> = [];
+  public salesList: Array<string> = [];
   public prsrList: Array<string> = [];
 
   public items: Array<string> = [
@@ -193,7 +196,6 @@ export class SalesComponent implements OnInit {
   }
 
   initParticular() {
-    this.getLedgerNames();
     return this.fb.group({
       nameOfProduct: [""],
       qty: [""],
@@ -252,12 +254,23 @@ export class SalesComponent implements OnInit {
     this._salesService.createNewEntry(user).subscribe(data => {});
   }
 
-  getLedgerNames() {
-    this.dataCopy1 = this._salesService
-      .getLedgerNames()
+  getLedgerUGNames() {
+    this.dataCopy = this._salesService
+      .getLedgerUGNames()
       .map(response => response.json())
       .subscribe(data => {
+        // console.log(data);
         this.ledgerList = this.ledgerList.concat(data.ledgerData);
+      });
+  }
+
+  getSalesUGNames() {
+    this.dataCopy1 = this._salesService
+      .getSalesUGNames()
+      .map(response => response.json())
+      .subscribe(data => {
+        // console.log(data)
+        this.salesList = this.salesList.concat(data.salesLedgerList);
       });
   }
 

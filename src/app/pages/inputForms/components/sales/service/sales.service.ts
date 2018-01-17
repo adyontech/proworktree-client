@@ -27,17 +27,22 @@ export class SalesService {
     console.log(this.paramCompanyName);
   }
   createNewEntry(user: any) {
-    this._url = `http://localhost:3000/api/sales?token=${this.token}&companyName=${this.paramCompanyName}`;
+    this._url = `http://localhost:3000/api/sales?token=${
+      this.token
+    }&companyName=${this.paramCompanyName}`;
     return this.http.post(this._url, user).map((res: Response) => {
       this.result = res.json();
       // console.log(this.result)
     });
   }
-
-  getLedgerNames() {
+  getLedgerUGNames() {
     this._url = `http://localhost:3000/api/ledgerNameList?token=${
       this.token
     }&&companyName=${this.paramCompanyName}`;
+    return this.http.get(this._url);
+  }
+  getSalesUGNames() {
+    this._url = `http://localhost:3000/api/salesLedgerList?token=${this.token}&&companyName=${this.paramCompanyName}`;
     return this.http.get(this._url);
   }
 

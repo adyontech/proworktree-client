@@ -39,7 +39,7 @@ export class PaymentComponent implements OnInit {
 
     ngOnInit() {
         this.getAccountNames();
-        this.getLedgerNames();
+        this.getLedgerUGNames();
         this.form = this.fb.group({
             paymentNumber: [''],
             date: [''],
@@ -161,8 +161,8 @@ export class PaymentComponent implements OnInit {
         // }
     }
 
-    getLedgerNames() {
-        this.dataCopy = this._paymentService.getLedgerNames().map(
+    getLedgerUGNames() {
+        this.dataCopy = this._paymentService.getLedgerUGNames().map(
             (response) => response.json()
         ).subscribe(
             (data) => {
