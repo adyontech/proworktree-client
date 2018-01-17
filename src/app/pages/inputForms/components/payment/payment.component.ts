@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, ViewChild, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
@@ -6,10 +6,12 @@ import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { PaymentService } from "./service/payment.service";
 import { IMyDpOptions } from 'mydatepicker';
+import { BsModalComponent, BsModalBodyComponent } from "ng2-bs3-modal";
 declare var $: any;
 
 @Component({
     selector: 'app-payment',
+    host: { '(window:keydown)': 'hotkeys($event)' },
     templateUrl: './payment.component.html',
     styleUrls: ['./payment.component.scss']
 })
@@ -19,8 +21,13 @@ export class PaymentComponent implements OnInit {
 
     form: FormGroup;
     selectedIndex = 1;
+    public dataCopy: any;
     paramId: string;
-
+    @ViewChild('moodal')
+    moodal: BsModalComponent;
+    open() {
+        this.moodal.open();
+    }
 
     constructor(
         private route: ActivatedRoute,
@@ -31,6 +38,8 @@ export class PaymentComponent implements OnInit {
 
 
     ngOnInit() {
+        this.getAccountNames();
+        this.getLedgerUGNames();
         this.form = this.fb.group({
             paymentNumber: [''],
             date: [''],
@@ -40,11 +49,18 @@ export class PaymentComponent implements OnInit {
             chequeNumber: [''],
             drawnOn: [null, Validators.required],
             particularsData: this.fb.array([]),
-            narration:[''],
+            narration: [''],
             against: [''],
             file: [""],
         });
         this.addParticular();
+    }
+
+    hotkeys(event) {
+        if (event.keyCode == 65 && event.ctrlKey) {
+
+            this.moodal.open();
+        }
     }
 
     // real date picker active from here
@@ -52,17 +68,9 @@ export class PaymentComponent implements OnInit {
         // other options...
         dateFormat: 'dd.mm.yyyy',
     };
-
-    public items: Array<string> = ['Amsterdam', 'Antwerp', 'Athens', 'Barcelona',
-        'Berlin', 'Birmingham', 'Bradford', 'Bremen', 'Brussels', 'Bucharest',
-        'Budapest', 'Cologne', 'Copenhagen', 'Dortmund', 'Dresden', 'Dublin',
-        'Düsseldorf', 'Essen', 'Frankfurt', 'Genoa', 'Glasgow', 'Gothenburg',
-        'Hamburg', 'Hannover', 'Helsinki', 'Kraków', 'Leeds', 'Leipzig', 'Lisbon',
-        'London', 'Madrid', 'Manchester', 'Marseille', 'Milan', 'Munich', 'Málaga',
-        'Naples', 'Palermo', 'Paris', 'Poznań', 'Prague', 'Riga', 'Rome',
-        'Rotterdam', 'Seville', 'Sheffield', 'Sofia', 'Stockholm', 'Stuttgart',
-        'The Hague', 'Turin', 'Valencia', 'Vienna', 'Vilnius', 'Warsaw', 'Wrocław',
-        'Zagreb', 'Zaragoza', 'Łódź'];
+    
+    public ledgerList: Array<string> = [ ];
+    public accountList: Array<string> = [];
 
     public value: any = {};
     public _disabledV: string = '0';
@@ -77,7 +85,7 @@ export class PaymentComponent implements OnInit {
     }
 
     public selected(value: any): void {
-        console.log('Selected value is: ', value);
+        // console.log('Selected value is: ', value);
     }
 
     public removed(value: any): void {
@@ -153,6 +161,24 @@ export class PaymentComponent implements OnInit {
         // }
     }
 
+    getLedgerUGNames() {
+        this.dataCopy = this._paymentService.getLedgerUGNames().map(
+            (response) => response.json()
+        ).subscribe(
+            (data) => {
+                this.ledgerList = this.ledgerList.concat(data.ledgerData);
+            })
+    }
+    getAccountNames() {
+        this.dataCopy = this._paymentService.getAccountNames().map(
+            (response) => response.json()
+        ).subscribe(
+            (data) => {
+                this.accountList = this.accountList.concat(data.accountNameList);
+                
+            })
+    }
+
     setSelected(id: number) {
         this.selectedIndex = id;
     }
@@ -162,9 +188,7 @@ export class PaymentComponent implements OnInit {
         console.log(user)
         this._paymentService.createNewEntry(user)
             .subscribe(
-            (data) => {
-                // console.log('hello gateway service')
-            }
+            (data) => {}
             )
     }
 

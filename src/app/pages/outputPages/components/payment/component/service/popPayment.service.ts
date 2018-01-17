@@ -26,7 +26,7 @@ export class PopPaymentService {
         // this.contentId = this._paymentService.contentId;
         this.windowStorage = JSON.parse(window.localStorage.getItem('user'));
         this.token = this.windowStorage.token;
-        // this.paramCompanyName = this._inputFormService.paramCompanyName;
+        this.paramCompanyName = this._paymentService.paramCompanyName;
         // console.log(this.paramCompanyName)
     }
 
@@ -49,7 +49,7 @@ export class PopPaymentService {
     editEntry(user: any) {
 
         this._url = `http://localhost:3000/api/paymentEdit?token=${this.token}&companyName=${this.paramCompanyName}`;
-        return this.http.put(this._url, user)
+        return this.http.patch(this._url, user)
             .map((res: Response) => {
                 this.result = res.json();
                 // console.log(this.result)

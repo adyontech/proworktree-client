@@ -113,7 +113,7 @@ export class LedgerComponent implements OnInit {
     }
 
     hotkeys(event) {
-        if (event.keyCode == 65) {
+        if (event.keyCode == 81) {
             
                 this.modal.open();
         }
@@ -131,9 +131,11 @@ export class LedgerComponent implements OnInit {
             (response) => response.json()
         ).subscribe(
             (data) => {
+
+                data = data.ugData.map(item => item.groupName);
+                // console.log(data);
                 this.items = this.items.concat(data);
-                console.log(this.items);
-                console.log(data);
+                // console.log(this.items);
 
             })
     }
@@ -143,8 +145,6 @@ export class LedgerComponent implements OnInit {
         user.state = this.form.get('state').value[0].text;
         user.country = this.form.get('country').value[0].text;
 
-        // this.form.controls['underGroup'].patchValue(newValue);
-        console.log(user);
         console.log(user);
         this._ledgerService.createNewLedger(user)
             .subscribe(

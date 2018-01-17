@@ -1,9 +1,9 @@
 <div class="header">
     <button type="button" name="delete" class="btn btn-danger pull-left " (click)="delete()"> Delete</button>
     <div class="pull-right">
+         Copy and new
+        <ui-switch size="small" [(ngModel)]="action"></ui-switch>
         Edit
-        <!-- <ui-switch size="small" [(ngModel)]="action"></ui-switch> -->
-        Copy and new
     </div>
 
     <!-- <button type="button" name="copy" class="btn btn-success pull-right "  [(ngModel)]="action"> Copy /as New</button> -->
@@ -176,8 +176,8 @@
                                                             <div class="row">
                                                                 <div class="col-lg-4">
                                                                     <!-- <input type="text" class="form-control" formControlName="particulars"> -->
-                                                                    <ng-select [allowClear]="true" [items]="items" formControlName="particulars" (data)="refreshValue($event)" (selected)="selected($event)"
-                                                                        (removed)="removed($event)" (typed)="showNotification('top','left')"
+                                                                    <ng-select [allowClear]="true" [items]="items" formControlName="particulars" (data)="refreshValue($event)" (selected)="showNotification('top','left')"
+                                                                        (removed)="removed($event)" 
                                                                         placeholder="No city selected">
                                                                     </ng-select>
                                                                     <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">

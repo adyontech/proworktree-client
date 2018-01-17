@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input,OnInit, ViewChild} from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 import { ActivatedRoute } from '@angular/router';
 import { ReceiptService } from "./service/receipt.service";
 import { IMyDpOptions } from 'mydatepicker';
+import { BsModalComponent, BsModalBodyComponent } from "ng2-bs3-modal";
+
 declare var $: any;
 
 @Component({
@@ -17,10 +19,13 @@ export class ReceiptComponent implements OnInit {
 
 
     form: FormGroup;
-    selectedIndex = 1;
-    dataCopy: any;
+    selectedIndex = 1; public dataCopy: any;
     paramId: string;
-    closeResult: string;
+    @ViewChild('moodal')
+    moodal: BsModalComponent;
+    open() {
+        this.moodal.open();
+    }
 
     constructor(
         private route: ActivatedRoute,
@@ -31,6 +36,8 @@ export class ReceiptComponent implements OnInit {
 
 
     ngOnInit() {
+        this.getAccountNames();
+        this.getLedgerNames();
         this.form = this.fb.group({
             receiptNumber: [''],
             date: [''],
@@ -46,6 +53,13 @@ export class ReceiptComponent implements OnInit {
         });
         this.addParticular();
     }
+    
+    hotkeys(event) {
+        if (event.keyCode == 65) {
+
+            this.moodal.open();
+        }
+    }
 
     // real date picker active from here
     public myDatePickerOptions: IMyDpOptions = {
@@ -53,16 +67,8 @@ export class ReceiptComponent implements OnInit {
         dateFormat: 'dd.mm.yyyy',
     };
 
-    public items: Array<string> = ['Amsterdam', 'Antwerp', 'Athens', 'Barcelona',
-        'Berlin', 'Birmingham', 'Bradford', 'Bremen', 'Brussels', 'Bucharest',
-        'Budapest', 'Cologne', 'Copenhagen', 'Dortmund', 'Dresden', 'Dublin',
-        'Düsseldorf', 'Essen', 'Frankfurt', 'Genoa', 'Glasgow', 'Gothenburg',
-        'Hamburg', 'Hannover', 'Helsinki', 'Kraków', 'Leeds', 'Leipzig', 'Lisbon',
-        'London', 'Madrid', 'Manchester', 'Marseille', 'Milan', 'Munich', 'Málaga',
-        'Naples', 'Palermo', 'Paris', 'Poznań', 'Prague', 'Riga', 'Rome',
-        'Rotterdam', 'Seville', 'Sheffield', 'Sofia', 'Stockholm', 'Stuttgart',
-        'The Hague', 'Turin', 'Valencia', 'Vienna', 'Vilnius', 'Warsaw', 'Wrocław',
-        'Zagreb', 'Zaragoza', 'Łódź'];
+    public items: Array<string> = [];
+    public accountList: Array<string> = ['Cash'];
 
     public value: any = {};
     public _disabledV: string = '0';
@@ -77,7 +83,7 @@ export class ReceiptComponent implements OnInit {
     }
 
     public selected(value: any): void {
-        console.log('Selected value is: ', value);
+        // console.log('Selected value is: ', value);
     }
 
     public removed(value: any): void {
@@ -153,6 +159,24 @@ export class ReceiptComponent implements OnInit {
         // }
     }
 
+    getLedgerNames() {
+        this.dataCopy = this._receiptService.getLedgerNames().map(
+            (response) => response.json()
+        ).subscribe(
+            (data) => {
+                this.items = this.items.concat(data.ledgerData);
+            })
+    }
+    getAccountNames() {
+        this.dataCopy = this._receiptService.getAccountNames().map(
+            (response) => response.json()
+        ).subscribe(
+            (data) => {
+                this.accountList = this.accountList.concat(data.accountNameList);
+
+            })
+    }
+        
     setSelected(id: number) {
         this.selectedIndex = id;
     }

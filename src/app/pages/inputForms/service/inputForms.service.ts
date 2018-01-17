@@ -22,7 +22,7 @@ export class InputFormService {
         ) {
         this.windowStorage = JSON.parse(window.localStorage.getItem('user'));
         this.token = this.windowStorage.token;
-        console.log(this.windowStorage.token)
+        // console.log(this.windowStorage.token)
     }
     // _BaseUrl = 'http://localhost:3000/uapi/userlist';
 

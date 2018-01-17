@@ -10,6 +10,7 @@ declare var $: any;
 
 @Component({
     selector: 'app-payment',
+    host: { '(window:keydown)': 'hotkeys($event)' },
     templateUrl: './payment.component.html',
     styleUrls: ['./payment.component.scss']
 })
@@ -78,6 +79,14 @@ export class PaymentComponent implements OnInit {
 
         this.modal.onClose.subscribe(this.onClose.bind(this));
     }
+
+    hotkeys(event) {
+        if (event.keyCode == 65) {
+
+            this.modal.open();
+        }
+    }
+    
     onItemSelect(item: any): void {
         switch (item.id) {
             case this.VColPaymentType:
@@ -98,7 +107,20 @@ export class PaymentComponent implements OnInit {
     }
 
     OnItemDeSelect(item: any) {
-        console.log(item);
+        switch (item.id) {
+          case this.VColPaymentType:
+            this.ColPaymentType = false;
+            break;
+          case this.VColPaymentThrough:
+            this.ColPaymentThrough = false;
+            break;
+          case this.VColChequeNO:
+            this.ColChequeNO = false;
+            break;
+          case this.VColAgainst:
+            this.ColAgainst = false;
+            break;
+        }
         console.log(this.selectedItems);
     }
     onSelectAll(items: any) {

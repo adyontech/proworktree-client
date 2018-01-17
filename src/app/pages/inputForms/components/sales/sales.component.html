@@ -33,13 +33,13 @@
                                     <div class="col-md-5">
                                         <div class="form-group">
                                             <label>Invoice Number</label>
-                                            <input type="text" class="form-control" [(ngModel)]="invoiceNumber" name="company_name" placeholder="Company Name" formControlName="invoiceNumber">
+                                            <input type="text" class="form-control" name="company_name" placeholder="Company Name" formControlName="invoiceNumber">
                                         </div>
                                     </div>
                                     <div class="col-md-5 col-lg-offset-1">
                                         <div class="form-group">
                                             <label>Transportation Mode</label>
-                                            <select class="form-control" id="business" name="business" [(ngModel)]="transportationMode" formControlName="transportationMode">
+                                            <select class="form-control" id="business" name="business" formControlName="transportationMode">
                                                 <option value="road" selected> BY ROAD</option>
                                                 <option value="train">BY TRAIN </option>
                                                 <option value="air"> BY AIR</option>
@@ -59,7 +59,7 @@
                                     <div class="col-md-5 col-lg-offset-1">
                                         <div class="form-group">
                                             <label>Vehicle Number</label>
-                                            <input type="text" class="form-control" [(ngModel)]="vehicleNumber" name="company_name" placeholder="Company Name" formControlName="vehicleNumber">
+                                            <input type="text" class="form-control" name="company_name" placeholder="Company Name" formControlName="vehicleNumber">
                                         </div>
                                     </div>
                                 </div>
@@ -69,16 +69,33 @@
                                     <div class="col-md-5">
                                         <div class="form-group">
                                             <label>Party Name</label>
-                                            <ng-select [allowClear]="true" [items]="items" formControlName="partyName" (data)="refreshValue($event)" [(ngModel)]="partyName"
-                                                (selected)="selected($event)" (removed)="removed($event)" (typed)="showNotification('top','left')"
-                                                placeholder="No city selected">
+                                            <ng-select [allowClear]="true" [items]="ledgerList" formControlName="partyName" placeholder="No party selected">
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-lg-offset-1">
+                                        <div class="form-group">
+                                            <label>Sales ledger</label>
+                                            <ng-select [allowClear]="true" [items]="salesList" formControlName="partyName" placeholder="No party selected">
+                                            </ng-select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>Place supplyPlace</label>
+                                            <ng-select [allowClear]="true" [items]="items" formControlName="supplyPlace" (data)="refreshValue($event)" (removed)="removed($event)"
+                                                (typed)="showNotification('top','left')" placeholder="No city selected">
                                             </ng-select>
                                         </div>
                                     </div>
                                     <div class="col-md-5 col-lg-offset-1">
                                         <div class="form-group">
                                             <label>Type of sales</label>
-                                            <select class="form-control" id="business" [(ngModel)]="saleType" name="business" formControlName="saleType">
+                                            <select class="form-control" id="business" name="business" formControlName="saleType">
                                                 <option value="intraState" selected> within state sales (intra State)</option>
                                                 <option value="interState">outside state sales (Inter State) </option>
                                                 <option value="outsideCountry"> exports (outside country)</option>
@@ -90,19 +107,10 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
 
+                                </div>
                                 <div class="row">
                                     <div class="col-md-5">
-                                        <div class="form-group">
-                                            <label>Place supplyPlace</label>
-                                            <ng-select [allowClear]="true" [items]="items" formControlName="supplyPlace" (data)="refreshValue($event)" [(ngModel)]="supplyPlace"
-                                                (selected)="selected($event)" (removed)="removed($event)" (typed)="showNotification('top','left')"
-                                                placeholder="No city selected">
-                                            </ng-select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5 col-lg-offset-2">
                                         <div class="form-group">
                                             <label>Current balance</label>
                                             <p>123456</p>
@@ -146,7 +154,7 @@
                                         </div>
 
                                         <div formArrayName="particularsData">
-                                            <div *ngFor="let address of form.controls.particularsData.controls; let i=index">
+                                            <div *ngFor="let formDum of form.controls.particularsData.controls; let i=index">
                                                 <!-- <span>{{i + 1}}</span> -->
                                                 <div [formGroupName]="i">
                                                     <div class="block">
@@ -154,8 +162,7 @@
                                                             <div class="row">
                                                                 <div class="col-lg-3 text-center">
                                                                     <!-- <input type="text" class="form-control" formControlName="particulars"> -->
-                                                                    <ng-select [allowClear]="true" [items]="items" [(ngModel)]="nameOfProduct" formControlName="nameOfProduct" (data)="refreshValue($event)"
-                                                                        (selected)="selected($event)" (removed)="removed($event)"
+                                                                    <ng-select [allowClear]="true" [items]="prsrList" (data)="refreshValue($event)" (selected)="selectedprsr($event, i)" (removed)="removed($event)"
                                                                         (typed)="showNotification('top','left')" placeholder="No city selected">
                                                                     </ng-select>
                                                                     <!-- <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
@@ -164,35 +171,35 @@
                                                                 </div>
                                                                 <div class="col-lg-1 text-center">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" [(ngModel)]="qty" formControlName="qty">
+                                                                        <input type="text" class="form-control" formControlName="qty">
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="col-lg-1 text-center">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" [(ngModel)]="units" formControlName="units">
+                                                                        <input type="text" class="form-control" formControlName="units">
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="col-lg-1 text-center">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" [(ngModel)]="rate" formControlName="rate">
+                                                                        <input type="text" class="form-control" formControlName="rate">
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="col-lg-1 text-center">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" [(ngModel)]="subAmount" formControlName="subAmount">
+                                                                        <input type="text" class="form-control" formControlName="subAmount" value=" {{(formDum.get('qty').value)*(formDum.get('rate').value) }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-lg-1 text-center">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" [(ngModel)]="gstRate" formControlName="gstRate">
+                                                                        <input type="text" class="form-control" formControlName="gstRate">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-lg-2 text-center">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" [(ngModel)]="amount" placeholder="Amount" formControlName="amount">
+                                                                        <input type="text" class="form-control" placeholder="Amount" formControlName="amount">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-1">
@@ -220,7 +227,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Narration</label>
-                                                    <textarea rows="5" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                                    <textarea rows="5" formControlName="narration" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -236,9 +243,9 @@
 
                                     </div>
                                     <div class="row" style="text-align: center; margin-top: 20px">
-                                        <button type="submit" data-toggle="tab" href="#step1" (click)="setSelected(1)" class="btn btn-info btn-fill ">Back</button>
+                                        <button type="submit" data-toggle="tab" href="#step1" (click)="setSelected(1)" class="btn btn-info btn-fill "> Back</button>
                                         <button type="submit" data-toggle="tab" href="#step3" (click)="setSelected(3)" class="btn btn-info btn-fill ">Save and exit</button>
-                                        <button type="submit" data-toggle="tab" href="#step3" (click)="setSelected(3)" class="btn btn-info btn-fill ">Save and close</button>
+                                        <button type="submit" class="btn btn-info btn-fill">Save and close</button>
 
                                     </div>
                                 </div>
