@@ -249,6 +249,10 @@ export class SalesComponent implements OnInit {
         el.subAmount = el.qty * el.rate;
         el.subAmount = el.subAmount.toString();
       }
+      if (el.amount == "") {
+        el.amount = el.qty * el.rate + el.qty * el.rate * el.gstRtae;
+        el.amount = el.amount.toString();
+      }
     });
     console.log(user);
     this._salesService.createNewEntry(user).subscribe(data => {});
@@ -288,16 +292,16 @@ export class SalesComponent implements OnInit {
   }
 }
 
-interface Customer {
-  particularsData: Address[];
-}
+// interface Customer {
+//   particularsData: Address[];
+// }
 
-interface Address {
-  nameOfProduct: string; // required field
-  qty: string;
-  units: string;
-  rate: string;
-  subAmount: string;
-  gstRate: string;
-  amount: string;
-}
+// interface Address {
+//   nameOfProduct: string; // required field
+//   qty: string;
+//   units: string;
+//   rate: string;
+//   subAmount: string;
+//   gstRate: string;
+//   amount: string;
+// }

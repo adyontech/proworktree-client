@@ -199,7 +199,8 @@
                                                                 </div>
                                                                 <div class="col-lg-2 text-center">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" placeholder="Amount" formControlName="amount">
+                                                                        <input type="text" class="form-control" placeholder="Amount" formControlName="amount" 
+                                                                         value=" {{((formDum.get('qty').value)*(formDum.get('rate').value)) + ((formDum.get('qty').value)*(formDum.get('rate').value)*formDum.get('gstRate').value) }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-1">
@@ -213,12 +214,15 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-lg-offset-3 col-md-3">
+                                            <div class=" col-md-2">
                                                 <a (click)="addParticular()" style="cursor: default">
                                                     Add another field +
                                                 </a>
                                             </div>
-                                            <div class="col-lg-offset-2 col-md-3">
+                                            <div class="col-lg-offset-1 col-md-3">
+                                                <p class="p1">Sub Total Rs. 1325</p>
+                                            </div>
+                                            <div class="col-lg-offset-1 col-md-3">
                                                 <p class="p1">Total Amount: Rs. 1325</p>
                                             </div>
                                         </div>
