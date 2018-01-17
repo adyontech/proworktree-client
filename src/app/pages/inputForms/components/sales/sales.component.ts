@@ -48,13 +48,13 @@ export class SalesComponent implements OnInit {
     this.getLedgerNames();
     this.form = this.fb.group({
       invoiceNumber: [""],
-      LtransportationMode: [""],
       vehicleNumber: [""],
       partyName: [""],
       saleType: [""],
       transportationMode: [""],
       supplyPlace: [""],
       particularsData: this.fb.array([]),
+      narration: [""],
       file: [""],
       date: [null, Validators.required]
     });

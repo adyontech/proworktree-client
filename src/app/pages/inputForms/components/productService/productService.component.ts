@@ -38,6 +38,7 @@ export class ProductServiceComponent implements OnInit {
             hsnaCode: [''],
             qty: [''],
             rate: [''],
+            val:['']
 
         });
     }
@@ -69,7 +70,12 @@ export class ProductServiceComponent implements OnInit {
     onSubmit(user) {
         // var newValue = this.form.get('underGroup').value[0].text;
         // this.form.controls['underGroup'].patchValue(newValue);
-        console.log(user);
+        user.particularsData.map(el => {
+          if (el.subAmount == "") {
+            el.subAmount = el.qty * el.rate;
+            el.subAmount = el.subAmount.toString();
+          }
+        });
         console.log(user);
         this._productServiceService.createNewPrsr(user)
             .subscribe(
