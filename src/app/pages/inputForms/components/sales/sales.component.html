@@ -143,7 +143,7 @@
                                         </div>
 
                                         <div formArrayName="particularsData">
-                                            <div *ngFor="let address of form.controls.particularsData.controls; let i=index">
+                                            <div *ngFor="let formDum of form.controls.particularsData.controls; let i=index">
                                                 <!-- <span>{{i + 1}}</span> -->
                                                 <div [formGroupName]="i">
                                                     <div class="block">
@@ -178,7 +178,7 @@
 
                                                                 <div class="col-lg-1 text-center">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" formControlName="subAmount">
+                                                                        <input type="text" class="form-control" formControlName="subAmount" value=" {{(formDum.get('qty').value)*(formDum.get('rate').value) }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-lg-1 text-center">
@@ -232,9 +232,9 @@
 
                                     </div>
                                     <div class="row" style="text-align: center; margin-top: 20px">
-                                        <button type="submit" data-toggle="tab" href="#step1" (click)="setSelected(1)" class="btn btn-info btn-fill ">Back</button>
+                                        <button type="submit" data-toggle="tab" href="#step1" (click)="setSelected(1)" class="btn btn-info btn-fill "> Back</button>
                                         <button type="submit" data-toggle="tab" href="#step3" (click)="setSelected(3)" class="btn btn-info btn-fill ">Save and exit</button>
-                                        <button type="submit" data-toggle="tab" href="#step3" (click)="setSelected(3)" class="btn btn-info btn-fill ">Save and close</button>
+                                        <button type="submit" class="btn btn-info btn-fill">Save and close</button>
 
                                     </div>
                                 </div>
