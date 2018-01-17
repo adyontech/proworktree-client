@@ -107,7 +107,20 @@ export class PaymentComponent implements OnInit {
     }
 
     OnItemDeSelect(item: any) {
-        console.log(item);
+        switch (item.id) {
+          case this.VColPaymentType:
+            this.ColPaymentType = false;
+            break;
+          case this.VColPaymentThrough:
+            this.ColPaymentThrough = false;
+            break;
+          case this.VColChequeNO:
+            this.ColChequeNO = false;
+            break;
+          case this.VColAgainst:
+            this.ColAgainst = false;
+            break;
+        }
         console.log(this.selectedItems);
     }
     onSelectAll(items: any) {

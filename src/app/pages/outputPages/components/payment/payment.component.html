@@ -90,11 +90,10 @@
                                             <td>{{parti.amount}}</td>
                                         </tr>
                                     </td>
-                                    <td> fd</td>
-                                    <td> fd</td>
-                                    <td> fd</td>
-                                    <td> fd</td>
-                                    <td> fd</td>
+                                    <td [hidden]="!ColPaymentType"> {{list.paymentType}}</td>
+                                    <td [hidden]="!ColPaymentThrough"> {{list.paymentThrough}}</td>
+                                    <td [hidden]="!ColChequeNO"> {{list.chequeNumber}}</td>
+                                    <td [hidden]="!ColAgainst"> {{list.against}}</td>
 
                                 </tr>
                                 <tr>
