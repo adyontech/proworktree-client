@@ -23,14 +23,14 @@ export class JournalEntryService {
         console.log(this.paramCompanyName)
     }
 
-    getData() {
-        this._url = `http://localhost:3000/api/uglist?token=${this.token}&&companyName=${this.paramCompanyName}`;
+    getLedgerUGNames() {
+        this._url = `http://localhost:3000/api/ledgerNameList?token=${this.token}&&companyName=${this.paramCompanyName}`;
         return this.http.get(this._url);
     }
 
     createNewEntry(user: any) {
 
-        this._url = `http://localhost:3000/api/journalentry?token=${this.token}&companyName=${this.paramCompanyName}`;
+        this._url = `http://localhost:3000/api/journalEntry?token=${this.token}&companyName=${this.paramCompanyName}`;
         return this.http.post(this._url, user)
             .map((res: Response) => {
                 this.result = res.json();

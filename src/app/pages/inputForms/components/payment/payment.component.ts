@@ -17,10 +17,10 @@ declare var $: any;
 })
 export class PaymentComponent implements OnInit {
   form: FormGroup;
-  selectedIndex = 1;
+  public selectedIndex = 1;
   public dataCopy: any;
-  paramId: string;
-  totalAmount: number;
+  public paramId: string;
+  public totalAmount: number;
   @ViewChild("moodal") moodal: BsModalComponent;
   open() {
     this.moodal.open();
@@ -140,6 +140,7 @@ export class PaymentComponent implements OnInit {
       for (let i = 0; i < formControls.length; i++) {
         let amount = formControls[i].controls.amount.value;
         if (!isNaN(amount) && amount !== "") this.totalAmount += parseFloat(amount);
+        console.log(this.totalAmount);
       }
   }
 
