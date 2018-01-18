@@ -123,6 +123,7 @@ export class PaymentComponent implements OnInit {
     });
   }
   addParticular() {
+    this.totalSum();
     const control = <FormArray>this.form.controls["particularsData"];
     const addCtrl = this.initParticular();
     control.push(addCtrl);
@@ -130,6 +131,7 @@ export class PaymentComponent implements OnInit {
   removeParticular(i: number) {
     const control = <FormArray>this.form.controls["particularsData"];
     control.removeAt(i);
+    this.totalSum();
   }
 
   totalSum(){
