@@ -176,11 +176,11 @@
                                                                 <div class="col-lg-4">
                                                                     <!-- <input type="text" class="form-control" formControlName="particulars"> -->
                                                                     <ng-select [allowClear]="true" [items]="ledgerList" formControlName="particulars" (data)="refreshValue($event)" (selected)="selected($event)"
-                                                                        (removed)="removed($event)" (click)="showNotification('top','left')"
+                                                                        (removed)="removed($event)" 
                                                                         placeholder="No particulars selected">
                                                                     </ng-select>
                                                                     <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
-                                                                        <span (click)="showNotification('top','left')"> Particulars is required</span>
+                                                                        <span > Particulars is required</span>
                                                                     </small>
                                                                 </div>
                                                                 <div class="col-lg-offset-2 col-lg-5 ">

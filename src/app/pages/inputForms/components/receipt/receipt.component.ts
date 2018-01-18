@@ -63,7 +63,7 @@ export class ReceiptComponent implements OnInit {
     dateFormat: "dd.mm.yyyy"
   };
 
-  public items: Array<string> = [];
+  public ledgerList: Array<string> = [];
   public accountList: Array<string> = ["Cash"];
 
   public value: any = {};
@@ -168,7 +168,8 @@ export class ReceiptComponent implements OnInit {
       .getLedgerNames()
       .map(response => response.json())
       .subscribe(data => {
-        this.items = this.items.concat(data.ledgerData);
+        console.log(data)
+        this.ledgerList = this.ledgerList.concat(data.ledgerData);
       });
   }
   getAccountNames() {
