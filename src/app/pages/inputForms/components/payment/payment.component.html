@@ -62,10 +62,9 @@
                                     <div class="col-md-5 col-lg-offset-4">
                                         <div class="form-group">
                                             <label>account</label>
-                                            <ng-select [allowClear]="true" [items]="accountList" formControlName="account" (data)="refreshValue($event)" (selected)="selected($event)"
-                                                (removed)="removed($event)" (click)="showNotification('top','left')" placeholder="No particulars selected">
+                                            <ng-select [allowClear]="true" [items]="accountList" formControlName="account" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" (click)="showNotification('top','left')" placeholder="No ledger selected">
                                             </ng-select>
-                                           
+
                                         </div>
                                     </div>
                                 </div>
@@ -175,9 +174,7 @@
                                                             <div class="row">
                                                                 <div class="col-lg-4">
                                                                     <!-- <input type="text" class="form-control" formControlName="particulars"> -->
-                                                                    <ng-select [allowClear]="true" [items]="ledgerList" formControlName="particulars" (data)="refreshValue($event)" (selected)="selected($event)"
-                                                                        (removed)="removed($event)" 
-                                                                        placeholder="No particulars selected">
+                                                                    <ng-select [allowClear]="true" [items]="ledgerList" formControlName="particulars" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="No particulars selected">
                                                                     </ng-select>
                                                                     <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
                                                                         <span > Particulars is required</span>

@@ -1,31 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, ViewChild, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
+import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ContraService } from "./service/contra.service";
 import { IMyDpOptions } from 'mydatepicker';
+import { BsModalComponent, BsModalBodyComponent } from "ng2-bs3-modal";
 declare var $: any;
 
 @Component({
     selector: 'app-contra',
+    host: { "(window:keydown)": "hotkeys($event)" },
     templateUrl: './contra.component.html',
     styleUrls: ['./contra.component.scss']
 })
-
-
-// Index
-// declaration
-// constructor
-// ngOnInit
-// datepicker functions
-// select functions
-// Notification
-// particulars functions
-// file handler 
-// tab navigator 
-// submit functions
-
 
 export class ContraComponent implements OnInit {
 
@@ -35,8 +24,10 @@ export class ContraComponent implements OnInit {
     dataCopy: any;
     paramId: string;
     closeResult: string;
-
-
+    public totalAmount: number; @ViewChild("moodal") moodal: BsModalComponent;
+    open() {
+        this.moodal.open();
+    }
 
     constructor(
         private route: ActivatedRoute,
@@ -47,6 +38,8 @@ export class ContraComponent implements OnInit {
 
 
     ngOnInit() {
+        this.getAccountNames();
+        this.getLedgerUGNames();
         this.form = this.fb.group({
             account: [''],
             chequeNumber: [''],
@@ -61,22 +54,21 @@ export class ContraComponent implements OnInit {
         this.addParticular();
     }
 
+    hotkeys(event) {
+        if (event.keyCode == 65 && event.ctrlKey) {
+            this.moodal.open();
+        }
+    }
+
     // real date picker active from here
     public myDatePickerOptions: IMyDpOptions = {
         // other options...
         dateFormat: 'dd.mm.yyyy',
     };
+    
+    public ledgerList: Array<string> = [];
+    public accountList: Array<string> = [];
 
-    public items: Array<string> = ['Amsterdam', 'Antwerp', 'Athens', 'Barcelona',
-        'Berlin', 'Birmingham', 'Bradford', 'Bremen', 'Brussels', 'Bucharest',
-        'Budapest', 'Cologne', 'Copenhagen', 'Dortmund', 'Dresden', 'Dublin',
-        'Düsseldorf', 'Essen', 'Frankfurt', 'Genoa', 'Glasgow', 'Gothenburg',
-        'Hamburg', 'Hannover', 'Helsinki', 'Kraków', 'Leeds', 'Leipzig', 'Lisbon',
-        'London', 'Madrid', 'Manchester', 'Marseille', 'Milan', 'Munich', 'Málaga',
-        'Naples', 'Palermo', 'Paris', 'Poznań', 'Prague', 'Riga', 'Rome',
-        'Rotterdam', 'Seville', 'Sheffield', 'Sofia', 'Stockholm', 'Stuttgart',
-        'The Hague', 'Turin', 'Valencia', 'Vienna', 'Vilnius', 'Warsaw', 'Wrocław',
-        'Zagreb', 'Zaragoza', 'Łódź'];
 
     public value: any = {};
     public _disabledV: string = '0';
@@ -136,13 +128,24 @@ export class ContraComponent implements OnInit {
         })
     }
     addParticular() {
+        this.totalSum();
         const control = <FormArray>this.form.controls['particularsData'];
         const addCtrl = this.initParticular();
         control.push(addCtrl);
     }
     removeParticular(i: number) {
+        this.totalSum();
         const control = <FormArray>this.form.controls['particularsData'];
         control.removeAt(i);
+    }
+    totalSum() {
+        var formControls = this.form.controls.particularsData["controls"];
+        this.totalAmount = 0;
+        for (let i = 0; i < formControls.length; i++) {
+            let amount = formControls[i].controls.amount.value;
+            if (!isNaN(amount) && amount !== "") this.totalAmount += parseFloat(amount);
+            console.log(this.totalAmount);
+        }
     }
 
 
@@ -171,6 +174,24 @@ export class ContraComponent implements OnInit {
         this.selectedIndex = id;
     }
     
+    getLedgerUGNames() {
+        this.dataCopy = this._contraService
+            .getLedgerUGNames()
+            .map(response => response.json())
+            .subscribe(data => {
+                console.log(data)
+                this.ledgerList = this.ledgerList.concat(data.ledgerData);
+            });
+    }
+    getAccountNames() {
+        this.dataCopy = this._contraService
+            .getAccountNames()
+            .map(response => response.json())
+            .subscribe(data => {
+                console.log(data)
+                this.accountList = this.accountList.concat(data.accountNameList);
+            });
+    }
     
     onSubmit(user) {
 
