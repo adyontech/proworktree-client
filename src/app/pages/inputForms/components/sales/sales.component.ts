@@ -34,6 +34,7 @@ export class SalesComponent implements OnInit {
   private prsrData: any;
   public paramId: string;
   public subAmount: number;
+  public totalAmount: number;
   public selectedString: String;
   @ViewChild("moodal") moodal: BsModalComponent;
   open() {
@@ -105,23 +106,16 @@ export class SalesComponent implements OnInit {
   }
 
   public selectedprsr(value: any, indexValue): void {
-    // console.log(value)
-    // console.log(this.prsrData)
     let unitsValue, gstRatevalue;
     this.prsrData.prsr.forEach(element => {
-      // console.log(element.prsrName);
-      
       if (element.prsrName == value.id) {
-        console.log('ko')
         unitsValue = element.units;
         gstRatevalue = element.gstRate;
 
       }
     });
-    // console.log(indexValue)
     let particularsData = <FormArray>this.form.controls["particularsData"];
     let array = particularsData.at(indexValue);
-    // console.log(array)
     array.patchValue({
       units: unitsValue,
       gstRate: gstRatevalue,
@@ -284,4 +278,21 @@ export class SalesComponent implements OnInit {
       // console.log(this.subAmount);
     }
   }
+  totalSum() {
+    var formControls = this.form.controls.subParticularsData["controls"];
+    this.totalAmount = 0;
+    for (let i = 0; i < formControls.length; i++) {
+      let percent = formControls[i].controls.percent.value;
+      if (!isNaN(percent) && percent !== "") this.totalAmount += parseFloat(percent);
+
+    }
+    if (!isNaN(this.subAmount)) this.totalAmount += this.subAmount;
+    console.log(this.totalAmount);
+    this.form.patchValue({
+      grandTotal: this.totalAmount
+    })
+  }
+
+
+
 }
