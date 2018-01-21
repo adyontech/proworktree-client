@@ -70,12 +70,9 @@ export class ProductServiceComponent implements OnInit {
     onSubmit(user) {
         // var newValue = this.form.get('underGroup').value[0].text;
         // this.form.controls['underGroup'].patchValue(newValue);
-        user.particularsData.map(el => {
-          if (el.subAmount == "") {
-            el.subAmount = el.qty * el.rate;
-            el.subAmount = el.subAmount.toString();
-          }
-        });
+        if(user.val == ""){
+            user.val = user.qty* user.rate;
+        }
         console.log(user);
         this._productServiceService.createNewPrsr(user)
             .subscribe(

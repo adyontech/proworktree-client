@@ -25,7 +25,7 @@ const INDEX_ROUTES: Routes = [
                 component: ContraComponent
             },
             {
-                path: 'journalentry',
+                path: 'journal',
                 component: JournalEntryComponent
             },
             {

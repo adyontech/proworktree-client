@@ -87,8 +87,7 @@
                                     <div class="col-md-5">
                                         <div class="form-group">
                                             <label>Place supplyPlace</label>
-                                            <ng-select [allowClear]="true" [items]="items" formControlName="supplyPlace" (data)="refreshValue($event)" (removed)="removed($event)"
-                                                (typed)="showNotification('top','left')" placeholder="No city selected">
+                                            <ng-select [allowClear]="true" [items]="items" formControlName="supplyPlace" (data)="refreshValue($event)" (removed)="removed($event)" (typed)="showNotification('top','left')" placeholder="No city selected">
                                             </ng-select>
                                         </div>
                                     </div>
@@ -162,8 +161,7 @@
                                                             <div class="row">
                                                                 <div class="col-lg-3 text-center">
                                                                     <!-- <input type="text" class="form-control" formControlName="particulars"> -->
-                                                                    <ng-select [allowClear]="true" [items]="prsrList" (data)="refreshValue($event)" (selected)="selectedprsr($event, i)" (removed)="removed($event)"
-                                                                        (typed)="showNotification('top','left')" placeholder="No city selected">
+                                                                    <ng-select [allowClear]="true" [items]="prsrList" (data)="refreshValue($event)" (selected)="selectedprsr($event, i)" (removed)="removed($event)" (typed)="showNotification('top','left')" placeholder="No city selected">
                                                                     </ng-select>
                                                                     <!-- <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
                                                                         <span (click)="showNotification('top','left')"> Particulars is required</span>
@@ -171,7 +169,7 @@
                                                                 </div>
                                                                 <div class="col-lg-1 text-center">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" formControlName="qty">
+                                                                        <input type="text" class="form-control" (input)="totalSum()" formControlName="qty">
                                                                     </div>
                                                                 </div>
 
@@ -183,24 +181,23 @@
 
                                                                 <div class="col-lg-1 text-center">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" formControlName="rate">
+                                                                        <input type="text" class="form-control" (input)="totalSum()" formControlName="rate">
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="col-lg-1 text-center">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" formControlName="subAmount" value=" {{(formDum.get('qty').value)*(formDum.get('rate').value) }}">
+                                                                        <input type="text" class="form-control" (input)="totalSum()" formControlName="subAmount" value=" {{(formDum.get('qty').value)*(formDum.get('rate').value) }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-lg-1 text-center">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" formControlName="gstRate">
+                                                                        <input type="text" class="form-control" (input)="totalSum()" formControlName="gstRate">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-lg-2 text-center">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" placeholder="Amount" formControlName="amount" 
-                                                                         value=" {{((formDum.get('qty').value)*(formDum.get('rate').value)) + ((formDum.get('qty').value)*(formDum.get('rate').value)*formDum.get('gstRate').value) }}">
+                                                                        <input type="text" class="form-control" placeholder="Amount" (input)="totalSum()" formControlName="amount" value=" {{((formDum.get('qty').value)*(formDum.get('rate').value)) + ((formDum.get('qty').value)*(formDum.get('rate').value)*formDum.get('gstRate').value) }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-1">
@@ -219,11 +216,8 @@
                                                     Add another field +
                                                 </a>
                                             </div>
-                                            <div class="col-lg-offset-1 col-md-3">
-                                                <p class="p1">Sub Total Rs. 1325</p>
-                                            </div>
-                                            <div class="col-lg-offset-1 col-md-3">
-                                                <p class="p1">Total Amount: Rs. 1325</p>
+                                            <div class="col-lg-offset-6 col-md-3">
+                                                <p class="p1">Sub Total Rs. {{totalAmount}}</p>
                                             </div>
                                         </div>
 

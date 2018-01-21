@@ -32,6 +32,7 @@ export class SalesComponent implements OnInit {
   public dataCopy2: any;
   private prsrData: any;
   paramId: string;
+  private totalAmount:number;
   @ViewChild("moodal") moodal: BsModalComponent;
   open() {
     this.moodal.open();
@@ -42,7 +43,7 @@ export class SalesComponent implements OnInit {
     public _salesService: SalesService,
     public fb: FormBuilder,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getPrsrList();
@@ -154,11 +155,13 @@ export class SalesComponent implements OnInit {
   }
 
   public selectedprsr(value: any, indexValue): void {
+    // console.log(indexValue)
     let particularsData = <FormArray>this.form.controls["particularsData"];
     let array = particularsData.at(indexValue);
+    // console.log(array)
     array.patchValue({
-      units: this.prsrData.prsr[0].units,
-      gstRate: this.prsrData.prsr[0].gstRate
+      units: this.prsrData.prsr[indexValue].units,
+      gstRate: this.prsrData.prsr[indexValue].gstRate
     });
   }
 
@@ -207,11 +210,13 @@ export class SalesComponent implements OnInit {
     });
   }
   addParticular() {
+    this.totalSum();
     const control = <FormArray>this.form.controls["particularsData"];
     const addCtrl = this.initParticular();
     control.push(addCtrl);
   }
   removeParticular(i: number) {
+    this.totalSum();
     const control = <FormArray>this.form.controls["particularsData"];
     control.removeAt(i);
   }
@@ -241,21 +246,18 @@ export class SalesComponent implements OnInit {
   }
 
   onSubmit(user) {
-    // if (user.subAmount == "") {
-    //   user.subAmount = user.qty * user.rate;
-    // }
     user.particularsData.map(el => {
       if (el.subAmount == "") {
         el.subAmount = el.qty * el.rate;
         el.subAmount = el.subAmount.toString();
       }
       if (el.amount == "") {
-        el.amount = el.qty * el.rate + el.qty * el.rate * el.gstRtae;
+        el.amount = el.qty * el.rate + el.qty * el.rate * el.gstRate;
         el.amount = el.amount.toString();
       }
     });
     console.log(user);
-    this._salesService.createNewEntry(user).subscribe(data => {});
+    this._salesService.createNewEntry(user).subscribe(data => { });
   }
 
   getLedgerUGNames() {
@@ -284,24 +286,30 @@ export class SalesComponent implements OnInit {
       .map(response => response.json())
       .subscribe(data => {
         this.prsrData = data;
-        // console.log(data.prsr)
-        this.prsrList = data.prsr.map(item =>
-          this.prsrList.concat(item.prsrName)
-        )[0];
+        console.log(data.prsr)
+        this.prsrList = data.prsr.map(item =>item.prsrName)
       });
   }
+
+  totalSum() {
+    var formControls = this.form.controls.particularsData["controls"];
+    this.totalAmount = 0;
+    for (let i = 0; i < formControls.length; i++) {
+      let qty = formControls[i].controls.qty.value;
+      let rate = formControls[i].controls.rate.value;
+      let gstRate = formControls[i].controls.gstRate.value;
+      let subAmount = formControls[i].controls.subAmount.value;
+      let amount = formControls[i].controls.amount.value;
+      if (subAmount == "") {
+        subAmount = qty * rate;
+        subAmount = subAmount.toString();
+      }
+      if (amount == "") {
+        amount = qty * rate + qty * rate * gstRate;
+        amount = amount.toString();
+      }
+      if (!isNaN(amount) && amount !== "") this.totalAmount += parseFloat(amount);
+      // console.log(this.totalAmount);
+    }
+  }
 }
-
-// interface Customer {
-//   particularsData: Address[];
-// }
-
-// interface Address {
-//   nameOfProduct: string; // required field
-//   qty: string;
-//   units: string;
-//   rate: string;
-//   subAmount: string;
-//   gstRate: string;
-//   amount: string;
-// }
