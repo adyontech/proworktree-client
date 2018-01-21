@@ -40,7 +40,7 @@ const INDEX_ROUTES: Routes = [
                 component: PaymentComponent
             },
             {
-                path: 'productService',
+                path: 'productservice',
                 component: ProductServiceComponent
             },
             {

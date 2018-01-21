@@ -56,6 +56,7 @@ export class SalesComponent implements OnInit {
       invoiceNumber: [""],
       vehicleNumber: [""],
       partyName: [""],
+      salesLedgerName:[""],
       saleType: [""],
       transportationMode: [""],
       supplyPlace: [""],
@@ -287,10 +288,9 @@ export class SalesComponent implements OnInit {
     for (let i = 0; i < formControls.length; i++) {
       let percent = formControls[i].controls.percent.value;
       if (!isNaN(percent) && percent !== "") this.totalAmount += parseFloat(percent);
-
     }
     if (!isNaN(this.subAmount)) this.totalAmount += this.subAmount;
-    console.log(this.totalAmount);
+    // console.log(this.totalAmount);
     this.form.patchValue({
       grandTotal: this.totalAmount
     })
