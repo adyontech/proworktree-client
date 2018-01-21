@@ -17,6 +17,7 @@ import { ActivatedRoute } from "@angular/router";
 import { SalesService } from "./service/sales.service";
 import { IMyDpOptions } from "mydatepicker";
 import { BsModalComponent, BsModalBodyComponent } from "ng2-bs3-modal";
+import { Console } from "@angular/core/src/console";
 declare var $: any;
 
 @Component({
@@ -31,8 +32,9 @@ export class SalesComponent implements OnInit {
   public dataCopy1: any;
   public dataCopy2: any;
   private prsrData: any;
-  paramId: string;
-  public subAmount:number;
+  public paramId: string;
+  public subAmount: number;
+  public selectedString: String;
   @ViewChild("moodal") moodal: BsModalComponent;
   open() {
     this.moodal.open();
@@ -61,7 +63,7 @@ export class SalesComponent implements OnInit {
       narration: [""],
       file: [""],
       date: [null, Validators.required],
-      grandTotal:[""]
+      grandTotal: [""]
     });
     this.addParticular();
     this.addSubParticular();
@@ -103,13 +105,26 @@ export class SalesComponent implements OnInit {
   }
 
   public selectedprsr(value: any, indexValue): void {
+    // console.log(value)
+    // console.log(this.prsrData)
+    let unitsValue, gstRatevalue;
+    this.prsrData.prsr.forEach(element => {
+      // console.log(element.prsrName);
+      
+      if (element.prsrName == value.id) {
+        console.log('ko')
+        unitsValue = element.units;
+        gstRatevalue = element.gstRate;
+
+      }
+    });
     // console.log(indexValue)
     let particularsData = <FormArray>this.form.controls["particularsData"];
     let array = particularsData.at(indexValue);
     // console.log(array)
     array.patchValue({
-      units: this.prsrData.prsr[indexValue].units,
-      gstRate: this.prsrData.prsr[indexValue].gstRate,
+      units: unitsValue,
+      gstRate: gstRatevalue,
     });
   }
 
@@ -166,7 +181,6 @@ export class SalesComponent implements OnInit {
     const cont = <FormArray>this.form.controls["subParticularsData"];
     const addCtrl = this.initSubParticular();
     cont.push(addCtrl);
-    console.log(cont)
   }
   removeParticular(i: number) {
     this.subSum();
@@ -244,8 +258,8 @@ export class SalesComponent implements OnInit {
       .map(response => response.json())
       .subscribe(data => {
         this.prsrData = data;
-        console.log(data.prsr)
-        this.prsrList = data.prsr.map(item =>item.prsrName)
+        // console.log(data.prsr)
+        this.prsrList = data.prsr.map(item => item.prsrName)
       });
   }
 
