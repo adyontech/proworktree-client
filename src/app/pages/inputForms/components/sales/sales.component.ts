@@ -32,7 +32,7 @@ export class SalesComponent implements OnInit {
   public dataCopy2: any;
   private prsrData: any;
   paramId: string;
-  private totalAmount:number;
+  public subAmount:number;
   @ViewChild("moodal") moodal: BsModalComponent;
   open() {
     this.moodal.open();
@@ -210,13 +210,13 @@ export class SalesComponent implements OnInit {
     });
   }
   addParticular() {
-    this.totalSum();
+    this.subSum();
     const control = <FormArray>this.form.controls["particularsData"];
     const addCtrl = this.initParticular();
     control.push(addCtrl);
   }
   removeParticular(i: number) {
-    this.totalSum();
+    this.subSum();
     const control = <FormArray>this.form.controls["particularsData"];
     control.removeAt(i);
   }
@@ -291,9 +291,9 @@ export class SalesComponent implements OnInit {
       });
   }
 
-  totalSum() {
+  subSum() {
     var formControls = this.form.controls.particularsData["controls"];
-    this.totalAmount = 0;
+    this.subAmount = 0;
     for (let i = 0; i < formControls.length; i++) {
       let qty = formControls[i].controls.qty.value;
       let rate = formControls[i].controls.rate.value;
@@ -308,8 +308,8 @@ export class SalesComponent implements OnInit {
         amount = qty * rate + qty * rate * gstRate;
         amount = amount.toString();
       }
-      if (!isNaN(amount) && amount !== "") this.totalAmount += parseFloat(amount);
-      // console.log(this.totalAmount);
+      if (!isNaN(amount) && amount !== "") this.subAmount += parseFloat(amount);
+      // console.log(this.subAmount);
     }
   }
 }
