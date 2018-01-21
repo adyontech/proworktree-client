@@ -64,7 +64,7 @@ export class SalesComponent implements OnInit {
       narration: [""],
       file: [""],
       date: [null, Validators.required],
-      grandTotal: [""]
+      grandTotal: ["0"]
     });
     this.addParticular();
     this.addSubParticular();
@@ -279,6 +279,9 @@ export class SalesComponent implements OnInit {
     }
   }
   totalSum() {
+    this.form.patchValue({
+      grandTotal: 0
+    })
     var formControls = this.form.controls.subParticularsData["controls"];
     this.totalAmount = 0;
     for (let i = 0; i < formControls.length; i++) {
