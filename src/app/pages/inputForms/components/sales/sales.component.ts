@@ -57,11 +57,14 @@ export class SalesComponent implements OnInit {
       transportationMode: [""],
       supplyPlace: [""],
       particularsData: this.fb.array([]),
+      subParticularsData: this.fb.array([]),
       narration: [""],
       file: [""],
-      date: [null, Validators.required]
+      date: [null, Validators.required],
+      grandTotal:[""]
     });
     this.addParticular();
+    this.addSubParticular();
   }
 
   hotkeys(event) {
@@ -81,61 +84,6 @@ export class SalesComponent implements OnInit {
   public prsrList: Array<string> = [];
 
   public items: Array<string> = [
-    "Amsterdam",
-    "Antwerp",
-    "Athens",
-    "Barcelona",
-    "Berlin",
-    "Birmingham",
-    "Bradford",
-    "Bremen",
-    "Brussels",
-    "Bucharest",
-    "Budapest",
-    "Cologne",
-    "Copenhagen",
-    "Dortmund",
-    "Dresden",
-    "Dublin",
-    "Düsseldorf",
-    "Essen",
-    "Frankfurt",
-    "Genoa",
-    "Glasgow",
-    "Gothenburg",
-    "Hamburg",
-    "Hannover",
-    "Helsinki",
-    "Kraków",
-    "Leeds",
-    "Leipzig",
-    "Lisbon",
-    "London",
-    "Madrid",
-    "Manchester",
-    "Marseille",
-    "Milan",
-    "Munich",
-    "Málaga",
-    "Naples",
-    "Palermo",
-    "Paris",
-    "Poznań",
-    "Prague",
-    "Riga",
-    "Rome",
-    "Rotterdam",
-    "Seville",
-    "Sheffield",
-    "Sofia",
-    "Stockholm",
-    "Stuttgart",
-    "The Hague",
-    "Turin",
-    "Valencia",
-    "Vienna",
-    "Vilnius",
-    "Warsaw",
     "Wrocław",
     "Zagreb",
     "Zaragoza",
@@ -161,17 +109,9 @@ export class SalesComponent implements OnInit {
     // console.log(array)
     array.patchValue({
       units: this.prsrData.prsr[indexValue].units,
-      gstRate: this.prsrData.prsr[indexValue].gstRate
+      gstRate: this.prsrData.prsr[indexValue].gstRate,
     });
   }
-
-  public removed(value: any): void {
-    console.log("Removed value is: ", value);
-  }
-
-  // public typed(value: any): void {
-  //     console.log('New search input: ', value);
-  // }
 
   public refreshValue(value: any): void {
     this.value = value;
@@ -209,16 +149,34 @@ export class SalesComponent implements OnInit {
       amount: [""]
     });
   }
+  initSubParticular() {
+    return this.fb.group({
+      additionalService: [""],
+      percent: [""],
+    });
+  }
   addParticular() {
     this.subSum();
     const control = <FormArray>this.form.controls["particularsData"];
     const addCtrl = this.initParticular();
     control.push(addCtrl);
   }
+  addSubParticular() {
+    this.subSum();
+    const cont = <FormArray>this.form.controls["subParticularsData"];
+    const addCtrl = this.initSubParticular();
+    cont.push(addCtrl);
+    console.log(cont)
+  }
   removeParticular(i: number) {
     this.subSum();
     const control = <FormArray>this.form.controls["particularsData"];
     control.removeAt(i);
+  }
+  removeSubParticular(i: number) {
+    this.subSum();
+    const cont = <FormArray>this.form.controls["subParticularsData"];
+    cont.removeAt(i);
   }
 
   // file upload code here
