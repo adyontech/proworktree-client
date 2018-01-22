@@ -33,7 +33,7 @@ export class SalesComponent implements OnInit {
   public dataCopy2: any;
   private prsrData: any;
   public paramId: string;
-  public subAmount: number;
+  public subTotal: number;
   public totalAmount: number;
   public selectedString: String;
   @ViewChild("moodal") moodal: BsModalComponent;
@@ -260,7 +260,7 @@ export class SalesComponent implements OnInit {
 
   subSum() {
     var formControls = this.form.controls.particularsData["controls"];
-    this.subAmount = 0;
+    this.subTotal = 0;
     for (let i = 0; i < formControls.length; i++) {
       let qty = formControls[i].controls.qty.value;
       let rate = formControls[i].controls.rate.value;
@@ -275,7 +275,7 @@ export class SalesComponent implements OnInit {
         amount = qty * rate + qty * rate * gstRate;
         amount = amount.toString();
       }
-      if (!isNaN(amount) && amount !== "") this.subAmount += parseFloat(amount);
+      if (!isNaN(amount) && amount !== "") this.subTotal += parseFloat(amount);
       // console.log(this.subAmount);
     }
   }
@@ -289,7 +289,7 @@ export class SalesComponent implements OnInit {
       let percent = formControls[i].controls.percent.value;
       if (!isNaN(percent) && percent !== "") this.totalAmount += parseFloat(percent);
     }
-    if (!isNaN(this.subAmount)) this.totalAmount += this.subAmount;
+    if (!isNaN(this.subTotal)) this.totalAmount += this.subTotal;
     // console.log(this.totalAmount);
     this.form.patchValue({
       grandTotal: this.totalAmount

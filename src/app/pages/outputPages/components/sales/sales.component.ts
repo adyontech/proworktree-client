@@ -31,14 +31,14 @@ export class SalesComponent implements OnInit {
     VColSaleType: string = "ColSaleType";
     VColSupplyPlace: string = "ColSupplyPlace";
     VColVehicleNo: string = "ColVehicleNo";
-    VColGstRate: string = "ColGstRate";
+    // VColGstRate: string = "ColGstRate";
 
     @Input()
     public ColTransportationMode: Boolean = false;
     public ColSaleType: Boolean = false;
     public ColSupplyPlace: Boolean = false;
     public ColVehicleNo: Boolean = false;
-    public ColGstRate: Boolean = false;
+    // public ColGstRate: Boolean = false;
 
     incomingData: Array<string>;
     form: FormGroup;
@@ -64,7 +64,7 @@ export class SalesComponent implements OnInit {
             { "id": "ColSaleType", "itemName": "Sale type" },
             { "id": "ColSupplyPlace", "itemName": "Supply Place" },
             { "id": "ColVehicleNo", "itemName": "Vehicle No" },
-            { "id": "ColGstRate", "itemName": "Gst rate" },
+            // { "id": "ColGstRate", "itemName": "Gst rate" },
         ];
 
         this.dropdownSettings = {
@@ -101,9 +101,9 @@ export class SalesComponent implements OnInit {
             case this.VColVehicleNo:
                 this.ColVehicleNo = true;
                 break;
-            case this.VColGstRate:
-                this.ColGstRate = true;
-                break;
+            // case this.VColGstRate:
+            //     this.ColGstRate = true;
+            //     break;
 
         }
         console.log(this.selectedItems);
@@ -123,9 +123,9 @@ export class SalesComponent implements OnInit {
             case this.VColVehicleNo:
                 this.ColVehicleNo = false;
                 break;
-            case this.VColGstRate:
-                this.ColGstRate = false;
-                break;
+            // case this.VColGstRate:
+            //     this.ColGstRate = false;
+            //     break;
         }
         console.log(this.selectedItems);
     }
@@ -135,7 +135,7 @@ export class SalesComponent implements OnInit {
         this.ColSaleType = true;
         this.ColSupplyPlace = true;
         this.ColVehicleNo = true;
-        this.ColGstRate = true;
+        // this.ColGstRate = true;
     }
     onDeSelectAll(items: any) {
         // console.log(items);
@@ -143,7 +143,7 @@ export class SalesComponent implements OnInit {
         this.ColSaleType = false;
         this.ColSupplyPlace = false;
         this.ColVehicleNo = false;
-        this.ColGstRate = false;
+        // this.ColGstRate = false;
     }
     onClose() {
         console.log('Modal Closed');

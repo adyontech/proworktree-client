@@ -50,7 +50,7 @@
 
                                     <th class="text-center"> Invoice No.</th>
 
-                                    <th class="text-center"> Part Name.</th>
+                                    <th class="text-center"> Party Name.</th>
 
                                     <th class="text-center"> Sub Amount</th>
 
@@ -66,29 +66,29 @@
 
                                     <th class="text-center" [hidden]="!ColVehicleNo">Vehicle No </th>
 
-                                    <th class="text-center" [hidden]="!ColGstRate">Gst Rate </th>
+                                    <!-- <th class="text-center" [hidden]="!ColGstRate">Gst Rate </th> -->
 
                                 </tr>
 
                             </thead>
                             <tbody>
                                 <tr *ngFor="let list of incomingData">
-                                    <td class="opt">
+                                    <td class="text-center opt">
                                         <button type="button" class="btn btn-simple" (click)="editData(list._id); modal.open();">
                                             <i class="fa fa-bars"></i>
                                         </button>
                                     </td>
-                                    <td> {{list.date | date}}</td>
-                                    <td> {{list.invoiceNumber}}</td>
-                                    <td> {{list.partyName}}</td>
-                                    <td> {{list.invoiceNumber}}</td>
-                                    <td> {{list.invoiceNumber}}</td>
-                                    <td> {{list.invoiceNumber}}</td>
-                                    <td [hidden]="!ColTransportationMode"> {{list.paymentType}}</td>
-                                    <td [hidden]="!ColSaleType"> {{list.paymentThrough}}</td>
-                                    <td [hidden]="!ColSupplyPlace"> {{list.supplyPlace}}</td>
-                                    <td [hidden]="!ColVehicleNo"> {{list.vehicleNumber}}</td>
-                                    <td [hidden]="!ColGstRate"> {{list.against}}</td>
+                                    <td class="text-center"> {{list.date | date}}</td>
+                                    <td class="text-center"> {{list.invoiceNumber}}</td>
+                                    <td class="text-center"> {{list.partyName}}</td>
+                                    <td class="text-center"> {{list.totalSubAmount}}</td>
+                                    <td class="text-center"> {{list.totalGstAmount}}</td>
+                                    <td class="text-center"> {{list.totalGstAmount + list.totalSubAmount}}</td>
+                                    <td class="text-center" [hidden]="!ColTransportationMode"> {{list.transportationMode}}</td>
+                                    <td class="text-center" [hidden]="!ColSaleType"> {{list.saleType}}</td>
+                                    <td class="text-center" [hidden]="!ColSupplyPlace"> {{list.supplyPlace}}</td>
+                                    <td class="text-center" [hidden]="!ColVehicleNo"> {{list.vehicleNumber}}</td>
+                                    <!-- <td [hidden]="!ColGstRate"> {{list.against}}</td> -->
 
                                 </tr>
                                 <tr>
