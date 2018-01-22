@@ -10,8 +10,9 @@ import 'rxjs/'
 export class LoginService {
   result: any;
   loggedIn: Boolean;
-  _URL = '${this._globalVariableService.baseServerUrl}/auth/login';
-  // _URL = 'https://pwt-server.herokuapp.com/auth/register';
+  _URL = `${this._globalVariableService.baseServerUrl}/auth/login`;
+  
+  
 
   constructor(private http: Http,
     private _userStateService: UserStateService,
