@@ -53,7 +53,7 @@
                                                     <div class="row col-lg-offset-1">
                                                         <div class="col-lg-2 ">
                                                             <div class="form-group">
-                                                                <select class="form-control" formControlName="drcr">
+                                                                <select class="form-control" formControlName="drcr" (click)="resetDrCr($event, i)">
                                                                     <option value="dr" selected>DR</option>
                                                                     <option value="cr">CR</option>
                                                                 </select>

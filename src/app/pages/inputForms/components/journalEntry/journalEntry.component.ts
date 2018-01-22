@@ -166,6 +166,15 @@ export class JournalEntryComponent implements OnInit {
     // }
   }
 
+  public resetDrCr(value: any, indexValue): void {
+    let particularsData = <FormArray>this.form.controls["particularsData"];
+    let array = particularsData.at(indexValue);
+    array.patchValue({
+      debitAmount: '',
+      creditAmount: '',
+    });
+  }
+
   totalSum() {
     var formControls = this.form.controls.particularsData['controls'];
     this.debitSum = 0;
