@@ -160,8 +160,8 @@ export class SalesComponent implements OnInit {
             (response) => response.json()
         ).subscribe(
             (data) => {
-                console.log(data.paymentData)
-                this.incomingData = data.paymentData;
+                this.incomingData = data.salesData;
+                console.log(this.incomingData)
             })
     }
 

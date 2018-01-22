@@ -45,7 +45,7 @@
                             <thead>
                                 <tr>
 
-
+                                    <th class="text-center"> </th>
                                     <th class="text-center">Date </th>
 
                                     <th class="text-center"> Invoice No.</th>
@@ -79,24 +79,16 @@
                                         </button>
                                     </td>
                                     <td> {{list.date | date}}</td>
-                                    <td> {{list.paymentNumber}}</td>
-                                    <td>
-                                        <tr *ngFor="let parti of list.particularsData">
-                                            <td>{{parti.particulars[0].id}}</td>
-
-                                        </tr>
-
-                                    </td>
-                                    <td>
-                                        <tr *ngFor="let parti of list.particularsData">
-
-                                            <td>{{parti.amount}}</td>
-                                        </tr>
-                                    </td>
-                                    <td [hidden]="!ColPaymentType"> {{list.paymentType}}</td>
-                                    <td [hidden]="!ColPaymentThrough"> {{list.paymentThrough}}</td>
-                                    <td [hidden]="!ColChequeNO"> {{list.chequeNumber}}</td>
-                                    <td [hidden]="!ColAgainst"> {{list.against}}</td>
+                                    <td> {{list.invoiceNumber}}</td>
+                                    <td> {{list.partyName}}</td>
+                                    <td> {{list.invoiceNumber}}</td>
+                                    <td> {{list.invoiceNumber}}</td>
+                                    <td> {{list.invoiceNumber}}</td>
+                                    <td [hidden]="!ColTransportationMode"> {{list.paymentType}}</td>
+                                    <td [hidden]="!ColSaleType"> {{list.paymentThrough}}</td>
+                                    <td [hidden]="!ColSupplyPlace"> {{list.supplyPlace}}</td>
+                                    <td [hidden]="!ColVehicleNo"> {{list.vehicleNumber}}</td>
+                                    <td [hidden]="!ColGstRate"> {{list.against}}</td>
 
                                 </tr>
                                 <tr>
