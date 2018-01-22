@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { ActivatedRoute } from "@angular/router";
 
 import { InputFormService } from "./../../../service/inputForms.service";
+import { GlobalVariableService } from "./../../../../../sharedService/globalVariables/globalVariable.service";
 
 import "rxjs/add/operator/map";
 import "rxjs/";
@@ -19,7 +20,8 @@ export class SalesService {
     private http: Http,
     private router: Router,
     private route: ActivatedRoute,
-    public _inputFormService: InputFormService
+    public _inputFormService: InputFormService,
+    public _globalVariableService: GlobalVariableService
   ) {
     this.windowStorage = JSON.parse(window.localStorage.getItem("user"));
     this.token = this.windowStorage.token;
@@ -27,7 +29,7 @@ export class SalesService {
     console.log(this.paramCompanyName);
   }
   createNewEntry(user: any) {
-    this._url = `http://localhost:3000/api/sales?token=${
+    this._url = `${this._globalVariableService.baseServerUrl}/api/sales?token=${
       this.token
     }&companyName=${this.paramCompanyName}`;
     return this.http.post(this._url, user).map((res: Response) => {
@@ -36,18 +38,18 @@ export class SalesService {
     });
   }
   getLedgerUGNames() {
-    this._url = `http://localhost:3000/api/ledgerNameList?token=${
+    this._url = `${this._globalVariableService.baseServerUrl}/api/ledgerNameList?token=${
       this.token
     }&&companyName=${this.paramCompanyName}`;
     return this.http.get(this._url);
   }
   getSalesUGNames() {
-    this._url = `http://localhost:3000/api/salesLedgerList?token=${this.token}&&companyName=${this.paramCompanyName}`;
+    this._url = `${this._globalVariableService.baseServerUrl}/api/salesLedgerList?token=${this.token}&&companyName=${this.paramCompanyName}`;
     return this.http.get(this._url);
   }
 
   getprsrList() {
-    this._url = `http://localhost:3000/api/prsrList?token=${
+    this._url = `${this._globalVariableService.baseServerUrl}/api/prsrList?token=${
       this.token
     }&&companyName=${this.paramCompanyName}`;
     return this.http.get(this._url);

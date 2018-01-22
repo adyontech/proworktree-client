@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 import { OutputPagesService } from "./../../../service/outputPages.service";
+import { GlobalVariableService } from "./../../../../../sharedService/globalVariables/globalVariable.service";
 
 import 'rxjs/add/operator/map';
 import 'rxjs/'
@@ -16,8 +17,14 @@ export class ContraService {
     windowStorage: any;
     _url: string;
     contentId: string;
-    
-    constructor(private http: Http, private router: Router, private route: ActivatedRoute, public _inputFormService: OutputPagesService) {
+
+    constructor(private http: Http,
+        private router: Router,
+        private route: ActivatedRoute,
+        public _inputFormService: OutputPagesService,
+        public _globalVariableService: GlobalVariableService
+
+    ) {
         this.windowStorage = JSON.parse(window.localStorage.getItem('user'));
         this.token = this.windowStorage.token;
         this.paramCompanyName = this._inputFormService.paramCompanyName;
@@ -25,11 +32,11 @@ export class ContraService {
     }
 
     getIncomingData() {
-        this._url = `http://localhost:3000/api/contraStored?token=${this.token}&&companyName=${this.paramCompanyName}`;
+        this._url = `${this._globalVariableService.baseServerUrl}/api/contraStored?token=${this.token}&&companyName=${this.paramCompanyName}`;
         return this.http.get(this._url);
     }
 
 }
 
-  
+
 

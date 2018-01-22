@@ -7,17 +7,18 @@ import 'rxjs/'
 @Injectable()
 
 export class ActivationService {
-    
+
     // _baseURL = 'http://localhos:3000/';
     // _URL = this._baseURL + 'auth/activation';
-    _URL = `${this._globalVariableService.baseServerUrl} + auth/activation`;
-    constructor(private _http: Http, public _globalVariableService: GlobalVariableService) {
+    _URL = `${this._globalVariableService.baseServerUrl}/auth/activation`;
+    constructor(private _http: Http,
+        public _globalVariableService: GlobalVariableService) {
 
     }
 
-    authentication(token: string){
+    authentication(token: string) {
         return this._http.post(this._URL, token)
-            .map((res: Response)=> res.json());
+            .map((res: Response) => res.json());
     }
 
 }

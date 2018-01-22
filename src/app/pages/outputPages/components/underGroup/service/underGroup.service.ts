@@ -4,29 +4,36 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 import { OutputPagesService } from "./../../../service/outputPages.service";
+import { GlobalVariableService } from "./../../../../../sharedService/globalVariables/globalVariable.service";
 
 import 'rxjs/add/operator/map';
 import 'rxjs/'
 @Injectable()
 export class UnderGroupsService {
-    result: {}; 
+    result: {};
     token: string;
     windowStorage: any;
     _url: string;
     paramCompanyName: string;
 
 
-    constructor(private http: Http, private router: Router, private route: ActivatedRoute, public _inputFormService: OutputPagesService) {
+    constructor(private http: Http,
+        private router: Router,
+        private route: ActivatedRoute,
+        public _inputFormService: OutputPagesService,
+        public _globalVariableService: GlobalVariableService
+
+    ) {
         this.windowStorage = JSON.parse(window.localStorage.getItem('user'));
         this.token = this.windowStorage.token;
         console.log(this.windowStorage)
         this.paramCompanyName = this._inputFormService.paramCompanyName;
         console.log(this.paramCompanyName)
     }
-    
+
     createNewUnderGroup(user: any) {
 
-        this._url = `http://localhost:3000/api/uglist?token=${this.token}&companyName=${this.paramCompanyName}`;
+        this._url = `${this._globalVariableService.baseServerUrl}/api/uglist?token=${this.token}&companyName=${this.paramCompanyName}`;
         return this.http.post(this._url, user)
             .map((res: Response) => {
                 this.result = res.json();

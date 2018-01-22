@@ -10,7 +10,7 @@ export class SignupService {
 
     
     // _URL = 'http://localhos:3000/auth/register';
-    _URL = `${this._globalVariableService.baseServerUrl} + auth/register`;
+    _URL = `${this._globalVariableService.baseServerUrl}/auth/register`;
 
     constructor(private http: Http, public _globalVariableService: GlobalVariableService) {
     }
