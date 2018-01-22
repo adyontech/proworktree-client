@@ -24,7 +24,8 @@ export class ContraComponent implements OnInit {
     dataCopy: any;
     paramId: string;
     closeResult: string;
-    public totalAmount: number; @ViewChild("moodal") moodal: BsModalComponent;
+    public totalAmount: number;
+    @ViewChild("moodal") moodal: BsModalComponent;
     open() {
         this.moodal.open();
     }
@@ -144,7 +145,7 @@ export class ContraComponent implements OnInit {
         for (let i = 0; i < formControls.length; i++) {
             let amount = formControls[i].controls.amount.value;
             if (!isNaN(amount) && amount !== "") this.totalAmount += parseFloat(amount);
-            console.log(this.totalAmount);
+            // console.log(this.totalAmount);
         }
     }
 
