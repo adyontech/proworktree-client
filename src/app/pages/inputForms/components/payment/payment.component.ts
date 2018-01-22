@@ -16,7 +16,7 @@ declare var $: any;
   styleUrls: ["./payment.component.scss"]
 })
 export class PaymentComponent implements OnInit {
-  form: FormGroup;
+  public form: FormGroup;
   public selectedIndex = 1;
   public dataCopy: any;
   public paramId: string;

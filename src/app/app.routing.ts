@@ -43,7 +43,7 @@ const routes: Routes = [
     loadChildren: './pages/outputPages/outputPages.module#OutputPagesModule',
     // canActivate: [LoggedInGuard] 
   },
-  { path: '', redirectTo: 'gateway', pathMatch: 'full' }
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({
