@@ -8,8 +8,6 @@ import 'rxjs/'
 
 export class ActivationService {
 
-    // _baseURL = 'http://localhos:3000/';
-    // _URL = this._baseURL + 'auth/activation';
     _URL = `${this._globalVariableService.baseServerUrl}/auth/activation`;
     constructor(private _http: Http,
         public _globalVariableService: GlobalVariableService) {

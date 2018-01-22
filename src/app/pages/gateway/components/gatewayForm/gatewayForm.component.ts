@@ -103,7 +103,7 @@ export class GatewayFormComponent implements OnInit {
     //       this._AlertService.successAlert('Redirecting to company List page')
     //       setTimeout(() => {
     //         this.router.navigate(['/gateway/companylist'])
-    //       }, 3000)
+    //       }, 4000)
     //     }
     //   })
 
