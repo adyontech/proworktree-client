@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { DashboardService } from "./service/dashboard.service";
-
 import { ActivatedRoute } from '@angular/router';
 import { PurchaseService } from "./service/purchase.service";
 @Component({

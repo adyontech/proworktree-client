@@ -56,7 +56,7 @@ export class ProductServiceComponent implements OnInit {
         var color = Math.floor((Math.random() * 4) + 1);
         $.notify({
             icon: "pe-7s-gift",
-            message: "Welcome to <b>ProWorkTree Dashboard</b> ."
+            message: "Welcome to <b>ProWorkTree </b> ."
         }, {
                 type: type[color],
                 timer: 1000,

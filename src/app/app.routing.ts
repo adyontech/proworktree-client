@@ -34,11 +34,6 @@ const routes: Routes = [
     // canActivate: [LoggedInGuard] 
   },
   {
-    path: 'dashboard/:id',
-    loadChildren: './pages/dashboard/dashboard.module#DashboardModule',
-    // canActivate: [LoggedInGuard] 
-  },
-  {
     path: 'forms/:id',
     loadChildren: './pages/inputForms/inputForms.module#InputFormsModule',
     // canActivate: [LoggedInGuard] 

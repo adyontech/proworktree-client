@@ -105,7 +105,7 @@ export class JournalEntryComponent implements OnInit {
       {
         icon: 'pe-7s-gift',
         message:
-          'Welcome to <b>ProWorkTree Dashboard</b> - a beautiful freebie for every web developer.',
+          'Welcome to <b>ProWorkTree </b> - a beautiful freebie for every web developer.',
       },
       {
         type: type[color],
