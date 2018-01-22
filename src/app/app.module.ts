@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 
 
 import { UserStateService } from "./sharedService/userDetails/user-state.service";
+import { GlobalVariableService } from "./sharedService/globalVariables/globalVariable.service";
 
 import { LoginModule } from "./pages/login/login.module";
 import { ActivationModule } from "./pages/activation/activation.module";
@@ -38,10 +39,10 @@ import { UiSwitchModule } from '../../node_modules/angular2-ui-switch/src';
     AppRoutingModule,
     LoginModule,
     ActivationModule,
-    BsModalModule, 
+    BsModalModule,
     UiSwitchModule
   ],
-  providers: [UserStateService],
+  providers: [UserStateService, GlobalVariableService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
