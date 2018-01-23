@@ -62,10 +62,9 @@
                                     <div class="col-md-5 col-lg-offset-4">
                                         <div class="form-group">
                                             <label>account</label>
-                                            <ng-select [allowClear]="true" [items]="accountList" formControlName="account" (data)="refreshValue($event)" (selected)="selected($event)"
-                                                (removed)="removed($event)" (click)="showNotification('top','left')" placeholder="No particulars selected">
+                                            <ng-select [allowClear]="true" [items]="accountList" formControlName="account" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" (click)="showNotification('top','left')" placeholder="No ledger selected">
                                             </ng-select>
-                                           
+
                                         </div>
                                     </div>
                                 </div>
@@ -175,16 +174,14 @@
                                                             <div class="row">
                                                                 <div class="col-lg-4">
                                                                     <!-- <input type="text" class="form-control" formControlName="particulars"> -->
-                                                                    <ng-select [allowClear]="true" [items]="ledgerList" formControlName="particulars" (data)="refreshValue($event)" (selected)="selected($event)"
-                                                                        (removed)="removed($event)" (click)="showNotification('top','left')"
-                                                                        placeholder="No particulars selected">
+                                                                    <ng-select [allowClear]="true" [items]="ledgerList" formControlName="particulars" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="No particulars selected">
                                                                     </ng-select>
                                                                     <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
-                                                                        <span (click)="showNotification('top','left')"> Particulars is required</span>
+                                                                        <span > Particulars is required</span>
                                                                     </small>
                                                                 </div>
                                                                 <div class="col-lg-offset-2 col-lg-5 ">
-                                                                    <input type="text" required class="form-control" formControlName="amount">
+                                                                    <input type="text" required class="form-control" formControlName="amount" (input)="totalSum()">
                                                                     <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
                                                                         Amount is required
                                                                     </small>
@@ -208,8 +205,8 @@
                                             Add another field +
                                         </a>
                                     </div>
-                                    <div class="col-lg-offset-2 col-md-3">
-                                        <p class="p1">Total Amount: Rs. 1325</p>
+                                    <div class="col-lg-offset-2 col-md-2">
+                                        <p class="p1">Total Amount: Rs. {{totalAmount}}</p>
                                     </div>
                                 </div>
 

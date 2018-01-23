@@ -1,137 +1,96 @@
-<form id="form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)" novalidate>
-    <div class="main-content" style="scroll-behavior: hidden">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <!-- heading here -->
-                        <div class="header">
-                            <h2 class="title text-center">Journal Entry</h2>
+<bs-modal #modal [backdrop]="false" [keyboard]="false">
+    <!-- <bs-modal-header>
+    </bs-modal-header> -->
+    <bs-modal-body>
+        <app-popPayment [contentId]="contentId"></app-popPayment>
+    </bs-modal-body>
+    <bs-modal-footer [showDefaultButtons]="true"></bs-modal-footer>
+</bs-modal>
+<div class="main-content" style="scroll-behavior: hidden">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <!-- heading here -->
+                    <div class="header">
+                        <h2 class="title text-center">Journal</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 title text-center ">
+                            <p> Select Period:</p>
                         </div>
-                        <div class="content tab-content" style="width: 70%; margin-left: 10%;">
-                            <div class="row">
-                                <div class="col-md-5 col-lg-offset-4">
-                                    <div class="form-group">
-                                        <label>Journal Number</label>
-                                        <input type="text" class="form-control" formControlName="journalNumber">
-                                    </div>
-                                </div>
-                            </div>
 
-
-                            <div class="row">
-                                <div class="col-md-5 col-lg-offset-4">
-                                    <label>Date</label>
-                                    <my-date-picker name="ydate" [options]="myDatePickerOptions" formControlName="date"></my-date-picker>
-                                </div>
-                            </div>
-                            <br>
-
-
-                            <div class="row">
-                                <div class="row col-lg-offset-1">
-                                    <div class="col-lg-2 text-center">
-                                        Dr/Cr
-                                    </div>
-                                    <div class="col-lg-4 text-center">
-                                        Particulars
-                                    </div>
-                                    <div class="col-lg-3 text-center">
-                                        Debit Amount
-                                    </div>
-                                    <div class="col-lg-3 text-center">
-                                        Credit Amount
-                                    </div>
-                                </div>
-
-                                <div formArrayName="particularsData">
-                                    <div *ngFor="let address of form.controls.particularsData.controls; let i=index">
-                                        <!-- <span>{{i + 1}}</span> -->
-                                        <div [formGroupName]="i">
-                                            <div class="block">
-                                                <div class="content ">
-                                                    <div class="row col-lg-offset-1">
-                                                        <div class="col-lg-2 ">
-                                                            <div class="form-group">
-                                                                <select class="form-control" formControlName="drcr">
-                                                                    <option value="dr" selected>DR</option>
-                                                                    <option value="cr">CR</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                        <!-- <p>{{address.get('drcr').value== 'dr'}}</p> -->
-                                                        <div class="col-lg-3">
-                                                            <ng-select [allowClear]="true" [items]="items" formControlName="particulars" (data)="refreshValue($event)" (selected)="selected($event)"
-                                                                (removed)="removed($event)" (typed)="showNotification('top','left')"
-                                                                placeholder="No city selected">
-                                                            </ng-select>
-                                                            <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
-                                                                <span (click)="showNotification('top','left')"> Particulars is required</span>
-                                                            </small>
-                                                        </div>
-                                                        <div class="col-lg-3 ">
-                                                            <input type="text" required class="form-control" [attr.disabled]="address.get('drcr').value == 'dr'? null: true" formControlName="debitAmount">
-                                                            <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
-                                                                Amount is required
-                                                            </small>
-                                                        </div>
-                                                        <div class="col-lg-3 ">
-                                                            <input type="text" required class="form-control" [attr.disabled]="address.get('drcr').value == 'cr'? null: true" formControlName="creditAmount">
-                                                            <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
-                                                                Amount is required
-                                                            </small>
-                                                        </div>
-                                                        <div class="col-md-1">
-                                                            <span class="fa fa-times pull-right" *ngIf="form.controls.particularsData.controls.length > 1" (click)="removeParticular(i)"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-lg-offset-3 col-md-3">
-                                    <a (click)="addParticular()" style="cursor: default">
-                                        Add another field +
-                                    </a>
-                                </div>
-                                <div class="col-lg-offset-2 col-md-3">
-                                    <p class="p1">Total Amount: Rs. 1325</p>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Narration</label>
-                                        <textarea rows="5" formControlName="narration" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="form-inline">
-                                    <div class="form-group">
-                                        <label for="upload">Attachment:</label>
-                                        <input type="file" class="" formControlName="file" (change)="handleFileUpload($event)">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="text-align: center; margin-top: 20px">
-                                <button type="submit" data-toggle="tab" href="#step1" (click)="setSelected(1)" class="btn btn-info btn-fill ">Back</button>
-                                <button type="submit" data-toggle="tab" href="#step3" (click)="setSelected(3)" class="btn btn-info btn-fill ">Save and exit</button>
-                                <button type="submit" class="btn btn-info btn-fill pull-right">Save and close</button>
-                            
-                            </div>
-
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label class="title text-center">From</label>
                         </div>
+                        <div class="col-md-2">
+                            <my-date-picker name="ydate" [options]="myDatePickerOptions"></my-date-picker>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="title text-center">To</label>
+                        </div>
+                        <div class="col-md-2">
+                            <my-date-picker name="ydate" [options]="myDatePickerOptions"></my-date-picker>
+                        </div>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+
+                                    <th class="text-center">Options</th>
+
+                                    <th class="text-center">Date </th>
+
+                                    <th class="text-center"> Particular.</th>
+
+                                    <th class="text-center"> Debit Amount</th>
+
+                                    <th class="text-center"> Credit Amount</th>
+
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let list of incomingData">
+                                    <td class="opt text-center">
+                                        <button type="button" class="btn btn-simple" (click)="editData(list._id); modal.open();">
+                                            <i class="fa fa-bars"></i>
+                                        </button>
+                                    </td>
+                                    <td class="text-center"> {{list.date | date}}</td>
+                                    <td>
+                                        <tr *ngFor="let parti of list.particularsData">
+                                            <td>{{parti.particulars[0].id}}</td>
+
+                                        </tr>
+
+                                    </td>
+                                    <td>
+                                        <tr *ngFor="let parti of list.particularsData">
+
+                                            <td class="text-center">{{parti.debitAmount == null? '-':parti.debitAmount }}</td>
+                                        </tr>
+                                    </td>
+                                    <td>
+                                        <tr *ngFor="let parti of list.particularsData">
+
+                                            <td class="text-center">{{parti.creditAmount==null? '-':parti.creditAmount}}</td>
+                                        </tr>
+                                    </td>
+
+                                </tr>
+                                <tr>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</form>
+</div>

@@ -56,7 +56,7 @@ export class ProductServiceComponent implements OnInit {
         var color = Math.floor((Math.random() * 4) + 1);
         $.notify({
             icon: "pe-7s-gift",
-            message: "Welcome to <b>ProWorkTree Dashboard</b> ."
+            message: "Welcome to <b>ProWorkTree </b> ."
         }, {
                 type: type[color],
                 timer: 1000,
@@ -70,12 +70,9 @@ export class ProductServiceComponent implements OnInit {
     onSubmit(user) {
         // var newValue = this.form.get('underGroup').value[0].text;
         // this.form.controls['underGroup'].patchValue(newValue);
-        user.particularsData.map(el => {
-          if (el.subAmount == "") {
-            el.subAmount = el.qty * el.rate;
-            el.subAmount = el.subAmount.toString();
-          }
-        });
+        if(user.val == ""){
+            user.val = user.qty* user.rate;
+        }
         console.log(user);
         this._productServiceService.createNewPrsr(user)
             .subscribe(

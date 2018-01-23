@@ -28,7 +28,7 @@ const INDEX_ROUTES: Routes = [
                 component: ContraComponent
             },
             {
-                path: 'journalentry',
+                path: 'journal',
                 component: JournalEntryComponent
             },
             {
@@ -40,7 +40,7 @@ const INDEX_ROUTES: Routes = [
                 component: PaymentComponent
             },
             {
-                path: 'productService',
+                path: 'productservice',
                 component: ProductServiceComponent
             },
             {

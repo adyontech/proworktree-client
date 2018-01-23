@@ -76,7 +76,7 @@
                                     <div class="col-md-5 col-lg-offset-1">
                                         <div class="form-group">
                                             <label>Sales ledger</label>
-                                            <ng-select [allowClear]="true" [items]="salesList" formControlName="partyName" placeholder="No party selected">
+                                            <ng-select [allowClear]="true" [items]="salesList" formControlName="salesLedgerName" placeholder="No party selected">
                                             </ng-select>
                                         </div>
                                     </div>
@@ -87,8 +87,7 @@
                                     <div class="col-md-5">
                                         <div class="form-group">
                                             <label>Place supplyPlace</label>
-                                            <ng-select [allowClear]="true" [items]="items" formControlName="supplyPlace" (data)="refreshValue($event)" (removed)="removed($event)"
-                                                (typed)="showNotification('top','left')" placeholder="No city selected">
+                                            <ng-select [allowClear]="true" [items]="items" formControlName="supplyPlace" (data)="refreshValue($event)" (removed)="removed($event)" (typed)="showNotification('top','left')" placeholder="No city selected">
                                             </ng-select>
                                         </div>
                                     </div>
@@ -161,17 +160,12 @@
                                                         <div class="content ">
                                                             <div class="row">
                                                                 <div class="col-lg-3 text-center">
-                                                                    <!-- <input type="text" class="form-control" formControlName="particulars"> -->
-                                                                    <ng-select [allowClear]="true" [items]="prsrList" (data)="refreshValue($event)" (selected)="selectedprsr($event, i)" (removed)="removed($event)"
-                                                                        (typed)="showNotification('top','left')" placeholder="No city selected">
+                                                                    <ng-select [allowClear]="true" [items]="prsrList" (data)="refreshValue($event)" (selected)="selectedprsr($event, i)" (removed)="removed($event)" (typed)="showNotification('top','left')" placeholder="No city selected">
                                                                     </ng-select>
-                                                                    <!-- <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
-                                                                        <span (click)="showNotification('top','left')"> Particulars is required</span>
-                                                                    </small> -->
                                                                 </div>
                                                                 <div class="col-lg-1 text-center">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" formControlName="qty">
+                                                                        <input type="text" class="form-control" (input)="subSum();  totalSum() " formControlName="qty">
                                                                     </div>
                                                                 </div>
 
@@ -183,23 +177,23 @@
 
                                                                 <div class="col-lg-1 text-center">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" formControlName="rate">
+                                                                        <input type="text" class="form-control" (input)="subSum(); totalSum() " formControlName="rate">
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="col-lg-1 text-center">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" formControlName="subAmount" value=" {{(formDum.get('qty').value)*(formDum.get('rate').value) }}">
+                                                                        <input type="text" class="form-control" (input)="subSum(); totalSum() " formControlName="subAmount" value=" {{(formDum.get('qty').value)*(formDum.get('rate').value) }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-lg-1 text-center">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" formControlName="gstRate">
+                                                                        <input type="text" class="form-control" (input)="subSum(); totalSum() " formControlName="gstRate">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-lg-2 text-center">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" placeholder="Amount" formControlName="amount">
+                                                                        <input type="text" class="form-control" placeholder="Amount" (input)="subSum(); totalSum() " formControlName="amount" value=" {{((formDum.get('qty').value)*(formDum.get('rate').value)) + ((formDum.get('qty').value)*(formDum.get('rate').value)*formDum.get('gstRate').value) }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-1">
@@ -213,39 +207,90 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-lg-offset-3 col-md-3">
+                                            <div class=" col-md-2">
                                                 <a (click)="addParticular()" style="cursor: default">
                                                     Add another field +
                                                 </a>
                                             </div>
-                                            <div class="col-lg-offset-2 col-md-3">
-                                                <p class="p1">Total Amount: Rs. 1325</p>
+                                            <div class="col-lg-offset-6 col-md-3">
+                                                <p class="p1">Sub Total Rs. {{subTotal}}</p>
                                             </div>
                                         </div>
+                                        <br>
+                                        <div class="col-lg-offset-5 col-md-2">
+                                            Additional
+                                        </div>
+                                        <div class="col-lg-offset-1 col-md-2 ">
+                                            Amount
+                                        </div>
+                                        <br>
+                                        <div formArrayName="subParticularsData">
+                                            <div *ngFor="let formDum2 of form.controls.subParticularsData.controls; let i=index">
 
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Narration</label>
-                                                    <textarea rows="5" formControlName="narration" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                                <div [formGroupName]="i">
+
+                                                    <div class="block">
+                                                        <div class="content ">
+                                                            <div class="row">
+                                                                <div class="col-lg-offset-5 col-md-2">
+                                                                    <select class="form-control" id="business" name="business" formControlName="additionalService" placeholder="Additional">
+                                                                        <option value=" road " selected> Discount</option>
+                                                                        <option value="train "> Freight </option>
+                                                                        <option value="air "> Shipping Charge</option>
+                                                                        <option value="water "> BY WATER</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-lg-offset-1 col-md-2 ">
+                                                                    <input type="text " class="form-control " name="company_name " (input)="totalSum()" placeholder="Company Name " formControlName="percent">
+                                                                </div>
+                                                                <div class="col-md-1">
+                                                                    <span class="fa fa-times pull-right" *ngIf="form.controls.particularsData.controls.length > 1" (click)="removeSubParticular(i)"></span>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="row">
-                                            <div class="form-inline">
-                                                <div class="form-group">
-                                                    <label for="upload">Attachment:</label>
-                                                    <input type="file" class="" formControlName="file" (change)="handleFileUpload($event)">
+                                        <div class="row ">
+                                            <div class=" col-md-2 ">
+                                                <a (click)="addSubParticular() " style="cursor: default ">
+                                                    Add another field +
+                                                </a>
+                                            </div>
+
+                                            <div class="col-lg-offset-6 col-md-3">
+                                                <p class="p1"> Total Rs. {{form.get('grandTotal').value}}</p>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row ">
+                                            <div class="col-md-12 ">
+                                                <div class="form-group ">
+                                                    <label>Narration</label>
+                                                    <textarea rows="5 " formControlName="narration" class="form-control " placeholder="Here can be your description " value="Mike ">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row ">
+                                            <div class="form-inline ">
+                                                <div class="form-group ">
+                                                    <label for="upload ">Attachment:</label>
+                                                    <input type="file" class=" " formControlName="file" (change)="handleFileUpload($event) ">
                                                 </div>
                                             </div>
                                         </div>
 
                                     </div>
-                                    <div class="row" style="text-align: center; margin-top: 20px">
-                                        <button type="submit" data-toggle="tab" href="#step1" (click)="setSelected(1)" class="btn btn-info btn-fill "> Back</button>
-                                        <button type="submit" data-toggle="tab" href="#step3" (click)="setSelected(3)" class="btn btn-info btn-fill ">Save and exit</button>
-                                        <button type="submit" class="btn btn-info btn-fill">Save and close</button>
+                                    <div class="row" style="text-align: center; margin-top: 20px ">
+                                        <button type="button" data-toggle="tab " href="#step1 " (click)="setSelected(1) " class="btn btn-info btn-fill "> Back</button>
+                                        <button type="button" data-toggle="tab " href="#step3 " (click)="setSelected(2) " class="btn btn-info btn-fill ">Save and exit</button>
+                                        <button type="submit" class="btn btn-info btn-fill ">Save and close</button>
 
                                     </div>
                                 </div>

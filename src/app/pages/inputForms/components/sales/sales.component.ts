@@ -17,6 +17,7 @@ import { ActivatedRoute } from "@angular/router";
 import { SalesService } from "./service/sales.service";
 import { IMyDpOptions } from "mydatepicker";
 import { BsModalComponent, BsModalBodyComponent } from "ng2-bs3-modal";
+import { Console } from "@angular/core/src/console";
 declare var $: any;
 
 @Component({
@@ -31,7 +32,10 @@ export class SalesComponent implements OnInit {
   public dataCopy1: any;
   public dataCopy2: any;
   private prsrData: any;
-  paramId: string;
+  public paramId: string;
+  public subTotal: number;
+  public totalAmount: number;
+  public selectedString: String;
   @ViewChild("moodal") moodal: BsModalComponent;
   open() {
     this.moodal.open();
@@ -42,7 +46,7 @@ export class SalesComponent implements OnInit {
     public _salesService: SalesService,
     public fb: FormBuilder,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getPrsrList();
@@ -52,15 +56,19 @@ export class SalesComponent implements OnInit {
       invoiceNumber: [""],
       vehicleNumber: [""],
       partyName: [""],
+      salesLedgerName:[""],
       saleType: [""],
       transportationMode: [""],
       supplyPlace: [""],
       particularsData: this.fb.array([]),
+      subParticularsData: this.fb.array([]),
       narration: [""],
       file: [""],
-      date: [null, Validators.required]
+      date: [null, Validators.required],
+      grandTotal: ["0"]
     });
     this.addParticular();
+    this.addSubParticular();
   }
 
   hotkeys(event) {
@@ -80,61 +88,6 @@ export class SalesComponent implements OnInit {
   public prsrList: Array<string> = [];
 
   public items: Array<string> = [
-    "Amsterdam",
-    "Antwerp",
-    "Athens",
-    "Barcelona",
-    "Berlin",
-    "Birmingham",
-    "Bradford",
-    "Bremen",
-    "Brussels",
-    "Bucharest",
-    "Budapest",
-    "Cologne",
-    "Copenhagen",
-    "Dortmund",
-    "Dresden",
-    "Dublin",
-    "Düsseldorf",
-    "Essen",
-    "Frankfurt",
-    "Genoa",
-    "Glasgow",
-    "Gothenburg",
-    "Hamburg",
-    "Hannover",
-    "Helsinki",
-    "Kraków",
-    "Leeds",
-    "Leipzig",
-    "Lisbon",
-    "London",
-    "Madrid",
-    "Manchester",
-    "Marseille",
-    "Milan",
-    "Munich",
-    "Málaga",
-    "Naples",
-    "Palermo",
-    "Paris",
-    "Poznań",
-    "Prague",
-    "Riga",
-    "Rome",
-    "Rotterdam",
-    "Seville",
-    "Sheffield",
-    "Sofia",
-    "Stockholm",
-    "Stuttgart",
-    "The Hague",
-    "Turin",
-    "Valencia",
-    "Vienna",
-    "Vilnius",
-    "Warsaw",
     "Wrocław",
     "Zagreb",
     "Zaragoza",
@@ -154,21 +107,21 @@ export class SalesComponent implements OnInit {
   }
 
   public selectedprsr(value: any, indexValue): void {
+    let unitsValue, gstRatevalue;
+    this.prsrData.prsr.forEach(element => {
+      if (element.prsrName == value.id) {
+        unitsValue = element.units;
+        gstRatevalue = element.gstRate;
+
+      }
+    });
     let particularsData = <FormArray>this.form.controls["particularsData"];
     let array = particularsData.at(indexValue);
     array.patchValue({
-      units: this.prsrData.prsr[0].units,
-      gstRate: this.prsrData.prsr[0].gstRate
+      units: unitsValue,
+      gstRate: gstRatevalue,
     });
   }
-
-  public removed(value: any): void {
-    console.log("Removed value is: ", value);
-  }
-
-  // public typed(value: any): void {
-  //     console.log('New search input: ', value);
-  // }
 
   public refreshValue(value: any): void {
     this.value = value;
@@ -182,7 +135,7 @@ export class SalesComponent implements OnInit {
       {
         icon: "pe-7s-gift",
         message:
-          "Welcome to <b>ProWorkTree Dashboard</b> - a beautiful freebie for every web developer."
+          "Welcome to <b>ProWorkTree </b> - a beautiful freebie for every web developer."
       },
       {
         type: type[color],
@@ -206,14 +159,33 @@ export class SalesComponent implements OnInit {
       amount: [""]
     });
   }
+  initSubParticular() {
+    return this.fb.group({
+      additionalService: [""],
+      percent: [""],
+    });
+  }
   addParticular() {
+    this.subSum();
     const control = <FormArray>this.form.controls["particularsData"];
     const addCtrl = this.initParticular();
     control.push(addCtrl);
   }
+  addSubParticular() {
+    this.subSum();
+    const cont = <FormArray>this.form.controls["subParticularsData"];
+    const addCtrl = this.initSubParticular();
+    cont.push(addCtrl);
+  }
   removeParticular(i: number) {
+    this.subSum();
     const control = <FormArray>this.form.controls["particularsData"];
     control.removeAt(i);
+  }
+  removeSubParticular(i: number) {
+    this.subSum();
+    const cont = <FormArray>this.form.controls["subParticularsData"];
+    cont.removeAt(i);
   }
 
   // file upload code here
@@ -241,17 +213,18 @@ export class SalesComponent implements OnInit {
   }
 
   onSubmit(user) {
-    // if (user.subAmount == "") {
-    //   user.subAmount = user.qty * user.rate;
-    // }
     user.particularsData.map(el => {
       if (el.subAmount == "") {
         el.subAmount = el.qty * el.rate;
         el.subAmount = el.subAmount.toString();
       }
+      if (el.amount == "") {
+        el.amount = el.qty * el.rate + el.qty * el.rate * el.gstRate;
+        el.amount = el.amount.toString();
+      }
     });
     console.log(user);
-    this._salesService.createNewEntry(user).subscribe(data => {});
+    this._salesService.createNewEntry(user).subscribe(data => { });
   }
 
   getLedgerUGNames() {
@@ -281,23 +254,48 @@ export class SalesComponent implements OnInit {
       .subscribe(data => {
         this.prsrData = data;
         // console.log(data.prsr)
-        this.prsrList = data.prsr.map(item =>
-          this.prsrList.concat(item.prsrName)
-        )[0];
+        this.prsrList = data.prsr.map(item => item.prsrName)
       });
   }
-}
 
-interface Customer {
-  particularsData: Address[];
-}
+  subSum() {
+    var formControls = this.form.controls.particularsData["controls"];
+    this.subTotal = 0;
+    for (let i = 0; i < formControls.length; i++) {
+      let qty = formControls[i].controls.qty.value;
+      let rate = formControls[i].controls.rate.value;
+      let gstRate = formControls[i].controls.gstRate.value;
+      let subAmount = formControls[i].controls.subAmount.value;
+      let amount = formControls[i].controls.amount.value;
+      if (subAmount == "") {
+        subAmount = qty * rate;
+        subAmount = subAmount.toString();
+      }
+      if (amount == "") {
+        amount = qty * rate + qty * rate * gstRate;
+        amount = amount.toString();
+      }
+      if (!isNaN(amount) && amount !== "") this.subTotal += parseFloat(amount);
+      // console.log(this.subAmount);
+    }
+  }
+  totalSum() {
+    this.form.patchValue({
+      grandTotal: 0
+    })
+    var formControls = this.form.controls.subParticularsData["controls"];
+    this.totalAmount = 0;
+    for (let i = 0; i < formControls.length; i++) {
+      let percent = formControls[i].controls.percent.value;
+      if (!isNaN(percent) && percent !== "") this.totalAmount += parseFloat(percent);
+    }
+    if (!isNaN(this.subTotal)) this.totalAmount += this.subTotal;
+    // console.log(this.totalAmount);
+    this.form.patchValue({
+      grandTotal: this.totalAmount
+    })
+  }
 
-interface Address {
-  nameOfProduct: string; // required field
-  qty: string;
-  units: string;
-  rate: string;
-  subAmount: string;
-  gstRate: string;
-  amount: string;
+
+
 }

@@ -1,10 +1,13 @@
 {
     "name": "Proworktree",
-    "version": "1.4.0",
+    "version": "0.0.0",
     "license": "MIT",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
+        "prod": "ng build --prod --aot",
+        "dev": "ng build --dev --aot",
+        "dev-deploy": "firebase deploy",
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",

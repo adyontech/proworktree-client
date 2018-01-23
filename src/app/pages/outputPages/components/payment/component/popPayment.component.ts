@@ -123,7 +123,7 @@ export class PopPaymentComponent implements OnInit, DoCheck {
         var color = Math.floor((Math.random() * 4) + 1);
         $.notify({
             icon: "pe-7s-gift",
-            message: "Welcome to <b>ProWorkTree Dashboard</b> - a beautiful freebie for every web developer."
+            message: "Welcome to <b>ProWorkTree </b> - a beautiful freebie for every web developer."
         }, {
                 type: type[color],
                 timer: 1000,

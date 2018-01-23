@@ -1,252 +1,105 @@
-<form id="form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)" novalidate>
-    <div class="main-content" style="scroll-behavior: hidden">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <!-- heading here -->
-                        <div class="header">
-                            <h2 class="title text-center">Sales</h2>
+<bs-modal #modal [backdrop]="false" [keyboard]="false">
+    <!-- <bs-modal-header>
+    </bs-modal-header> -->
+    <bs-modal-body>
+        <app-popPayment [contentId]="contentId"></app-popPayment>
+    </bs-modal-body>
+    <bs-modal-footer [showDefaultButtons]="true"></bs-modal-footer>
+</bs-modal>
+<div class="main-content" style="scroll-behavior: hidden">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <!-- heading here -->
+                    <div class="header">
+                        <h2 class="title text-center">Sales report</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 title text-center ">
+                            <p> Select Period:</p>
                         </div>
-                        <!-- step indicator starts here -->
-                        <div class="row">
-                            <div class="row">
-                                <div class="col-md-6 col-lg-offset-4">
-
-                                    <div class="col-xs-5 ">
-                                        <h5 class="text-center">Step 1</h5>
-                                        <div href="#step-1" [ngClass]="{'actived': selectedIndex == 1}" class="progress" type="button"></div>
-                                    </div>
-
-                                    <div class="col-xs-5 ">
-                                        <h5 class="text-center">Step 2</h5>
-                                        <div href="#step-2" [ngClass]="{'actived': selectedIndex == 2}" class="progress" type="button"></div>
-
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-lg-6 title text-center">
+                            <p> Select Filter:</p>
                         </div>
-
-                        <div class="content tab-content">
-                            <div id="step1" style="width: 70%; margin-left: 18%;" class="tab-pane fade in active">
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <label>Invoice Number</label>
-                                            <input type="text" class="form-control" [(ngModel)]="invoiceNumber" name="company_name" placeholder="Company Name" formControlName="invoiceNumber">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5 col-lg-offset-1">
-                                        <div class="form-group">
-                                            <label>Transportation Mode</label>
-                                            <select class="form-control" id="business" name="business" [(ngModel)]="transportationMode" formControlName="transportationMode">
-                                                <option value="road" selected> BY ROAD</option>
-                                                <option value="train">BY TRAIN </option>
-                                                <option value="air"> BY AIR</option>
-                                                <option value="water"> BY WATER</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <div class="col-md-5">
-                                            <label>Date</label>
-                                            <my-date-picker name="date" [options]="myDatePickerOptions" formControlName="date"></my-date-picker>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5 col-lg-offset-1">
-                                        <div class="form-group">
-                                            <label>Vehicle Number</label>
-                                            <input type="text" class="form-control" [(ngModel)]="vehicleNumber" name="company_name" placeholder="Company Name" formControlName="vehicleNumber">
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <label>Party Name</label>
-                                            <ng-select [allowClear]="true" [items]="items" formControlName="partyName" (data)="refreshValue($event)" [(ngModel)]="partyName"
-                                                (selected)="selected($event)" (removed)="removed($event)" (typed)="showNotification('top','left')"
-                                                placeholder="No city selected">
-                                            </ng-select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5 col-lg-offset-1">
-                                        <div class="form-group">
-                                            <label>Type of sales</label>
-                                            <select class="form-control" id="business" [(ngModel)]="saleType" name="business" formControlName="saleType">
-                                                <option value="intraState" selected> within state sales (intra State)</option>
-                                                <option value="interState">outside state sales (Inter State) </option>
-                                                <option value="outsideCountry"> exports (outside country)</option>
-                                                <option value="deemedExports"> deemed exports</option>
-                                                <option value="withinState"> stock transfer (within state)</option>
-                                                <option value="outsideState"> Stock Transfer (outside State)</option>
-                                                <option value="others"> Others</option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <label>Place supplyPlace</label>
-                                            <ng-select [allowClear]="true" [items]="items" formControlName="supplyPlace" (data)="refreshValue($event)" [(ngModel)]="supplyPlace"
-                                                (selected)="selected($event)" (removed)="removed($event)" (typed)="showNotification('top','left')"
-                                                placeholder="No city selected">
-                                            </ng-select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5 col-lg-offset-2">
-                                        <div class="form-group">
-                                            <label>Current balance</label>
-                                            <p>123456</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row" style="text-align: center; margin-top: 20px">
-                                    <button type="submit" data-toggle="tab" href="#step2" (click)="setSelected(2)" class="btn btn-info btn-fill">Next</button>
-                                    <button type="submit" data-toggle="tab" href="#step2" (click)="setSelected(2)" class="btn btn-info btn-fill">Exit</button>
-
-                                </div>
-
-                            </div>
-                            <div id="step2" class="tab-pane fade">
-
-                                <div class="row">
-                                    <div class="col-lg-offset-1">
-                                        <div class="row">
-                                            <div class="col-lg-3 text-center">
-                                                Name of product service
-                                            </div>
-                                            <div class="col-lg-1 text-center">
-                                                Qty.
-                                            </div>
-                                            <div class="col-lg-1 text-center">
-                                                Units.
-                                            </div>
-                                            <div class="col-lg-1 text-center">
-                                                Rate.
-                                            </div>
-                                            <div class="col-lg-1 text-center">
-                                                Sub. amt.
-                                            </div>
-                                            <div class="col-lg-1 text-center">
-                                                GST Rate.
-                                            </div>
-                                            <div class="col-lg-2 text-center">
-                                                Amount.
-                                            </div>
-                                        </div>
-
-                                        <div formArrayName="particularsData">
-                                            <div *ngFor="let address of form.controls.particularsData.controls; let i=index">
-                                                <!-- <span>{{i + 1}}</span> -->
-                                                <div [formGroupName]="i">
-                                                    <div class="block">
-                                                        <div class="content ">
-                                                            <div class="row">
-                                                                <div class="col-lg-3 text-center">
-                                                                    <!-- <input type="text" class="form-control" formControlName="particulars"> -->
-                                                                    <ng-select [allowClear]="true" [items]="items" [(ngModel)]="nameOfProduct" formControlName="nameOfProduct" (data)="refreshValue($event)"
-                                                                        (selected)="selected($event)" (removed)="removed($event)"
-                                                                        (typed)="showNotification('top','left')" placeholder="No city selected">
-                                                                    </ng-select>
-                                                                    <!-- <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
-                                                                        <span (click)="showNotification('top','left')"> Particulars is required</span>
-                                                                    </small> -->
-                                                                </div>
-                                                                <div class="col-lg-1 text-center">
-                                                                    <div class="form-group">
-                                                                        <input type="text" class="form-control" [(ngModel)]="qty" formControlName="qty">
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-lg-1 text-center">
-                                                                    <div class="form-group">
-                                                                        <input type="text" class="form-control" [(ngModel)]="units" formControlName="units">
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-lg-1 text-center">
-                                                                    <div class="form-group">
-                                                                        <input type="text" class="form-control" [(ngModel)]="rate" formControlName="rate">
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-lg-1 text-center">
-                                                                    <div class="form-group">
-                                                                        <input type="text" class="form-control" [(ngModel)]="subAmount" formControlName="subAmount">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-1 text-center">
-                                                                    <div class="form-group">
-                                                                        <input type="text" class="form-control" [(ngModel)]="gstRate" formControlName="gstRate">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-2 text-center">
-                                                                    <div class="form-group">
-                                                                        <input type="text" class="form-control" [(ngModel)]="amount" placeholder="Amount" formControlName="amount">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-1">
-                                                                    <span class="fa fa-times pull-right" *ngIf="form.controls.particularsData.controls.length > 1" (click)="removeParticular(i)"></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-lg-offset-3 col-md-3">
-                                                <a (click)="addParticular()" style="cursor: default">
-                                                    Add another field +
-                                                </a>
-                                            </div>
-                                            <div class="col-lg-offset-2 col-md-3">
-                                                <p class="p1">Total Amount: Rs. 1325</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Narration</label>
-                                                    <textarea rows="5" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="form-inline">
-                                                <div class="form-group">
-                                                    <label for="upload">Attachment:</label>
-                                                    <input type="file" class="" formControlName="file" (change)="handleFileUpload($event)">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row" style="text-align: center; margin-top: 20px">
-                                        <button type="submit" data-toggle="tab" href="#step1" (click)="setSelected(1)" class="btn btn-info btn-fill ">Back</button>
-                                        <button type="submit" data-toggle="tab" href="#step3" (click)="setSelected(3)" class="btn btn-info btn-fill ">Save and exit</button>
-                                        <button type="submit" data-toggle="tab" href="#step3" (click)="setSelected(3)" class="btn btn-info btn-fill ">Save and close</button>
-
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label class="title text-center">From</label>
                         </div>
+                        <div class="col-md-2">
+                            <my-date-picker name="ydate" [options]="myDatePickerOptions"></my-date-picker>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="title text-center">To</label>
+                        </div>
+                        <div class="col-md-2">
+                            <my-date-picker name="ydate" [options]="myDatePickerOptions"></my-date-picker>
+                        </div>
+                        <div class="col-md-6">
+                            <angular2-multiselect [data]="dropdownList" [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)" [selectedItems]="selectedItems" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)"></angular2-multiselect>
+                        </div>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+
+                                    <th class="text-center"> </th>
+                                    <th class="text-center">Date </th>
+
+                                    <th class="text-center"> Invoice No.</th>
+
+                                    <th class="text-center"> Party Name.</th>
+
+                                    <th class="text-center"> Sub Amount</th>
+
+                                    <th class="text-center"> GST Amount</th>
+
+                                    <th class="text-center"> Total Amount</th>
+
+                                    <th class="text-center" [hidden]="!ColTransportationMode">Transportation Mode </th>
+
+                                    <th class="text-center" [hidden]="!ColSaleType"> Type of sale</th>
+
+                                    <th class="text-center" [hidden]="!ColSupplyPlace">Place of supply</th>
+
+                                    <th class="text-center" [hidden]="!ColVehicleNo">Vehicle No </th>
+
+                                    <!-- <th class="text-center" [hidden]="!ColGstRate">Gst Rate </th> -->
+
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let list of incomingData">
+                                    <td class="text-center opt">
+                                        <button type="button" class="btn btn-simple" (click)="editData(list._id); modal.open();">
+                                            <i class="fa fa-bars"></i>
+                                        </button>
+                                    </td>
+                                    <td class="text-center"> {{list.date | date}}</td>
+                                    <td class="text-center"> {{list.invoiceNumber}}</td>
+                                    <td class="text-center"> {{list.partyName}}</td>
+                                    <td class="text-center"> {{list.totalSubAmount}}</td>
+                                    <td class="text-center"> {{list.totalGstAmount}}</td>
+                                    <td class="text-center"> {{list.totalGstAmount + list.totalSubAmount}}</td>
+                                    <td class="text-center" [hidden]="!ColTransportationMode"> {{list.transportationMode}}</td>
+                                    <td class="text-center" [hidden]="!ColSaleType"> {{list.saleType}}</td>
+                                    <td class="text-center" [hidden]="!ColSupplyPlace"> {{list.supplyPlace}}</td>
+                                    <td class="text-center" [hidden]="!ColVehicleNo"> {{list.vehicleNumber}}</td>
+                                    <!-- <td [hidden]="!ColGstRate"> {{list.against}}</td> -->
+
+                                </tr>
+                                <tr>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</form>
+</div>

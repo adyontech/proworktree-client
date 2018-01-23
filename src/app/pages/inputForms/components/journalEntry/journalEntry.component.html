@@ -53,7 +53,7 @@
                                                     <div class="row col-lg-offset-1">
                                                         <div class="col-lg-2 ">
                                                             <div class="form-group">
-                                                                <select class="form-control" formControlName="drcr">
+                                                                <select class="form-control" formControlName="drcr" (click)="resetDrCr($event, i)">
                                                                     <option value="dr" selected>DR</option>
                                                                     <option value="cr">CR</option>
                                                                 </select>
@@ -62,22 +62,20 @@
 
                                                         <!-- <p>{{address.get('drcr').value== 'dr'}}</p> -->
                                                         <div class="col-lg-3">
-                                                            <ng-select [allowClear]="true" [items]="items" formControlName="particulars" (data)="refreshValue($event)" (selected)="selected($event)"
-                                                                (removed)="removed($event)" (typed)="showNotification('top','left')"
-                                                                placeholder="No city selected">
+                                                            <ng-select [allowClear]="true" [items]="ledgerList" formControlName="particulars" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" (typed)="showNotification('top','left')" placeholder="No city selected">
                                                             </ng-select>
                                                             <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
-                                                                <span (click)="showNotification('top','left')"> Particulars is required</span>
+                                                                <span > Particulars is required</span>
                                                             </small>
                                                         </div>
                                                         <div class="col-lg-3 ">
-                                                            <input type="text" required class="form-control" [attr.disabled]="address.get('drcr').value == 'dr'? null: true" formControlName="debitAmount">
+                                                            <input type="text" required class="form-control" [attr.disabled]="address.get('drcr').value == 'dr'? null: true" (input)="totalSum(i)" formControlName="debitAmount">
                                                             <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
                                                                 Amount is required
                                                             </small>
                                                         </div>
                                                         <div class="col-lg-3 ">
-                                                            <input type="text" required class="form-control" [attr.disabled]="address.get('drcr').value == 'cr'? null: true" formControlName="creditAmount">
+                                                            <input type="text" required class="form-control" [attr.disabled]="address.get('drcr').value == 'cr'? null: true" (input)="totalSum(i)" formControlName="creditAmount">
                                                             <small [hidden]="form.controls.particularsData.controls[i].controls.particulars.valid" class="text-danger">
                                                                 Amount is required
                                                             </small>
@@ -94,13 +92,16 @@
                             </div>
                             <br>
                             <div class="row">
-                                <div class="col-lg-offset-3 col-md-3">
+                                <div class="col-md-3">
                                     <a (click)="addParticular()" style="cursor: default">
                                         Add another field +
                                     </a>
                                 </div>
                                 <div class="col-lg-offset-2 col-md-3">
-                                    <p class="p1">Total Amount: Rs. 1325</p>
+                                    <p class="p1">Debit Sum: Rs.{{this.debitSum}}</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <p class="p1">Credit Sum: Rs {{this.creditSum}}</p>
                                 </div>
                             </div>
 
@@ -122,10 +123,10 @@
                                 </div>
                             </div>
                             <div class="row" style="text-align: center; margin-top: 20px">
-                                <button type="submit" data-toggle="tab" href="#step1" (click)="setSelected(1)" class="btn btn-info btn-fill ">Back</button>
-                                <button type="submit" data-toggle="tab" href="#step3" (click)="setSelected(3)" class="btn btn-info btn-fill ">Save and exit</button>
+                                <button type="submit" data-toggle="tab" href="#step1" class="btn btn-info btn-fill ">Back</button>
+                                <button type="submit" data-toggle="tab" href="#step3" class="btn btn-info btn-fill ">Save and exit</button>
                                 <button type="submit" class="btn btn-info btn-fill pull-right">Save and close</button>
-                            
+
                             </div>
 
                         </div>

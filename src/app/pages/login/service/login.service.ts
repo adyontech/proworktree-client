@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from "@angular/http";
 import { UserStateService } from "./../../../sharedService/userDetails/user-state.service";
+import { GlobalVariableService } from "./../../../sharedService/globalVariables/globalVariable.service";
 
 import 'rxjs/add/operator/map';
 import 'rxjs/'
@@ -9,10 +10,13 @@ import 'rxjs/'
 export class LoginService {
   result: any;
   loggedIn: Boolean;
-  _URL = 'http://localhost:3000/auth/login';
-  // _URL = 'https://pwt-server.herokuapp.com/auth/register';
+  _URL = `${this._globalVariableService.baseServerUrl}/auth/login`;
+  
+  
 
-  constructor(private http: Http, private _userStateService: UserStateService) {
+  constructor(private http: Http,
+    private _userStateService: UserStateService,
+    public _globalVariableService: GlobalVariableService) {
   }
 
 
@@ -38,7 +42,7 @@ export class LoginService {
 
   logOut() {
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    window.localStorage.removeItem('user');
   }
 }
 

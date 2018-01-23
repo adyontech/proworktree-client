@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { GatewayService } from "./../../service/gateway.service";
 @Component({
     selector: 'gnavbar',
     templateUrl: './gheader.component.html',
@@ -11,5 +11,12 @@ export class gheaderComponent {
     dataValue: any;
     currentIndex;
 
-    constructor() { }
+    constructor(public _gatewayService: GatewayService) { }
+
+    
+    logout() {
+        // remove user from local storage to log user out
+        window.localStorage.removeItem('user');
+        console.log(localStorage)
+    }
 };
