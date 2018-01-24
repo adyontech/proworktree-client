@@ -47,7 +47,7 @@ export class JournalEntryComponent implements OnInit {
     }
 
     hotkeys(event) {
-        if (event.keyCode == 65) {
+        if (event.keyCode == 76 && event.ctrlKey) {
 
             this.modal.open();
         }

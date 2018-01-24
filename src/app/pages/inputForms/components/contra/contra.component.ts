@@ -56,7 +56,7 @@ export class ContraComponent implements OnInit {
     }
 
     hotkeys(event) {
-        if (event.keyCode == 65 && event.ctrlKey) {
+        if (event.keyCode == 76 && event.ctrlKey) {
             this.moodal.open();
         }
     }
