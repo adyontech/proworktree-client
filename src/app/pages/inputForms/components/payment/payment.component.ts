@@ -140,7 +140,7 @@ export class PaymentComponent implements OnInit {
       for (let i = 0; i < formControls.length; i++) {
         let amount = formControls[i].controls.amount.value;
         if (!isNaN(amount) && amount !== "") this.totalAmount += parseFloat(amount);
-        console.log(this.totalAmount);
+        // console.log(this.totalAmount);
       }
   }
 
