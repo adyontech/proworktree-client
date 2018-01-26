@@ -47,7 +47,8 @@ export class PaymentComponent implements OnInit {
       particularsData: this.fb.array([]),
       narration: [""],
       against: [""],
-      file: [""]
+      file: [""],
+      endtotal:[""]
     });
     this.addParticular();
   }
@@ -186,6 +187,7 @@ export class PaymentComponent implements OnInit {
   }
 
   onSubmit(user) {
+    user.endtotal = this.totalAmount;
     console.log(user);
     this._paymentService.createNewEntry(user).subscribe(data => {});
   }

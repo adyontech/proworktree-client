@@ -5,6 +5,9 @@ import { OutputPagesRoutingModule } from './outputPages.routes'
 
 import { OutputPagesComponent } from './outputPages.component';
 
+
+import { CashInHandsComponent } from "./components/cashInHands/cashInHands.component";
+import { CashAtBankComponent } from "./components/cashAtBank/cashAtBank.component";
 import { ContraComponent } from "./components/contra/contra.component";
 import { JournalEntryComponent } from "./components/journalEntry/journalEntry.component";
 import { LedgerComponent } from "./components/ledger/ledger.component";
@@ -23,6 +26,8 @@ import { underGroupComponent } from "./components/underGroup/underGroup.componen
 import { PopPaymentComponent } from "./components/payment/component/popPayment.component";
 
 
+import { CashInHandsService } from "./components/cashInHands/service/cashInHands.service";
+import { CashAtBankService } from "./components/cashAtBank/service/cashAtBank.service";
 import { OutputPagesService } from "./service/outputPages.service";
 import { ContraService } from "./components/contra/service/contra.service";
 import { JournalEntryService } from "./components/journalEntry/service/journalEntry.service";
@@ -75,12 +80,16 @@ import { UiSwitchModule } from "./../../../../node_modules/angular2-ui-switch/sr
         SettingsComponent,
         SidebarComponent,
         underGroupComponent,
+        CashInHandsComponent,
+        CashAtBankComponent,
 
 
 
         PopPaymentComponent
     ],
     providers: [
+        CashInHandsService,
+        CashAtBankService,
         ContraService,
         OutputPagesService,
         JournalEntryService,
