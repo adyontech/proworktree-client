@@ -47,13 +47,14 @@ export class PaymentComponent implements OnInit {
       particularsData: this.fb.array([]),
       narration: [""],
       against: [""],
-      file: [""]
+      file: [""],
+      endtotal:[""]
     });
     this.addParticular();
   }
 
   hotkeys(event) {
-    if (event.keyCode == 65 && event.ctrlKey) {
+    if (event.keyCode == 76 && event.ctrlKey) {
       this.moodal.open();
     }
   }
@@ -140,7 +141,7 @@ export class PaymentComponent implements OnInit {
       for (let i = 0; i < formControls.length; i++) {
         let amount = formControls[i].controls.amount.value;
         if (!isNaN(amount) && amount !== "") this.totalAmount += parseFloat(amount);
-        console.log(this.totalAmount);
+        // console.log(this.totalAmount);
       }
   }
 
@@ -186,6 +187,7 @@ export class PaymentComponent implements OnInit {
   }
 
   onSubmit(user) {
+    user.endtotal = this.totalAmount;
     console.log(user);
     this._paymentService.createNewEntry(user).subscribe(data => {});
   }

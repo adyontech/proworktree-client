@@ -1,23 +1,24 @@
-import { Component, Input, ViewChild, OnInit } from '@angular/core';
+import { Component, Input, ViewChild,  OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-
 import { ActivatedRoute } from '@angular/router';
-import { JournalEntryService } from "./service/journalEntry.service";
+import { CashInHandsService } from "./service/cashInHands.service";
 import { IMyDpOptions } from 'mydatepicker';
 import { BsModalComponent, BsModalBodyComponent } from "ng2-bs3-modal";
 
 declare var $: any;
 
 @Component({
-    selector: 'app-journalEntry',
+    selector: 'app-cashInHands',
     host: { '(window:keydown)': 'hotkeys($event)' },
-    templateUrl: './journalEntry.component.html',
-    styleUrls: ['./journalEntry.component.scss']
+    templateUrl: './cashInHands.component.html',
+    styleUrls: ['./cashInHands.component.scss']
 })
 
-export class JournalEntryComponent implements OnInit {
+
+export class CashInHandsComponent implements OnInit {
+
 
     contentId: string = "";
     public dateFrom: Date;
@@ -34,7 +35,7 @@ export class JournalEntryComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        public _journalEntryService: JournalEntryService,
+        public _cashInHandsService: CashInHandsService,
         public fb: FormBuilder, ) {
 
     }
@@ -63,19 +64,19 @@ export class JournalEntryComponent implements OnInit {
     };
 
     getIncomingData() {
-        this.dataCopy = this._journalEntryService.getIncomingData().map(
+        this.dataCopy = this._cashInHandsService.getIncomingData().map(
             (response) => response.json()
         ).subscribe(
             (data) => {
-                console.log(data.journalData)
-                this.incomingData = data.journalData;
+                console.log(data.contraData)
+                this.incomingData = data.contraData;
             })
     }
 
     editData(id) {
         console.log(id);
         this.contentId = id;
-        this._journalEntryService.contentId = id;
+        this._cashInHandsService.contentId = id;
 
     }
 
@@ -88,5 +89,6 @@ export class JournalEntryComponent implements OnInit {
 
 
     }
+
 
 }

@@ -2,6 +2,8 @@ import { RouterModule, Routes } from "@angular/router";
 
 import { OutputPagesComponent } from "./outputPages.component";
 
+import { CashInHandsComponent } from "./components/cashInHands/cashInHands.component";
+import { CashAtBankComponent } from "./components/cashAtBank/cashAtBank.component";
 import { ContraComponent } from "./components/contra/contra.component";
 import { JournalEntryComponent } from "./components/journalEntry/journalEntry.component";
 import { LedgerComponent } from "./components/ledger/ledger.component";
@@ -19,6 +21,14 @@ const INDEX_ROUTES: Routes = [
         path: '',
         component: OutputPagesComponent,
         children: [
+            {
+                path: 'cashinhand',
+                component: CashInHandsComponent
+            },
+            {
+                path: 'cashatbank',
+                component: CashAtBankComponent
+            },
            
             {
                 path: 'contra',

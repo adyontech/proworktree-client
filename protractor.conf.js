@@ -13,8 +13,8 @@ exports.config = {
         'browserName': 'chrome'
     },
     directConnect: true,
-    // baseUrl: 'http://localhost:4200/',
-    baseUrl: 'https://pwt-client.firebaseapp.com/',
+    baseUrl: 'http://localhost:4200/',
+    // baseUrl: 'https://pwt-client.firebaseapp.com/',
     framework: 'jasmine',
     jasmineNodeOpts: {
         showColors: true,
