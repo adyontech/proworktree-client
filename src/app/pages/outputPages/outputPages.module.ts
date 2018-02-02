@@ -24,6 +24,7 @@ import { underGroupComponent } from "./components/underGroup/underGroup.componen
 
 //inner-form components
 import { PopPaymentComponent } from "./components/payment/component/popPayment.component";
+import { PopReceiptComponent } from "./components/receipt/component/popReceipt.component";
 
 
 import { CashInHandsService } from "./components/cashInHands/service/cashInHands.service";
@@ -45,6 +46,7 @@ import { UnderGroupsService } from "./components/underGroup/service/underGroup.s
 
 //inner-form service
 import { PopPaymentService } from "./components/payment/component/service/popPayment.service"
+import { PopReceiptService } from "./components/receipt/component/service/popReceipt.service"
 
 import { AngularMultiSelectModule } from 'angular2-multiselect-checkbox-dropdown/angular2-multiselect-dropdown';
 import { SelectModule } from 'ng2-select';
@@ -82,10 +84,8 @@ import { UiSwitchModule } from "./../../../../node_modules/angular2-ui-switch/sr
         underGroupComponent,
         CashInHandsComponent,
         CashAtBankComponent,
-
-
-
-        PopPaymentComponent
+        PopPaymentComponent,
+        PopReceiptComponent
     ],
     providers: [
         CashInHandsService,
@@ -103,10 +103,8 @@ import { UiSwitchModule } from "./../../../../node_modules/angular2-ui-switch/sr
         SalesReturnService,
         SettingsService,
         UnderGroupsService,
-
-
-
-        PopPaymentService
+        PopPaymentService,
+        PopReceiptService
     ]
 })
 

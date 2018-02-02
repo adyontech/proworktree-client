@@ -235,9 +235,9 @@ export class PopReceiptComponent implements OnInit, DoCheck {
         this.form.patchValue({
             drawnOn: {
                 date: {
-                    year: value.substring(0, 4),
-                    month: value.substring(5, 7),
-                    day: parseInt(value.substring(8, 10)) + 1
+                    year: value? value.substring(0, 4) : date.getFullYear(),
+                    month: value? value.substring(5, 7) : date.getMonth(),
+                    day: value? parseInt(value.substring(8, 10)) + 1 : date.getDate()
                 }
             }
         });
