@@ -66,7 +66,9 @@
                                     <div class="col-md-5 col-lg-offset-4">
                                         <div class="form-group">
                                             <label>account</label>
-                                            <input type="text" class="form-control" formControlName="account">
+                                            <ng-select [allowClear]="true" [items]="accountList" formControlName="account" (data)="refreshValue($event)" (selected)="selected($event)"
+                                                (removed)="removed($event)" (click)="showNotification('top','left')" placeholder="No particulars selected">
+                                            </ng-select>
                                         </div>
                                     </div>
                                 </div>
@@ -95,9 +97,9 @@
                                             <label>Receipt type</label>
                                             <select class="form-control" formControlName="receiptType">
                                                 <option value="general" selected>General</option>
-                                                <option value="purchaseReceipt">Purchase Receipt</option>
+                                                <option value="salesReceipt">Sales Receipt</option>
                                                 <option value="advanceReceipt">Advance Receipt</option>
-                                                <option value="salesRefund">Sales refund</option>
+                                                <option value="purchaseRefund">Purchase refund</option>
                                                 <option value="creditNote">Credit Note</option>
                                                 <option value="others">others</option>
                                             </select>
@@ -141,7 +143,7 @@
                                             <select class="form-control" formControlName="against">
                                                 <option value="againstInvoice" selected>Against invoice</option>
                                                 <option value="againstAccount ">Against account</option>
-                                                <option value="againstAdvance" *ngIf=" form.get('receiptType').value =='purchaseReceipt'">Against advance</option>
+                                                <option value="againstAdvance" *ngIf=" form.get('receiptType').value =='salesReceipt'">Against advance</option>
                                                 <option value="advanceReceipt">Advance receipt</option>
                                                 <option value="others" *ngIf=" form.get('receiptThrough').value =='cash'"> others</option>
                                             </select>
@@ -210,7 +212,7 @@
                                         </a>
                                     </div>
                                     <div class="col-lg-offset-2 col-md-3">
-                                        <p class="p1">Total Amount: Rs. 1325</p>
+                                        <p class="p1">Total Amount: Rs. {{totalAmount}}</p>
                                     </div>
                                 </div>
 
