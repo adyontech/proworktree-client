@@ -11,7 +11,7 @@ import 'rxjs/'
 @Injectable()
 export class ReceiptService {
 
-    private paramCompanyName: string;
+    public paramCompanyName: string;
     result: {};
     token: string;
     windowStorage: any;
