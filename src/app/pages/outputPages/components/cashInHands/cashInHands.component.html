@@ -15,6 +15,11 @@
                     <div class="header">
                         <h2 class="title text-center">Cash-In-Hand</h2>
                     </div>
+                    <div class="text-center">
+                        <ng-select [allowClear]="true" [items]="ledgerList"(data)="refreshValue($event)" (selected)="selected($event)"
+                            (removed)="removed($event)" placeholder="No particulars selected">
+                        </ng-select>
+                    </div>
                     <div class="row">
                         <div class="col-lg-6 title text-center ">
                             <p> Select Period:</p>
@@ -44,13 +49,13 @@
 
                                     <th class="text-center">Date </th>
 
-                                    <th class="text-center">Contra No. </th>
+                                    <th class="text-center">Reference No. </th>
 
                                     <th class="text-center"> Particular.</th>
 
-                                    <th class="text-center"> Amount</th>
+                                    <th class="text-center">Debit Amount</th>
 
-                                    <th class="text-center"> Cheque No,</th>
+                                    <th class="text-center">Credit Amount</th>
 
                                 </tr>
 
@@ -63,7 +68,7 @@
                                         </button>
                                     </td>
                                     <td class="text-center"> {{list.date | date}}</td>
-                                    <td class="text-center"> {{list.contraNumber}}</td>
+                                    <td class="text-center"> {{list.paymentNumber}}</td>
                                     <td>
                                         <tr *ngFor="let parti of list.particularsData">
                                             <td>{{parti.particulars[0].id}}</td>
@@ -77,7 +82,6 @@
                                             <td class="text-center">{{parti.amount}}</td>
                                         </tr>
                                     </td>
-                                    <td class="text-center"> {{list.chequeNumber}}</td>
 
                                 </tr>
                                 <tr>
