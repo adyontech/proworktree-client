@@ -33,6 +33,9 @@ export class CashInHandsComponent implements OnInit {
 
   @ViewChild("modal") modal: BsModalComponent;
 
+  debSum: number;
+  credSum: number;
+  sumTotal: number;
   incomingData: Array<string>;
   form: FormGroup;
   public dataCopy: any;
@@ -100,24 +103,48 @@ export class CashInHandsComponent implements OnInit {
       .getLedgerNameData()
       .map(response => response.json())
       .subscribe(data => {
-        // console.log(data);
-        // data = data.ledgerData.map(item=> item)
         this.ledgerList = this.ledgerList.concat(data.ledgerData);
+
+        this.getIncomingData(this.ledgerList[0]);
+      });
+  }
+  getIncomingData(value) {
+    this.dataCopy = this._cashInHandsService
+      .getIncomingData(value)
+      .map(response => response.json())
+      .subscribe(data => {
+        // console.log(data);
+        this.caseThrough(data.formData);
       });
   }
 
-  getIncomingData(ledgerName) {
-    console.log(ledgerName);
-    this.dataCopy = this._cashInHandsService
-      .getIncomingData(ledgerName)
-      .map(response => response.json())
-      .subscribe(data => {
-        data.formData.map(el => {
-          console.log(el.data);
-          this.incomingData = el.data;
-        });
-        console.log(this.incomingData);
-      });
+  caseThrough(arg) {
+    this.debSum = 0;
+    this.credSum = 0;
+    // console.log(arg);
+    arg.map(el => {
+      switch (el.source) {
+        case "payment": {
+          el.data.map(elm =>
+            elm.particularsData.map(ele => {
+              if (elm.account.toLowerCase() == "cash") {
+                ele["creditAmount"] = ele.amount;
+                this.credSum += ele.amount;
+                ele["debitAmount"] = 0;
+              } else {
+                ele["debitAmount"] = ele.amount;
+                this.debSum += ele.amount;
+                ele["creditAmount"] = 0;
+              }
+            })
+          );
+        }
+      }
+    });
+
+    console.log(arg);
+    this.sumTotal = Math.abs(this.debSum - this.credSum);
+    this.incomingData = arg.map(el => el.data)[0];
   }
 
   editData(id) {

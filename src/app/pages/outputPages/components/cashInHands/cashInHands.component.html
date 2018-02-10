@@ -16,8 +16,8 @@
                         <h2 class="title text-center">Cash-In-Hand</h2>
                     </div>
                     <div class="text-center">
-                        <ng-select [allowClear]="true" [items]="ledgerList"(data)="refreshValue($event)" (selected)="selected($event)"
-                            (removed)="removed($event)" placeholder="No particulars selected">
+                        <ng-select [allowClear]="true" [items]="ledgerList" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)"
+                            placeholder="No particulars selected">
                         </ng-select>
                     </div>
                     <div class="row">
@@ -79,7 +79,13 @@
                                     <td>
                                         <tr *ngFor="let parti of list.particularsData">
 
-                                            <td class="text-center">{{parti.amount}}</td>
+                                            <td class="text-center">{{parti.debitAmount}}</td>
+                                        </tr>
+                                    </td>
+                                    <td>
+                                        <tr *ngFor="let parti of list.particularsData">
+
+                                            <td class="text-center">{{parti.creditAmount}}</td>
                                         </tr>
                                     </td>
 
@@ -88,6 +94,32 @@
 
                                 </tr>
 
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Total</td>
+                                    <td>{{debSum}}</td>
+                                    <td>{{credSum}}</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Closing</td>
+                                    <td *ngIf="credSum > debSum">{{sumTotal}}</td>
+                                    <td *ngIf="debSum > credSum">{{sumTotal}}</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Total</td>
+                                    <td *ngIf="debSum > credSum">{{sumTotal}}</td>
+                                    <td *ngIf="credSum > debSum">{{sumTotal}}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
