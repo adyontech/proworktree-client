@@ -9,6 +9,7 @@ import { OutputPagesComponent } from './outputPages.component';
 import { CashInHandsComponent } from "./components/cashInHands/cashInHands.component";
 import { CashAtBankComponent } from "./components/cashAtBank/cashAtBank.component";
 import { ContraComponent } from "./components/contra/contra.component";
+import { TrialBalanceComponent } from "./components/trialBalance/trialBalance.component";
 import { JournalEntryComponent } from "./components/journalEntry/journalEntry.component";
 import { LedgerComponent } from "./components/ledger/ledger.component";
 import { PaymentComponent } from "./components/payment/payment.component";
@@ -22,7 +23,7 @@ import { SidebarComponent } from "./../sharedPageComponent/sidebar/sidebar.compo
 import { SettingsComponent } from "./components/settings/settings.component";
 import { underGroupComponent } from "./components/underGroup/underGroup.component";
 
-//inner-form components
+//
 import { PopPaymentComponent } from "./components/payment/component/popPayment.component";
 
 
@@ -30,6 +31,7 @@ import { CashInHandsService } from "./components/cashInHands/service/cashInHands
 import { CashAtBankService } from "./components/cashAtBank/service/cashAtBank.service";
 import { OutputPagesService } from "./service/outputPages.service";
 import { ContraService } from "./components/contra/service/contra.service";
+import { TrialBalanceService } from "./components/trialBalance/service/trialBalance.service";
 import { JournalEntryService } from "./components/journalEntry/service/journalEntry.service";
 import { LedgerService } from "./components/ledger/service/ledger.service";
 import { PaymentService } from "./components/payment/service/payment.service";
@@ -69,6 +71,7 @@ import { UiSwitchModule } from "./../../../../node_modules/angular2-ui-switch/sr
         ContraComponent,
         OutputPagesComponent,
         JournalEntryComponent,
+        TrialBalanceComponent,
         LedgerComponent,
         PaymentComponent,
         ProductServiceComponent,
@@ -91,6 +94,7 @@ import { UiSwitchModule } from "./../../../../node_modules/angular2-ui-switch/sr
         CashInHandsService,
         CashAtBankService,
         ContraService,
+        TrialBalanceService,
         OutputPagesService,
         JournalEntryService,
         LedgerService,
