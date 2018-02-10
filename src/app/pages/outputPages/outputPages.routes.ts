@@ -30,7 +30,6 @@ const INDEX_ROUTES: Routes = [
         path: "cashatbank",
         component: CashAtBankComponent
       },
-
       {
         path: "contra",
         component: ContraComponent

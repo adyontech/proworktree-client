@@ -123,7 +123,7 @@ export class CashInHandsComponent implements OnInit {
     this.credSum = 0;
     // console.log(arg);
     arg.map(el => {
-      switch (el.source) {
+      switch (el.source.toLowerCase()) {
         case "payment": {
           el.data.map(elm =>
             elm.particularsData.map(ele => {
@@ -138,6 +138,39 @@ export class CashInHandsComponent implements OnInit {
               }
             })
           );
+          break;
+        }
+        case "receipt": {
+          el.data.map(elm =>
+            elm.particularsData.map(ele => {
+              if (elm.account.toLowerCase() == "cash") {
+                ele["debitAmount"] = ele.amount;
+                this.debSum += ele.amount;
+                ele["creditAmount"] = 0;
+              } else {
+                ele["creditAmount"] = ele.amount;
+                this.credSum += ele.amount;
+                ele["debitAmount"] = 0;
+              }
+            })
+          );
+          break;
+        }
+        case "conta": {
+          el.data.map(elm =>
+            elm.particularsData.map(ele => {
+              if (elm.account.toLowerCase() == "cash") {
+                ele["debitAmount"] = ele.amount;
+                this.debSum += ele.amount;
+                ele["creditAmount"] = 0;
+              } else {
+                ele["creditAmount"] = ele.amount;
+                this.credSum += ele.amount;
+                ele["debitAmount"] = 0;
+              }
+            })
+          );
+          break;
         }
       }
     });
