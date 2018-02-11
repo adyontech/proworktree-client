@@ -17,7 +17,7 @@ import { ActivatedRoute } from "@angular/router";
 import { SalesService } from "./service/sales.service";
 import { IMyDpOptions } from "mydatepicker";
 import { BsModalComponent, BsModalBodyComponent } from "ng2-bs3-modal";
-import { Console } from "@angular/core/src/console";
+
 declare var $: any;
 
 @Component({
@@ -46,7 +46,7 @@ export class SalesComponent implements OnInit {
     public _salesService: SalesService,
     public fb: FormBuilder,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getPrsrList();
@@ -56,7 +56,7 @@ export class SalesComponent implements OnInit {
       invoiceNumber: [""],
       vehicleNumber: [""],
       partyName: [""],
-      salesLedgerName:[""],
+      salesLedgerName: [""],
       saleType: [""],
       transportationMode: [""],
       supplyPlace: [""],
@@ -87,12 +87,7 @@ export class SalesComponent implements OnInit {
   public salesList: Array<string> = [];
   public prsrList: Array<string> = [];
 
-  public items: Array<string> = [
-    "Wrocław",
-    "Zagreb",
-    "Zaragoza",
-    "Łódź"
-  ];
+  public items: Array<string> = ["Wrocław", "Zagreb", "Zaragoza", "Łódź"];
 
   public value: any = {};
   public _disabledV: string = "0";
@@ -112,14 +107,13 @@ export class SalesComponent implements OnInit {
       if (element.prsrName == value.id) {
         unitsValue = element.units;
         gstRatevalue = element.gstRate;
-
       }
     });
     let particularsData = <FormArray>this.form.controls["particularsData"];
     let array = particularsData.at(indexValue);
     array.patchValue({
       units: unitsValue,
-      gstRate: gstRatevalue,
+      gstRate: gstRatevalue
     });
   }
 
@@ -162,7 +156,7 @@ export class SalesComponent implements OnInit {
   initSubParticular() {
     return this.fb.group({
       additionalService: [""],
-      percent: [""],
+      percent: [""]
     });
   }
   addParticular() {
@@ -224,7 +218,7 @@ export class SalesComponent implements OnInit {
       }
     });
     console.log(user);
-    this._salesService.createNewEntry(user).subscribe(data => { });
+    this._salesService.createNewEntry(user).subscribe(data => {});
   }
 
   getLedgerUGNames() {
@@ -254,7 +248,7 @@ export class SalesComponent implements OnInit {
       .subscribe(data => {
         this.prsrData = data;
         // console.log(data.prsr)
-        this.prsrList = data.prsr.map(item => item.prsrName)
+        this.prsrList = data.prsr.map(item => item.prsrName);
       });
   }
 
@@ -282,20 +276,18 @@ export class SalesComponent implements OnInit {
   totalSum() {
     this.form.patchValue({
       grandTotal: 0
-    })
+    });
     var formControls = this.form.controls.subParticularsData["controls"];
     this.totalAmount = 0;
     for (let i = 0; i < formControls.length; i++) {
       let percent = formControls[i].controls.percent.value;
-      if (!isNaN(percent) && percent !== "") this.totalAmount += parseFloat(percent);
+      if (!isNaN(percent) && percent !== "")
+        this.totalAmount += parseFloat(percent);
     }
     if (!isNaN(this.subTotal)) this.totalAmount += this.subTotal;
     // console.log(this.totalAmount);
     this.form.patchValue({
       grandTotal: this.totalAmount
-    })
+    });
   }
-
-
-
 }
