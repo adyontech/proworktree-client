@@ -17,6 +17,7 @@ import { ActivatedRoute } from "@angular/router";
 import { CashAtBankService } from "./service/cashAtBank.service";
 import { IMyDpOptions } from "mydatepicker";
 import { BsModalComponent, BsModalBodyComponent } from "ng2-bs3-modal";
+import { EVENT_MANAGER_PLUGINS } from "@angular/platform-browser";
 
 declare var $: any;
 
@@ -119,6 +120,7 @@ export class CashAtBankComponent implements OnInit {
   }
 
   caseThrough(arg) {
+    // console.log(arg);
     this.debSum = 0;
     this.credSum = 0;
     // console.log(arg);
@@ -174,9 +176,20 @@ export class CashAtBankComponent implements OnInit {
           break;
         }
         case "journal": {
-         var  nameList = el.data.particularsData.map(ele => ele.particulars[0].id);
-          console.log(nameList.map(ele=>ele))
+          console.log(el)
+          for (let i = 0; i < el.data.particularsData.length; i++) {
+            var check = this.ledgerList.includes(
+              el.data.particularsData[i].particulars[0].id
+            );
+            if (!check)  {
 
+              var v1 = el.data.particularsData[i].debitAmount;
+              var v2 = el.data.particularsData[i].creditAmount;
+              v2 = [v1, (v1 = v2)][0];
+
+            }
+          }
+          el.data = el.data.particularsData;
           break;
         }
       }
@@ -184,7 +197,11 @@ export class CashAtBankComponent implements OnInit {
 
     // console.log(arg);
     this.sumTotal = Math.abs(this.debSum - this.credSum);
-    this.incomingData = arg.map(el => el.data)[0];
+    // this.incomingData = arg.map(el => el.data)[0];
+    // console.log(arg.map(el => el.data));
+    this.incomingData = [];
+    arg.map(el => (this.incomingData = this.incomingData.concat(el.data)));
+    console.log(this.incomingData);
   }
 
   editData(id) {
