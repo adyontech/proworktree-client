@@ -2,7 +2,7 @@
     <button type="button" name="delete" class="btn btn-danger pull-left "> Delete</button>
     <div class="pull-right">
          Copy and new
-        <ui-switch size="small" [(ngModel)]="action"></ui-switch>
+        <!-- <ui-switch size="small" [(ngModel)]="action"></ui-switch> -->
         Edit
     </div>
 
@@ -168,7 +168,7 @@
                                         </div>
 
                                         <div formArrayName="particularsData">
-                                            <div *ngFor="let address of form.controls.particularsData.controls; let i=index">
+                                            <div *ngFor="let address of formData.controls; let i=index">
                                                 <!-- <span>{{i + 1}}</span> -->
                                                 <div [formGroupName]="i">
                                                     <div class="block">

@@ -159,7 +159,7 @@
                                         </div>
 
                                         <div formArrayName="particularsData">
-                                            <div *ngFor="let address of form.controls.particularsData.controls; let i=index">
+                                            <div *ngFor="let address of formData.controls; let i=index">
                                                 <!-- <span>{{i + 1}}</span> -->
                                                 <div [formGroupName]="i">
                                                     <div class="block">

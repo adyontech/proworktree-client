@@ -87,7 +87,7 @@
                                     <div class="col-md-5">
                                         <div class="form-group">
                                             <label>Place supplyPlace</label>
-                                            <ng-select [allowClear]="true" [items]="items" formControlName="supplyPlace" (data)="refreshValue($event)" (removed)="removed($event)" (typed)="showNotification('top','left')" placeholder="No city selected">
+                                            <ng-select [allowClear]="true" [items]="items" formControlName="supplyPlace" (data)="refreshValue($event)" (typed)="showNotification('top','left')" placeholder="No city selected">
                                             </ng-select>
                                         </div>
                                     </div>
@@ -153,7 +153,7 @@
                                         </div>
 
                                         <div formArrayName="particularsData">
-                                            <div *ngFor="let formDum of form.controls.particularsData.controls; let i=index">
+                                            <div *ngFor="let formDum of formData.controls; let i=index">
                                                 <!-- <span>{{i + 1}}</span> -->
                                                 <div [formGroupName]="i">
                                                     <div class="block">
@@ -225,7 +225,7 @@
                                         </div>
                                         <br>
                                         <div formArrayName="subParticularsData">
-                                            <div *ngFor="let formDum2 of form.controls.subParticularsData.controls; let i=index">
+                                            <div *ngFor="let formDum2 of formData.controls; let i=index">
 
                                                 <div [formGroupName]="i">
 
