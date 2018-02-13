@@ -19,7 +19,7 @@ import { PurchaseReturnComponent } from "./components/purchaseReturn/purchaseRet
 import { ReceiptComponent } from "./components/receipt/receipt.component";
 import { SalesComponent } from "./components/sales/sales.component";
 import { SalesReturnComponent } from "./components/salesReturn/salesReturn.component";
-import { SidebarComponent } from "./../sharedPageComponent/sidebar/sidebar.component";
+// import { SidebarComponent } from "./../sharedPageComponent/sidebar/sidebar.component";
 import { SettingsComponent } from "./components/settings/settings.component";
 import { underGroupComponent } from "./components/underGroup/underGroup.component";
 
@@ -48,70 +48,63 @@ import { UnderGroupsService } from "./components/underGroup/service/underGroup.s
 //inner-form service
 import { PopPaymentService } from "./components/payment/component/service/popPayment.service"
 
+import { SidebarModule } from './../../sidebar/sidebar.module';
 import { AngularMultiSelectModule } from 'angular2-multiselect-checkbox-dropdown/angular2-multiselect-dropdown';
 import { SelectModule } from 'ng2-select';
 import { MyDatePickerModule } from 'mydatepicker';
 import { BsModalModule } from 'ng2-bs3-modal';
-// import { UiSwitchModule } from 'angular2-ui-switch'
-
-import { UiSwitchModule } from "./../../../../node_modules/angular2-ui-switch/src";
 @NgModule({
-    imports: [
-        AngularMultiSelectModule,
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        OutputPagesRoutingModule,
-        SelectModule,
-        MyDatePickerModule,
-        BsModalModule,
-        UiSwitchModule
-    ],
-    declarations: [
-        ContraComponent,
-        OutputPagesComponent,
-        JournalEntryComponent,
-        TrialBalanceComponent,
-        LedgerComponent,
-        PaymentComponent,
-        ProductServiceComponent,
-        PurchaseComponent,
-        PurchaseReturnComponent,
-        ReceiptComponent,
-        SalesComponent,
-        SalesReturnComponent,
-        SettingsComponent,
-        SidebarComponent,
-        underGroupComponent,
-        CashInHandsComponent,
-        CashAtBankComponent,
+	imports: [
+		AngularMultiSelectModule,
+		CommonModule,
+		FormsModule,
+		ReactiveFormsModule,
+		OutputPagesRoutingModule,
+		SelectModule,
+		MyDatePickerModule,
+		BsModalModule,
+		SidebarModule,
+	],
+	declarations: [
+		ContraComponent,
+		OutputPagesComponent,
+		JournalEntryComponent,
+		TrialBalanceComponent,
+		LedgerComponent,
+		PaymentComponent,
+		ProductServiceComponent,
+		PurchaseComponent,
+		PurchaseReturnComponent,
+		ReceiptComponent,
+		SalesComponent,
+		SalesReturnComponent,
+		SettingsComponent,
+		// SidebarComponent,
+		underGroupComponent,
+		CashInHandsComponent,
+		CashAtBankComponent,
 
+		PopPaymentComponent,
+	],
+	providers: [
+		CashInHandsService,
+		CashAtBankService,
+		ContraService,
+		TrialBalanceService,
+		OutputPagesService,
+		JournalEntryService,
+		LedgerService,
+		PaymentService,
+		ProductServiceService,
+		PurchaseService,
+		PurchaseReturnService,
+		ReceiptService,
+		SalesService,
+		SalesReturnService,
+		SettingsService,
+		UnderGroupsService,
 
-
-        PopPaymentComponent
-    ],
-    providers: [
-        CashInHandsService,
-        CashAtBankService,
-        ContraService,
-        TrialBalanceService,
-        OutputPagesService,
-        JournalEntryService,
-        LedgerService,
-        PaymentService,
-        ProductServiceService,
-        PurchaseService,
-        PurchaseReturnService,
-        ReceiptService,
-        SalesService,
-        SalesReturnService,
-        SettingsService,
-        UnderGroupsService,
-
-
-
-        PopPaymentService
-    ]
+		PopPaymentService,
+	],
 })
-
-export class OutputPagesModule { }
+export class OutputPagesModule {}

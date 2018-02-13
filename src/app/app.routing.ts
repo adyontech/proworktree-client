@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 
-import { IconsComponent } from './icons/icons.component';
 
 import { LoginComponent } from './pages/login/login.component';
 import { LoggedInGuard } from './sharedService/authGuard/guard';

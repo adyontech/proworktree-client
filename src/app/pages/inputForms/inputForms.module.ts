@@ -15,7 +15,7 @@ import { PurchaseReturnComponent } from "./components/purchaseReturn/purchaseRet
 import { ReceiptComponent } from "./components/receipt/receipt.component";
 import { SalesComponent } from "./components/sales/sales.component";
 import { SalesReturnComponent } from "./components/salesReturn/salesReturn.component";
-import { SidebarComponent } from "./../sharedPageComponent/sidebar/sidebar.component";
+// import { SidebarComponent } from "./../sharedPageComponent/sidebar/sidebar.component";
 import { SettingsComponent } from "./components/settings/settings.component";
 import { underGroupComponent } from "./components/underGroup/underGroup.component";
 
@@ -33,50 +33,51 @@ import { SalesReturnService } from "./components/salesReturn/service/salesReturn
 import { SettingsService } from "./components/settings/service/settings.service";
 import { UnderGroupsService } from "./components/underGroup/service/underGroup.service";
 
+import { SidebarModule } from "./../../sidebar/sidebar.module";
 import { SelectModule } from 'ng2-select';
 import { MyDatePickerModule } from 'mydatepicker';
 import { BsModalModule } from 'ng2-bs3-modal';
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        FormsRoutingModule,
-        SelectModule, 
-        MyDatePickerModule,
-        BsModalModule
-    ],
-    declarations: [
-        ContraComponent,
-        InputFormsComponent,
-        JournalEntryComponent,
-        LedgerComponent,
-        PaymentComponent,
-        ProductServiceComponent,
-        PurchaseComponent,
-        PurchaseReturnComponent,
-        ReceiptComponent,
-        SalesComponent,
-        SalesReturnComponent,
-        SettingsComponent,
-        SidebarComponent,
-        underGroupComponent
-    ],
-    providers: [
-        ContraService,
-        InputFormService,
-        JournalEntryService,
-        LedgerService,
-        PaymentService,
-        ProductServiceService,
-        PurchaseService,
-        PurchaseReturnService,
-        ReceiptService,
-        SalesService,
-        SalesReturnService,
-        SettingsService,
-        UnderGroupsService
-    ]
+	imports: [
+		CommonModule,
+		FormsModule,
+		ReactiveFormsModule,
+		FormsRoutingModule,
+		SelectModule,
+		MyDatePickerModule,
+		BsModalModule,
+		SidebarModule,
+	],
+	declarations: [
+		ContraComponent,
+		InputFormsComponent,
+		JournalEntryComponent,
+		LedgerComponent,
+		PaymentComponent,
+		ProductServiceComponent,
+		PurchaseComponent,
+		PurchaseReturnComponent,
+		ReceiptComponent,
+		SalesComponent,
+		SalesReturnComponent,
+		SettingsComponent,
+		// SidebarComponent,
+		underGroupComponent,
+	],
+	providers: [
+		ContraService,
+		InputFormService,
+		JournalEntryService,
+		LedgerService,
+		PaymentService,
+		ProductServiceService,
+		PurchaseService,
+		PurchaseReturnService,
+		ReceiptService,
+		SalesService,
+		SalesReturnService,
+		SettingsService,
+		UnderGroupsService,
+	],
 })
-
-export class InputFormsModule { }
+export class InputFormsModule {}
