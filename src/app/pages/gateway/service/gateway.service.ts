@@ -16,8 +16,8 @@ export class GatewayService {
     public _userStateService: UserStateService,
     public _globalVariableService: GlobalVariableService) {
 
-    this.windowStorage = JSON.parse(window.localStorage.getItem('user'));
-    this.token = this.windowStorage.token;
+    this.windowStorage = JSON.parse(window.localStorage.getItem('currentUser'));
+    this.token = window.localStorage.getItem('token')
     console.log(this.windowStorage)
   }
   createNewCompany(user: any) {

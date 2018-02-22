@@ -26,7 +26,7 @@ export class LoginComponent {
 
 
   ngOnInit() {
-    this._loginService.logOut();
+    //this._loginService.logOut();
     this.fillForm();
 
     this.returnURL = this.route.snapshot.queryParams['returnURL'] || '/gateway/addcompany';
