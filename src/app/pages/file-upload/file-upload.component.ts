@@ -108,7 +108,7 @@ export class FileUploadComponent implements OnInit {
       }
     } else {
       for (var i = 0; i < selectedFiles.length; i++) {
-        if (selectedFiles[i].slice(-3).toUpperCase() != "PNG" || selectedFiles[i].slice(-3).toUpperCase() != "JPG") {
+        if (selectedFiles[i].slice(-3).toUpperCase() != "PNG") {
           alert('Please selecte PNG/JPG files only!');
           return false;
         } else {

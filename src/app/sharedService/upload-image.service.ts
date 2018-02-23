@@ -16,7 +16,7 @@ export class UploadImageService {
 
     let formData: FormData = new FormData();
     for (var i = 0; i < this.filesToUpload.length; i++) {
-      formData.append('file', this.filesToUpload[i], this.filesToUpload[i].name);
+      formData.append('avatar', this.filesToUpload[i], this.filesToUpload[i].name);
     }
     debugger;
     return this.http.post(url, formData).map((res: Response) => {
