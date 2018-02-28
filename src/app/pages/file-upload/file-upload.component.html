@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      File Upload Section
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+
+
+    <div class="col-md-12">
+
+      <form class="form-horizontal" enctype="multipart/form-data" >
+
+        <div class="form-group">
+          <select #fileType name="" id="" (change)="onChangeFileType(fileType.value)">
+            <option value="">Select File Type</option>
+            <option value="pdf">PDF</option>
+            <option value="png">PNG</option>
+          </select>
+        </div>
+
+        <div class="form-group" *ngIf="isPdfFile">
+          <input #fileUpload type="file" name="fileupload" id="fileupload" class="form-control" (change)="fileChangeEvent($event)"
+            placeholder="Upload file..." multiple accept=".pdf">
+        </div>
+
+        <div class="form-group" *ngIf="!isPdfFile">
+          <input #fileUpload type="file" name="fileupload" id="fileupload" class="form-control" (change)="fileChangeEvent($event)"
+            placeholder="Upload file..." multiple accept=".png">
+        </div>
+
+        <button type="button" class="btn btn-success" (click)="onSubmitForm()">Upload File</button>
+        <button type="button" class="btn btn-danger" (click)="cancelUpload()">Cancel</button>
+
+
+
+        <div style="color:red">
+          {{errorMessage}}
+        </div>
+      </form>
+
+    </div>
+
+    <div class="col-md-6">
+      <span>{{ fileToUpload?.length }} files selected</span>
+    </div>
+    <div class="col-md-6">
+      <h4>File Names : </h4>
+      <ul>
+        <li *ngFor="let fileName of selectedFileNames; let i = index">
+          {{fileName}}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-12">
+      <div [innerHtml]="uploadResult"></div>
+    </div>
+
+
+
+  </div>
+</div>

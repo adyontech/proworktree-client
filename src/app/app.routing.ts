@@ -8,11 +8,18 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { LoggedInGuard } from './sharedService/authGuard/guard';
 import { ActivationComponent } from './pages/activation/activation.component';
+import { FileUploadComponent } from './pages/file-upload/file-upload.component';
 
 const routes: Routes = [
 
+  {
+    path: '', redirectTo: '/fileupload', pathMatch: 'full'
+  },
 
-
+  {
+    path: 'fileupload',
+    component: FileUploadComponent
+  },
 
   {
     path: 'login',
@@ -42,10 +49,13 @@ const routes: Routes = [
     loadChildren: './pages/outputPages/outputPages.module#OutputPagesModule',
     // canActivate: [LoggedInGuard] 
   },
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  // { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({
+  declarations: [
+    FileUploadComponent,
+  ],
   imports: [
     CommonModule,
     BrowserModule,
