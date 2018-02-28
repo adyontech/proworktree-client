@@ -4,9 +4,9 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { PaymentService } from "./service/payment.service";
+import { PaymentService } from './service/payment.service';
 import { IMyDpOptions } from 'mydatepicker';
-import { BsModalComponent, BsModalBodyComponent } from "ng2-bs3-modal";
+import { BsModalComponent, BsModalBodyComponent } from 'ng2-bs3-modal';
 declare var $: any;
 
 @Component({
